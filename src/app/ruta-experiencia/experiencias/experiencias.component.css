@@ -1,0 +1,25 @@
+.agregar,
+.editar {
+    display: flex;
+    justify-content: center;
+    padding: 2px;
+    border-radius: 4px;
+    gap: 10px;
+
+}
+
+.agregar img,
+.editar img {
+    cursor: pointer;
+    padding: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 100px;
+    vertical-align: middle;
+}
+
+.agregar img:hover,
+.editar img:hover{
+    background-color: #00000040;
+}
+
