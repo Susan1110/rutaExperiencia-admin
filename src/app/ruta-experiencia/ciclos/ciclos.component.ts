@@ -16,7 +16,7 @@ export class CiclosComponent {
       'display': 'grid',
       'grid-template-rows': '70px',
       'grid-template-columns': `repeat(${this.ciclos},1fr)`,
-      'gap': '20px',
+      'gap': '30px',
     }
   }
 }

@@ -60,7 +60,7 @@ export class ExperienciasComponent {
       'display': 'grid',
       'grid-template-columns': `repeat(${this.ciclos},1fr)`,
       'grid-template-rows': `repeat(${this.filas},1fr)`,
-      'gap': '20px'
+      'gap': '16px 30px'
     }
   }
 

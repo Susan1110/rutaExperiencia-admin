@@ -1,0 +1,29 @@
+.beneficio {
+    font-size: 12px;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    border-radius: 4px;
+    cursor: default;
+}
+
+.nuevo {
+    border-radius: 4px;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+}
+
+.nuevo img {
+    cursor: pointer;
+    padding: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 100px;
+    vertical-align: middle;
+
+}
+
+.nuevo img:hover {
+    background-color: #00000040;
+}
