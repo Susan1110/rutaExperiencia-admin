@@ -7,10 +7,16 @@
 
     <app-ciclos></app-ciclos>
 
-    <app-experiencias>
-
-    </app-experiencias>
+    <app-experiencias 
+    (open)="abrirPopUp($event)"
+    ></app-experiencias>
 
     <app-beneficios></app-beneficios>
+
+    <ng-container *ngIf="modal">
+        <app-add-edit-experiencias
+        (close)="cerrarPopUp($event)"
+        ></app-add-edit-experiencias>
+    </ng-container>
 
 </div>

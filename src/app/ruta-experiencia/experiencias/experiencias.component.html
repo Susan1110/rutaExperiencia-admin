@@ -3,16 +3,26 @@
 
 
     <ng-container *ngFor="let filas of posicion">
-        <div *ngFor="let columna of filas" class="agregar" [ngStyle]=posicionExperiencia(columna.ciclo,columna.ciclo,columna.fila)>
-            <img src="assets/agregar.svg" alt="agregarExperiencia">
-            <!-- <img src="assets/agregar.svg" alt="agregarExperiencia" class="col{{columna.ciclo}}"> -->
+        <div *ngFor="let columna of filas" class="agregar"
+            [ngStyle]=posicionExperiencia(columna.ciclo,columna.ciclo,columna.fila)>
+            <div class="icon" (click)="abrirModal()">
+                <img src="assets/agregar.svg" alt="agregarExperiencia">
+                <!-- <img src="assets/agregar.svg" alt="agregarExperiencia" class="col{{columna.ciclo}}"> -->
+            </div>
         </div>
     </ng-container>
 
-    <div *ngFor="let experiencia of experiencias" [ngStyle]=posicionExperiencia(experiencia.cicloInicio,experiencia.cicloFin,experiencia.fila) class="editar">
-        <img src="assets/ver.svg" alt="ver">
-        <img src="assets/editar.svg" alt="editar">
-        <img src="assets/eliminar.svg" alt="eliminar">
+    <div *ngFor="let experiencia of experiencias"
+        [ngStyle]=posicionExperiencia(experiencia.cicloInicio,experiencia.cicloFin,experiencia.fila) class="editar">
+        <div class="icon">
+            <img src="assets/ver.svg" alt="ver">
+        </div>
+        <div class="icon">
+            <img src="assets/editar.svg" alt="editar">
+        </div>
+        <div class="icon">
+            <img src="assets/eliminar.svg" alt="eliminar">
+        </div>
     </div>
 
 

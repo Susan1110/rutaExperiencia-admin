@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 interface Posicion {
   fila: number
@@ -21,6 +21,8 @@ interface Experiencia {
   styleUrls: ['./experiencias.component.css']
 })
 export class ExperienciasComponent {
+  @Output() open: EventEmitter<boolean> = new EventEmitter()
+  modal: boolean = false;
   filas: number = 8
   ciclos: number = 10
   posicion: Posicion[][]
@@ -75,7 +77,7 @@ export class ExperienciasComponent {
   }
   background(inicio: number, fin: number, expansion: number) {
     let color = ''
-    if (expansion > 1) {      
+    if (expansion > 1) {
       let gradient = ''
       for (let index = inicio; index <= fin; index++) {
         gradient += `, var(--carrera-color-${index})`
@@ -87,6 +89,11 @@ export class ExperienciasComponent {
       color = `var(--carrera-color-${inicio})`
     }
     return color
+  }
+
+  abrirModal() {
+    this.modal = true
+    this.open.emit(this.modal)
   }
 
   constructor() {

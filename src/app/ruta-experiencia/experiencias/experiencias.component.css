@@ -2,24 +2,26 @@
 .editar {
     display: flex;
     justify-content: center;
-    padding: 2px;
+    padding: 5px;
     border-radius: 4px;
     gap: 10px;
 
 }
 
-.agregar img,
-.editar img {
+.icon {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
     cursor: pointer;
-    padding: 4px;
-    width: 18px;
-    height: 18px;
     border-radius: 100px;
     vertical-align: middle;
 }
 
-.agregar img:hover,
-.editar img:hover{
-    background-color: #00000040;
+.icon img {
+    width: 15px;
+    height: 15px;
 }
 
+.icon:hover {
+    background-color: #00000040;
+}
