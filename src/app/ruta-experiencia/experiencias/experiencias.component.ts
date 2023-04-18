@@ -75,6 +75,7 @@ export class ExperienciasComponent {
       'background': color
     }
   }
+
   background(inicio: number, fin: number, expansion: number) {
     let color = ''
     if (expansion > 1) {

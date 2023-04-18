@@ -5,7 +5,6 @@
   padding: 50px;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(2px);
-  z-index: 10000;
   top: 0;
   right: 0;
   display: flex;
@@ -40,10 +39,8 @@
   cursor: pointer;
 }
 
-
 .multimedia {
   display: flex;
-  justify-content: space-between;
 }
 
 .multimedia-opciones {
@@ -52,6 +49,18 @@
   text-align: center;
   border: 1px solid #BFBFBF;
   cursor: pointer;
+}
+
+.activeMultimedia {
+  border: 0;
+  font-weight: 700;
+}
+
+.cuerpo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .espacio {
@@ -76,11 +85,7 @@
   background: linear-gradient(180deg, #010163 0%, #520252 100%);
 }
 
-.cuerpo {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+
 
 .ciclos {
   display: flex;
@@ -96,18 +101,43 @@
 
 .icono,
 .imagen {
-  flex: 1;
   background: #CCCCCC;
   position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  height: 50px;
+}
+
+.imagen {
+  height: 300px;
 }
 
 .icono img {
-  min-height: 50px;
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.imagen img {
-  min-height: 300px;
+.imagen img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
+
+.slider{
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider-acciones{
+  display: flex;
+  gap: 10px;
+}
+
+
+
 
 
 .icono-acciones,
@@ -153,41 +183,13 @@ textarea {
   resize: none;
 }
 
-.activeMultimedia {
-  border: 0;
-  font-weight: 700;
-}
-
 .activeInfo {
   font-weight: 700;
   background: white;
 }
 
-.slider {
-  border: 1px solid #BFBFBF;
-  
-  /* flex-direction: column; */
-  /* gap: 20px; */
-}
 
-.slide{
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 20px;
-}
-
-.slide-acciones {
-  display: flex;
-  gap: 10px;
-  bottom: 10px;
-  right: 10px;
-}
-
-.slide-info{
-  padding: 20px;
-}
-
-.segundo{
+.segundo {
   text-align: center;
   padding: 10px 50px;
   background: linear-gradient(90deg, #B3B3EE 0%, #E3B4E3 100%);
