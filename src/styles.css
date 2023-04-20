@@ -1,12 +1,98 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --carrera-color-1: #0202C6;
+    --carrera-color-2: #6802C1;
+    --carrera-color-3: #A304A3;
+    --carrera-color-4: #EA0303;
+    --carrera-color-5: #FF521D;
+    --carrera-color-6: #B17DF4;
+    --carrera-color-7: #ED76F4;
+    --carrera-color-8: #F97373;
+    --carrera-color-9: #FF8773;
+    --carrera-color-10: #63FDCB;
+}
+
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Poppins';
+    box-sizing: border-box;
 }
 
-html,body {
+html,
+body {
     height: 100%;
 }
 
+.body {
+    position: relative;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(2px);
+}
+
+h1,
+.h1 {
+    font-size: 36px;
+}
+
+h2,
+.h2 {
+    font-size: 18px;
+}
+
+p,
+.p {
+    font-size: 16px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.regular {
+    font-weight: 400;
+}
+
+
+.col1 {
+    background-color: var(--carrera-color-1);
+}
+
+.col2 {
+    background-color: var(--carrera-color-2);
+}
+
+.col3 {
+    background-color: var(--carrera-color-3);
+}
+
+.col4 {
+    background-color: var(--carrera-color-4);
+}
+
+.col5 {
+    background-color: var(--carrera-color-5);
+}
+
+.col6 {
+    background-color: var(--carrera-color-6);
+}
+
+.col7 {
+    background-color: var(--carrera-color-7);
+}
+
+.col8 {
+    background-color: var(--carrera-color-8);
+}
+
+.col9 {
+    background-color: var(--carrera-color-9);
+}
+
+.col10 {
+    background-color: var(--carrera-color-10);
+}
