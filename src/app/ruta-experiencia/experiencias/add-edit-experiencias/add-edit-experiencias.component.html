@@ -1,10 +1,11 @@
-<div class="form">
+<div class="container">
     <div class="add-edit">
-        <div class="cabecera">
+        <div class="barraTitulo">
             <div class="h2 bold">
                 Agregar Experiencia
             </div>
-            <div class="close" (click)="cerrarModal()">
+            <div class="cerrar" (click)="cerrarModal()">
+                <img src="assets/cerrar.png" alt="">
             </div>
         </div>
 
@@ -35,132 +36,140 @@
                 </div>
             </div>
 
-            <div class="entrada">
-                <div>
-                    Icono:
-                </div>
-                <div class="icono">
-                    <img src="assets/editar.svg" alt="123">
-                    <div class="icono-acciones">
-                        <div class="close">
-
-                        </div>
-                        <div class="close">
-
+            <div class="icono">
+                <div class="entrada">
+                    <div>
+                        Icono:
+                    </div>
+                    <div class="icono-img">
+                        <img src="assets/editar.svg" alt="123">
+                        <div class="acciones">
+                            <div class="accion">
+                                <img src="assets/subir.png" alt="">
+                            </div>
+                            <div class="accion">
+                                <img src="assets/eliminarNegro.png" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
             <ng-container [ngSwitch]="opcionMultimedia">
 
                 <!--INICIO VIDEO -->
-                <ng-container *ngSwitchCase="'video'">
-                    <div id="multimedia" class="entrada">
-                        <div>
-                            Video
+                <div class="entrada" *ngSwitchCase="'video'">
+                    <div>
+                        Video
+                    </div>
+
+                    <div class="info" [ngSwitch]="opcionInfo">
+                        <div class="multimedia">
+                            <div class="multimedia-opciones" (click)="selectInfo('video')"
+                                [ngClass]="{'activeInfo': 'video'===opcionInfo}">
+                                Video
+                            </div>
+                            <div class="multimedia-opciones" (click)="selectInfo('descripcion')"
+                                [ngClass]="{'activeInfo': 'descripcion'===opcionInfo}">
+                                Descripción
+                            </div>
                         </div>
-
-                        <div class="info" [ngSwitch]="opcionInfo">
-                            <div class="multimedia">
-                                <div class="multimedia-opciones" (click)="selectInfo('video')"
-                                    [ngClass]="{'activeInfo': 'video'===opcionInfo}">
-                                    Video
+                        <div class="cuerpo" *ngSwitchCase="'video'">
+                            <div class="entrada">
+                                <div>
+                                    Link:
                                 </div>
-                                <div class="multimedia-opciones" (click)="selectInfo('descripcion')"
-                                    [ngClass]="{'activeInfo': 'descripcion'===opcionInfo}">
-                                    Descripción
-                                </div>
+                                <input type="text">
                             </div>
-                            <div class="cuerpo" *ngSwitchCase="'video'">
-                                <div class="entrada">
-                                    <div>
-                                        Link:
-                                    </div>
-                                    <input type="text">
-                                </div>
-                                <div class="video">
-                                </div>
+                            <div class="video">
                             </div>
-                            <div class="cuerpo" *ngSwitchCase="'descripcion'">
-                                <div class="entrada">
-                                    <div>
-                                        Titulo:
-                                    </div>
-                                    <input type="text">
+                        </div>
+                        <div class="cuerpo" *ngSwitchCase="'descripcion'">
+                            <div class="entrada">
+                                <div>
+                                    Titulo:
                                 </div>
+                                <input type="text">
+                            </div>
 
-                                <div class="entrada">
-                                    <div>
-                                        Contenido:
-                                    </div>
-                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                            <div class="entrada">
+                                <div>
+                                    Contenido:
                                 </div>
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
                             </div>
                         </div>
                     </div>
-                </ng-container>
+                </div>
                 <!-- FIN VIDEO -->
 
                 <!-- INICIO IMAGEN -->
-                <ng-container *ngSwitchCase="'imagen'">
-                    <div class="entrada">
-                        <div>
-                            Imagen
-                        </div>
-
-                        <div class="info" [ngSwitch]="opcionInfo">
-                            <div class="slider">
-                                <div>Titulo1</div>
-                                <div class="slider-acciones">
-                                    <div class="close">
-                                    </div>
-                                    <div class="close">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="multimedia">
-                                <div class="multimedia-opciones" (click)="selectInfo('video')"
-                                    [ngClass]="{'activeInfo': 'video'===opcionInfo}">
-                                    Imagen
-                                </div>
-                                <div class="multimedia-opciones" (click)="selectInfo('descripcion')"
-                                    [ngClass]="{'activeInfo': 'descripcion'===opcionInfo}">
-                                    Descripción
-                                </div>
-                            </div>
-                            <div class="cuerpo" *ngSwitchCase="'video'">
-                                <div class="imagen">
-                                    <img src="" alt="123">
-                                    <div class="imagen-acciones">
-                                        <div class="close">
-
-                                        </div>
-                                        <div class="close">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cuerpo" *ngSwitchCase="'descripcion'">
-                                <div class="entrada">
-                                    <div>
-                                        Titulo:
-                                    </div>
-                                    <input type="text">
-                                </div>
-
-                                <div class="entrada">
-                                    <div>
-                                        Contenido:
-                                    </div>
-                                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-
+                <div class="entrada" *ngSwitchCase="'imagen'">
+                    <div>
+                        Imagen
                     </div>
-                </ng-container>
+
+                    <div class="info" [ngSwitch]="opcionInfo">
+                        <div class="slider">
+                            <div>Titulo1</div>
+                            <div class="acciones">
+                                <div class="accion">
+                                    <img src="assets/editarNegro.png" alt="">
+                                </div>
+                                <div class="accion">
+                                    <img src="assets/eliminarNegro.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="multimedia">
+                            <div class="multimedia-opciones" (click)="selectInfo('video')"
+                                [ngClass]="{'activeInfo': 'video'===opcionInfo}">
+                                Imagen
+                            </div>
+                            <div class="multimedia-opciones" (click)="selectInfo('descripcion')"
+                                [ngClass]="{'activeInfo': 'descripcion'===opcionInfo}">
+                                Descripción
+                            </div>
+                        </div>
+                        <div class="cuerpo" *ngSwitchCase="'video'">
+                            <div class="imagen">
+                                <img src="" alt="123">
+                                <div class="acciones">
+                                    <div class="accion">
+                                        <img src="assets/subir.png" alt="">
+                                    </div>
+                                    <div class="accion">
+                                        <img src="assets/eliminarNegro.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cuerpo" *ngSwitchCase="'descripcion'">
+                            <div class="entrada">
+                                <div>
+                                    Titulo:
+                                </div>
+                                <input type="text">
+                            </div>
+
+                            <div class="entrada">
+                                <div>
+                                    Contenido:
+                                </div>
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button segundo bold">
+                        + Añadir imagen
+                    </div>
+
+
+
+                </div>
                 <!-- FIN IMAGEN -->
 
             </ng-container>
@@ -168,7 +177,7 @@
         </div>
 
         <div class="guardar espacio">
-            <div class="button">
+            <div class="button bold">
                 Guardar
             </div>
         </div>
