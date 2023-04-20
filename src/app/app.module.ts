@@ -10,6 +10,8 @@ import { CarrerasModule } from './carreras/carreras.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { ErroresModule } from './errores/errores.module';
 import { AppRoutingModule } from './app-routing.module';
+import { MainModule } from './main/main.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AppRoutingModule } from './app-routing.module';
     CarrerasModule,
     UsuariosModule,
     PreguntasFrecuentesModule,
-    ErroresModule
+    ErroresModule,
+    MainModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

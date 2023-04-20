@@ -1,0 +1,40 @@
+input {
+    height: 40px;
+    background: #F8F8F8;
+    border: 1px solid #D2D2D2;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.login {
+    background: url(../../../assets/login.jpg) no-repeat;
+    background-size: cover;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 16px;
+    gap: 20px;
+}
+
+.entrada {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.button {
+    text-align: center;
+    padding: 10px 50px;
+    background: linear-gradient(90deg, #0202C6 0%, #A304A3 89.58%);
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
