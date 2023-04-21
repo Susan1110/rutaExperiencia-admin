@@ -12,7 +12,12 @@ const routes: Routes = [
         path: 'main',
         // component: MainPageComponent
         loadChildren: () => import('./main/main.module').then(m => m.MainModule),
-    }
+    },
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+    },
 ]
 
 @NgModule({

@@ -1,13 +1,10 @@
 <div [ngStyle]=gridLayout()>
 
-
-
     <ng-container *ngFor="let filas of posicion">
         <div *ngFor="let columna of filas" class="agregar"
             [ngStyle]=posicionExperiencia(columna.ciclo,columna.ciclo,columna.fila)>
             <div class="icon" (click)="abrirModal()">
                 <img src="assets/agregar.svg" alt="agregarExperiencia">
-                <!-- <img src="assets/agregar.svg" alt="agregarExperiencia" class="col{{columna.ciclo}}"> -->
             </div>
         </div>
     </ng-container>
