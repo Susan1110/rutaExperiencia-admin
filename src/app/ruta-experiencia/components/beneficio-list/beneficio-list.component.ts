@@ -9,12 +9,12 @@ interface Beneficio {
 }
 
 @Component({
-  selector: 'app-beneficios',
-  templateUrl: './beneficios.component.html',
-  styleUrls: ['./beneficios.component.css']
+  selector: 'app-beneficio-list',
+  templateUrl: './beneficio-list.component.html',
+  styleUrls: ['./beneficio-list.component.css']
 })
-export class BeneficiosComponent {
-
+export class BeneficioListComponent {
+  
   beneficios: Beneficio[] = [
     {
       "id": "1",

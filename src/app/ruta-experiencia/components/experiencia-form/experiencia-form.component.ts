@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-add-edit-experiencias',
-  templateUrl: './add-edit-experiencias.component.html',
-  styleUrls: ['./add-edit-experiencias.component.css']
+  selector: 'app-experiencia-form',
+  templateUrl: './experiencia-form.component.html',
+  styleUrls: ['./experiencia-form.component.css']
 })
-export class AddEditExperienciasComponent {
+export class ExperienciaFormComponent {
   @Output() close: EventEmitter<boolean> = new EventEmitter()
   modal: boolean = true
   opcionMultimedia: 'video' | 'imagen' = 'video'
@@ -25,5 +25,4 @@ export class AddEditExperienciasComponent {
     this.modal = false
     this.close.emit(this.modal)
   }
-
 }

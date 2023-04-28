@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,25 +12,22 @@ export class LoginComponent {
   @ViewChild('txtUser') txtUser!: ElementRef<HTMLInputElement>
   @ViewChild('txtPassword') txtPassword!: ElementRef<HTMLInputElement>
 
+  constructor(public router: Router, private authService: AuthService) { }
+
   async login() {
-    const data = {
-      "user": this.txtUser.nativeElement.value,
-      "password": this.txtPassword.nativeElement.value
-    }
-    const response = await fetch("http://localhost:4040/login", {
-      method: "post",
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    const jsonData = await response.json();
-    if (jsonData.log) {
-      this.router.navigate(['/main'])
-    }
-    else {
-      alert('Usuario o Contraseña incorrecta')
-    }
+    const user = this.txtUser.nativeElement.value
+    const password = this.txtPassword.nativeElement.value
+
+    this.authService.login(user, password)
+      .subscribe(ok => {
+        if (ok) {
+          this.router.navigate(['/main'])
+        }
+        else {
+          alert('Usuario o Contraseña incorrecta')
+        }
+      })
+
 
     // if (this.txtUser.nativeElement.value === "admin" && this.txtPassword.nativeElement.value === "admin") {
     //   this.router.navigate(['/main'])
@@ -39,6 +37,6 @@ export class LoginComponent {
     // }
   }
 
-  constructor(public router: Router) { }
+
 
 }

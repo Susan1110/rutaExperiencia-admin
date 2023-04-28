@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RutaExperienciaPageComponent } from '../ruta-experiencia/ruta-experiencia-page/ruta-experiencia-page.component';
+import { RutaExperienciaPageComponent } from '../ruta-experiencia/pages/ruta-experiencia-page/ruta-experiencia-page.component';
 import { FacultadesPageComponent } from '../facultades/facultades-page/facultades-page.component';
 import { CarrerasPageComponent } from '../carreras/carreras-page/carreras-page.component';
 import { UsuariosPageComponent } from '../usuarios/usuarios-page/usuarios-page.component';

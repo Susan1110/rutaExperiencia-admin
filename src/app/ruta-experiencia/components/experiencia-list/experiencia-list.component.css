@@ -1,0 +1,26 @@
+.agregar,
+.editar {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 4px;
+    gap: 10px;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 100px;
+    vertical-align: middle;
+}
+
+.icon img {
+    width: 15px;
+    height: 15px;
+}
+
+.icon:hover {
+    background-color: #00000040;
+}

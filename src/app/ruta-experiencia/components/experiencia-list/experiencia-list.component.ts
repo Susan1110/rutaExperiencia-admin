@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { ExperienciaService } from '../../services/experiencia.service';
+import { AuthService } from '../../../auth/services/auth.service';
 
 interface Posicion {
   fila: number
@@ -6,56 +8,53 @@ interface Posicion {
 }
 
 interface Experiencia {
-  id: string
-  nombre: string
-  descripcion: string
-  contenido: string
-  cicloInicio: number
-  cicloFin: number
-  fila: number
+  IdExperiencia: number;
+  ExNombre: string;
+  ExDescripcion: string;
+  ExCicloInicio: number;
+  ExCicloFin: number;
+  ExFila: number;
+  ExIconoUrl: string;
+  IdCarrera: number;
 }
 
 @Component({
-  selector: 'app-experiencias',
-  templateUrl: './experiencias.component.html',
-  styleUrls: ['./experiencias.component.css']
+  selector: 'app-experiencia-list',
+  templateUrl: './experiencia-list.component.html',
+  styleUrls: ['./experiencia-list.component.css']
 })
-export class ExperienciasComponent {
+export class ExperienciaListComponent {
   @Output() open: EventEmitter<boolean> = new EventEmitter()
   modal: boolean = false;
   filas: number = 8
   ciclos: number = 10
   posicion: Posicion[][]
 
-  experiencias: Experiencia[] = [
-    {
-      "id": "1",
-      "nombre": "prueba1",
-      "descripcion": "prueba1",
-      "contenido": "prueba1",
-      "cicloInicio": 1,
-      "cicloFin": 1,
-      "fila": 4
-    },
-    {
-      "id": "2",
-      "nombre": "prueba2",
-      "descripcion": "prueba2",
-      "contenido": "prueba2",
-      "cicloInicio": 2,
-      "cicloFin": 3,
-      "fila": 7
-    },
-    {
-      "id": "3",
-      "nombre": "prueba2",
-      "descripcion": "prueba2",
-      "contenido": "prueba2",
-      "cicloInicio": 8,
-      "cicloFin": 10,
-      "fila": 2
-    }
-  ]
+  get idCarrera() {
+    return this.authService.idCarrera
+  }
+
+  get experiencias(): Experiencia[] {
+    return this.experienciaService.experiencias
+  }
+
+  constructor(private experienciaService: ExperienciaService, private authService:AuthService) {
+    this.posicion = new Array(this.filas).fill(0)
+      .map((a, indiceFila) =>
+        new Array(this.ciclos).fill(0)
+          .map((a, indiceColumna) => (
+            {
+              'fila': indiceFila + 1,
+              'ciclo': indiceColumna + 1,
+            })
+          )
+      )
+  }
+
+  ngOnInit(): void {
+    this.experienciaService.searchExperiencia(this.idCarrera)
+      .subscribe()
+  }
 
   gridLayout() {
     return {
@@ -97,16 +96,6 @@ export class ExperienciasComponent {
     this.open.emit(this.modal)
   }
 
-  constructor() {
-    this.posicion = new Array(this.filas).fill(0)
-      .map((a, indiceFila) =>
-        new Array(this.ciclos).fill(0)
-          .map((a, indiceColumna) => (
-            {
-              'fila': indiceFila + 1,
-              'ciclo': indiceColumna + 1,
-            })
-          )
-      )
-  }
+
+
 }

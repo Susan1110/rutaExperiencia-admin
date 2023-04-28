@@ -1,0 +1,18 @@
+<div class="ruta">
+    <div class="carrera">
+        <h1>
+            {{carrera.CaNombre}}
+        </h1>
+    </div>
+
+    <app-ciclo-icons></app-ciclo-icons>
+
+    <app-experiencia-list (open)="abrirPopUp($event)"></app-experiencia-list>
+
+    <app-beneficio-list></app-beneficio-list>
+
+    <ng-container *ngIf="modal">
+        <app-experiencia-form (close)="cerrarPopUp($event)"></app-experiencia-form>
+    </ng-container>
+
+</div>

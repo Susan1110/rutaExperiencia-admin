@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-ciclos',
-  templateUrl: './ciclos.component.html',
-  styleUrls: ['./ciclos.component.css']
+  selector: 'app-ciclo-icons',
+  templateUrl: './ciclo-icons.component.html',
+  styleUrls: ['./ciclo-icons.component.css']
 })
-export class CiclosComponent {
-  
+export class CicloIconsComponent {
   ciclos: number = 10
   arrayCiclos: number[] = Array(this.ciclos).fill(0).map((x, i) => i + 1);
 
