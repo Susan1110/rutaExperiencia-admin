@@ -18,14 +18,16 @@ interface Experiencia {
   providedIn: 'root'
 })
 export class ExperienciaService {
-  private _experiencias:Experiencia [] = []
+  private _experiencias: Experiencia[]
 
   get experiencias() {
     return [...this._experiencias]
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this._experiencias = []
+  }
 
-  
+
 
   searchExperiencia(idCarrera: number) {
     const URL = `http://localhost:4040/experiencia/carrera/${idCarrera}`

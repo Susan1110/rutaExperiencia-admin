@@ -31,6 +31,7 @@ export class RutaExperienciaPageComponent {
   ngOnInit(): void {
     this.carreraService.searchCarrera(this.idCarrera)
       .subscribe()
+
   }
 
 

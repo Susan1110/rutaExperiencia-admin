@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { ExperienciaService } from '../../services/experiencia.service';
 import { AuthService } from '../../../auth/services/auth.service';
+import { CarreraService } from '../../services/carrera.service';
 
 interface Posicion {
   fila: number
@@ -27,8 +28,15 @@ export class ExperienciaListComponent {
   @Output() open: EventEmitter<boolean> = new EventEmitter()
   modal: boolean = false;
   filas: number = 8
-  ciclos: number = 10
-  posicion: Posicion[][]
+
+  get ciclos() {
+    return this.carrera.CaCantidadCiclos
+  }
+
+  get carrera() {
+
+    return this.carreraService.carrera
+  }
 
   get idCarrera() {
     return this.authService.idCarrera
@@ -38,8 +46,8 @@ export class ExperienciaListComponent {
     return this.experienciaService.experiencias
   }
 
-  constructor(private experienciaService: ExperienciaService, private authService:AuthService) {
-    this.posicion = new Array(this.filas).fill(0)
+  get posicion(): Posicion[][] {
+    return new Array(this.filas).fill(0)
       .map((a, indiceFila) =>
         new Array(this.ciclos).fill(0)
           .map((a, indiceColumna) => (
@@ -51,7 +59,10 @@ export class ExperienciaListComponent {
       )
   }
 
+  constructor(private experienciaService: ExperienciaService, private authService: AuthService, private carreraService: CarreraService) {}
+
   ngOnInit(): void {
+    console.log(this.idCarrera)
     this.experienciaService.searchExperiencia(this.idCarrera)
       .subscribe()
   }

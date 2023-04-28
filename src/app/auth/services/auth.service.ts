@@ -12,13 +12,15 @@ interface AuthRespone {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  private _idCarrera: number = parseInt(localStorage.getItem('idCarrera') ?? '0')
+  private _idCarrera: number
 
   get idCarrera() {
     return this._idCarrera
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this._idCarrera = parseInt(localStorage.getItem('idCarrera') ?? '0')
+  }
 
   login(user: string, password: string) {
     const URL = 'http://localhost:4040/auth/login'
