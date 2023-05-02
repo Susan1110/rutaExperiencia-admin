@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { ExperienciaService } from '../../services/experiencia.service';
 import { AuthService } from '../../../auth/services/auth.service';
-import { CarreraService } from '../../services/carrera.service';
 
 interface Posicion {
   fila: number
@@ -25,32 +24,30 @@ interface Experiencia {
   styleUrls: ['./experiencia-list.component.css']
 })
 export class ExperienciaListComponent {
-  @Output() open: EventEmitter<boolean> = new EventEmitter()
+  @Output() open: EventEmitter<{ modal: boolean, fila: number, columna: number }> = new EventEmitter()
   modal: boolean = false;
   filas: number = 8
 
-  get ciclos() {
-    return this.carrera.CaCantidadCiclos
+  constructor(private experienciaService: ExperienciaService, private authService: AuthService) { }
+
+  ngOnInit(): void {
+    this.experienciaService.searchExperiencia(this.usuario.idCarrera!)
+      .subscribe()
   }
 
-  get carrera() {
-
-    return this.carreraService.carrera
-  }
-
-  get idCarrera() {
-    return this.authService.idCarrera
+  get usuario() {
+    return this.authService.usuario
   }
 
   get experiencias(): Experiencia[] {
     return this.experienciaService.experiencias
   }
 
-  get posicion(): Posicion[][] {
+  get lista(): Posicion[][] {
     return new Array(this.filas).fill(0)
-      .map((a, indiceFila) =>
-        new Array(this.ciclos).fill(0)
-          .map((a, indiceColumna) => (
+      .map((_, indiceFila) =>
+        new Array(this.usuario.ciclos).fill(0)
+          .map((_, indiceColumna) => (
             {
               'fila': indiceFila + 1,
               'ciclo': indiceColumna + 1,
@@ -59,18 +56,10 @@ export class ExperienciaListComponent {
       )
   }
 
-  constructor(private experienciaService: ExperienciaService, private authService: AuthService, private carreraService: CarreraService) {}
-
-  ngOnInit(): void {
-    console.log(this.idCarrera)
-    this.experienciaService.searchExperiencia(this.idCarrera)
-      .subscribe()
-  }
-
   gridLayout() {
     return {
       'display': 'grid',
-      'grid-template-columns': `repeat(${this.ciclos},1fr)`,
+      'grid-template-columns': `repeat(${this.usuario.ciclos},1fr)`,
       'grid-template-rows': `repeat(${this.filas},1fr)`,
       'gap': '16px 30px'
     }
@@ -102,9 +91,10 @@ export class ExperienciaListComponent {
     return color
   }
 
-  abrirModal() {
+  abrirModal(fila: number, columna: number) {
     this.modal = true
-    this.open.emit(this.modal)
+
+    this.open.emit({ modal: this.modal, fila, columna })
   }
 
 

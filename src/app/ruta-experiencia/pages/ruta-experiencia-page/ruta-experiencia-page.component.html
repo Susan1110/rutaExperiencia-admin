@@ -1,7 +1,7 @@
 <div class="ruta">
     <div class="carrera">
         <h1>
-            {{carrera.CaNombre}}
+            {{usuario.carrera}}
         </h1>
     </div>
 
@@ -12,7 +12,7 @@
     <app-beneficio-list></app-beneficio-list>
 
     <ng-container *ngIf="modal">
-        <app-experiencia-form (close)="cerrarPopUp($event)"></app-experiencia-form>
+        <app-experiencia-form (close)="cerrarPopUp($event)" [fila]="fila" [columna]="columna"></app-experiencia-form>
     </ng-container>
 
 </div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-ciclo-icons',
@@ -6,9 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./ciclo-icons.component.css']
 })
 export class CicloIconsComponent {
-  ciclos: number = 10
-  arrayCiclos: number[] = Array(this.ciclos).fill(0).map((x, i) => i + 1);
 
+  arrayCiclos: number[] = []
+
+  get ciclos() {
+    return this.authService.usuario.ciclos
+  }
+
+  constructor(private authService: AuthService) { }
+
+  ngOnInit(): void {
+    this.arrayCiclos = Array(this.ciclos).fill(0).map((x, i) => i + 1);
+  }
 
   gridCiclos() {
     return {

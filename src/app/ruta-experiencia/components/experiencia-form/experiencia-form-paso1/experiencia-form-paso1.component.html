@@ -1,1 +1,34 @@
-<p>experiencia-form-paso1 works!</p>
+<div class="cuerpo espacio" id="scroll">
+    <div class="ciclos">
+        <div class="entrada">
+            <div>
+                Ciclo Inicio:
+            </div>
+            <input type="text" [value]="columna" disabled  #txtCicloInicio>
+        </div>
+        <div class="entrada">
+            <div>
+                Ciclo Fin:
+            </div>
+            <input type="text" #txtCicloFin>
+        </div>
+    </div>
+    <div class="entrada">
+        <div>
+            Nombre Experiencia:
+        </div>
+        <input type="text" #txtNombreExperiencia>
+    </div>
+    <div class="entrada">
+        <div>
+            Icono:
+        </div>
+        <input type="text" #txtUrlIcono>
+    </div>
+</div>
+
+<div class="footer espacio">
+    <div class="button-1 bold" (click)="siguientePaso()">
+        Siguiente
+    </div>
+</div>

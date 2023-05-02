@@ -2,9 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, of, tap } from 'rxjs';
 
-interface AuthRespone {
+interface Usuario {
   ok: boolean
-  carrera?: number
+  idCarrera?: number
+  carrera?: string
+  ciclos?: number
+  sede?: string
   msg?: string
 }
 
@@ -12,25 +15,33 @@ interface AuthRespone {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  private _idCarrera: number
+  private _usuario: Usuario
 
-  get idCarrera() {
-    return this._idCarrera
+  get usuario() {
+    return { ...this._usuario }
   }
 
   constructor(private http: HttpClient) {
-    this._idCarrera = parseInt(localStorage.getItem('idCarrera') ?? '0')
+    const usuarioString = localStorage.getItem('usuario');
+    if (usuarioString !== null) {
+      this._usuario = JSON.parse(usuarioString);
+    }
+    else {
+      this._usuario = {
+        ok: false
+      }
+    }
   }
 
   login(user: string, password: string) {
     const URL = 'http://localhost:4040/auth/login'
     const body = { user, password }
-    return this.http.post<AuthRespone>(URL, body)
+    return this.http.post<Usuario>(URL, body)
       .pipe(
         tap(resp => {
           if (resp.ok) {
-            localStorage.setItem('idCarrera', resp.carrera!.toString())
-            this._idCarrera = resp.carrera!
+            localStorage.setItem('usuario', JSON.stringify(resp))
+            this._usuario = resp
           }
         }),
         map(resp => resp.ok),

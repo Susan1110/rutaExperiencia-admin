@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
-import { CarreraService } from '../../services/carrera.service';
 
 @Component({
   selector: 'app-ruta-experiencia-page',
@@ -8,31 +7,27 @@ import { CarreraService } from '../../services/carrera.service';
   styleUrls: ['./ruta-experiencia-page.component.css']
 })
 export class RutaExperienciaPageComponent {
+
+  fila: number = 0;
+  columna: number = 0;
   modal: boolean = false
 
-  get idCarrera() {
-    return this.authService.idCarrera
+  get usuario() {
+    return this.authService.usuario
   }
 
-  get carrera() {
-    return this.carreraService.carrera
-  }
 
-  constructor(private authService: AuthService, private carreraService: CarreraService) { }
+  constructor(private authService: AuthService) { }
 
 
-  abrirPopUp(arg: boolean) {
-    this.modal = arg
+  abrirPopUp(arg: { modal: boolean, fila: number, columna: number }) {
+    this.modal = arg.modal
+    this.fila = arg.fila
+    this.columna = arg.columna
   }
 
   cerrarPopUp(arg: boolean) {
     this.modal = arg
   }
-  ngOnInit(): void {
-    this.carreraService.searchCarrera(this.idCarrera)
-      .subscribe()
-
-  }
-
 
 }

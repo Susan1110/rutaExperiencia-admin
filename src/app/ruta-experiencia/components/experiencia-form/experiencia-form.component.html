@@ -10,96 +10,18 @@
         </div>
 
         <!-- PASO 1 -->
-        <!-- <div class="cuerpo espacio" id="scroll">
-            <div class="ciclos">
-                <div class="entrada">
-                    <div>
-                        Ciclo Inicio:
-                    </div>
-                    <input type="text" #txtCicloInicio>
-                </div>
-                <div class="entrada">
-                    <div>
-                        Ciclo Fin:
-                    </div>
-                    <input type="text" #txtCicloFin>
-                </div>
-            </div>
-            <div class="entrada">
-                <div>
-                    Nombre Experiencia:
-                </div>
-                <input type="text" #txtNombreExperiencia>
-            </div>
-            <div class="entrada">
-                <div>
-                    Icono:
-                </div>
-                <input type="text" #txtUrlIcono>
-            </div>
-        </div>
+        <ng-container [ngSwitch]="pasoActual">
+            <app-experiencia-form-paso1 *ngSwitchCase="1" [fila]="fila" [columna]="columna" (paso)="actualizarPaso($event)"></app-experiencia-form-paso1>
+            <app-experiencia-form-paso2 *ngSwitchCase="2"></app-experiencia-form-paso2>
+        </ng-container>
 
-        <div class="guardar espacio">
-            <div class="button bold" (click)="agregarexper()">
-                Siguiente
-            </div>
-        </div> -->
 
 
         <!-- PASO 2 -->
 
-        <div class="cuerpo espacio" id="scroll">
-            <h2>Contenido</h2>
 
-            <div class="entrada">
-                <div>Tipo:</div>
-                <div class="tipo">
-                    <div>
-                        <input type="radio" name="tipo" id="video" value="video">
-                        <label for="video">Video</label>
-                    </div>
 
-                    <div>
-                        <input type="radio" name="tipo" id="imagen" value="imagen">
-                        <label for="imagen">Imagen</label>
-                    </div>
 
-                    <div>
-                        <input type="radio" name="tipo" id="imagen360" value="imagen360">
-                        <label for="imagen360">Imagen 360</label>
-                    </div>
-                </div>
-            </div>
-            <div class="entrada">
-                <div>
-                    Link:
-                </div>
-                <input type="text" #txtLink>
-                <div class="video"></div>
-            </div>
-            
-            <div class="entrada">
-                <div>
-                    Titulo:
-                </div>
-                <input type="text" #txtTitulo>
-            </div>
-
-            <div class="entrada">
-                <div>
-                    Contenido:
-                </div>
-                <textarea #txtContenido cols="30" rows="10"></textarea>
-            </div>
-
-        </div>
-        <div class="guardar espacio">
-            <div class="button bold" (click)="agregarexper()">
-                Guardar
-            </div>
-        </div>
-
-        
 
     </div>
 
