@@ -1,50 +1,81 @@
 <div class="cuerpo espacio" id="scroll">
     <h2>Contenido</h2>
-
-    <div class="entrada">
-        <div>Tipo:</div>
-        <div class="tipo">
-            <div>
-                <input type="radio" name="tipo" id="video" value="video">
-                <label for="video">Video</label>
+    <div class="slides">
+        <div class="slide">
+            <div class="slide-cabecera">
+                <div class="slide-cabecera-titulo">
+                    Titulo
+                </div>
+                <div class="slide-cabecera-acciones">
+                    <div (click)="verContenido()">Editar</div>
+                    <div>Eliminar</div>
+                </div>
             </div>
+            <div class="slide-cuerpo" *ngIf="contenido">
+                <div class="slide-cuerpo-opciones">
+                    <div class="slide-cuerpo-opciones-opcion" [ngClass]="{active: opcion==='multimedia'}"
+                        (click)="cambiarOpcion('multimedia')">Multimedia</div>
+                    <div class="slide-cuerpo-opciones-opcion" [ngClass]="{active: opcion==='descripcion'}"
+                        (click)="cambiarOpcion('descripcion')">Descripción</div>
+                </div>
+                <!-- MULTIMEDIA -->
+                <div class="slide-cuerpo-multimedia" *ngIf="opcion==='multimedia'">
+                    <div class="entrada">
+                        <div>Tipo:</div>
+                        <div class="tipo">
+                            <div>
+                                <input type="radio" name="tipo" id="video" value="video">
+                                <label for="video">Video</label>
+                            </div>
 
-            <div>
-                <input type="radio" name="tipo" id="imagen" value="imagen">
-                <label for="imagen">Imagen</label>
+                            <div>
+                                <input type="radio" name="tipo" id="imagen" value="imagen">
+                                <label for="imagen">Imagen</label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="tipo" id="imagen360" value="imagen360">
+                                <label for="imagen360">Imagen 360</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="entrada">
+                        <div>
+                            Link:
+                        </div>
+                        <input type="text" #txtLink (blur)="actualizarVideoUrl(txtLink.value)">
+                        <iframe class="video" [src] = videoUrl
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+
+                    </div>
+                </div>
+                <!-- DESCRIPCION -->
+                <div class="slide-cuerpo-descripcion" *ngIf="opcion==='descripcion'">
+                    <div class="entrada">
+                        <div>
+                            Titulo:
+                        </div>
+                        <input type="text" #txtTitulo>
+                    </div>
+                    <div class="entrada">
+                        <div>
+                            Contenido:
+                        </div>
+                        <textarea #txtContenido cols="30" rows="10"></textarea>
+                    </div>
+                </div>
             </div>
-
-            <div>
-                <input type="radio" name="tipo" id="imagen360" value="imagen360">
-                <label for="imagen360">Imagen 360</label>
-            </div>
+        </div>
+        <!-- OPCION PARA SLIDER -->
+        <div class="button-1 button-2 bold">
+            Agregar Contenido
         </div>
     </div>
-    <div class="entrada">
-        <div>
-            Link:
-        </div>
-        <input type="text" #txtLink>
-        <div class="video"></div>
-    </div>
-    
-    <div class="entrada">
-        <div>
-            Titulo:
-        </div>
-        <input type="text" #txtTitulo>
-    </div>
-
-    <div class="entrada">
-        <div>
-            Contenido:
-        </div>
-        <textarea #txtContenido cols="30" rows="10"></textarea>
-    </div>
-
 </div>
-<div class="guardar espacio">
-    <div class="button bold">
+<div class="footer espacio">
+    <div class="button-1 bold">
         Guardar
     </div>
 </div>

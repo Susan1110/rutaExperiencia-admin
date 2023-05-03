@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CarrerasService } from '../carreras.service';
 
 @Component({
   selector: 'app-carreras-page',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./carreras-page.component.css']
 })
 export class CarrerasPageComponent {
+  
+  get carreras(){
+    return this.carrerasService.carreras
+  }
 
+  constructor(private carrerasService:CarrerasService){ }
+  
 }

@@ -1,52 +1,59 @@
 img {
-    object-fit: cover;
-  }
-  
-  .container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    padding: 50px;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(2px);
-    top: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .add-edit {
-    background: #FBF3FB;
-    width: 600px;
-    max-height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .barraTitulo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: linear-gradient(90deg, #010163 0%, #520252 100%);
-    color: white
-  }
-  
-  .cerrar {
-    display: flex;
-    cursor: pointer;
-    width: 25px;
-    height: 25px;
-    padding: 5px;
-    border-radius: 100px;
-  }
-  
-  .cerrar:hover {
-    background: #00000040;
-  }
-  
-  .cerrar img {
-    width: 100%;
-    height: 100%;
-  }  
+  object-fit: cover;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(2px);
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-edit {
+  position: relative;
+  background: #FBF3FB;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.barraTitulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(90deg, #010163 0%, #520252 100%);
+  color: white
+}
+
+.cerrar {
+  display: flex;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 100px;
+}
+
+.cerrar:hover {
+  background: #00000040;
+}
+
+.cerrar img {
+  width: 100%;
+  height: 100%;
+}
+
+app-experiencia-form-paso1,
+app-experiencia-form-paso2 {
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+}

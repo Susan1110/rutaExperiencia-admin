@@ -1,3 +1,12 @@
-<div>
-    Carreras
+<!-- <div *ngFor="let carrera of carreras">
+    {{carrera.CaNombre}}
+</div> -->
+
+<div class="entrada">
+    <div>
+        Carreras:
+    </div>
+    <select>
+        <option *ngFor="let carrera of carreras" [value]="carrera.CaNombre">{{carrera.CaNombre}}</option>
+    </select>
 </div>

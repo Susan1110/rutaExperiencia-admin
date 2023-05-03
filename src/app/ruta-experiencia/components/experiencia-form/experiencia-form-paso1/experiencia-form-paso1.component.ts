@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild, Input, EventEmitter, Output } from '@angular/core';
+import { AuthService } from '../../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-experiencia-form-paso1',
@@ -14,6 +15,16 @@ export class ExperienciaFormPaso1Component {
   @ViewChild('txtCicloFin') txtCicloFin!: ElementRef<HTMLInputElement>
   @ViewChild('txtNombreExperiencia') txtNombreExperiencia!: ElementRef<HTMLInputElement>
   @ViewChild('txtUrlIcono') txtUrlIcono!: ElementRef<HTMLInputElement>
+
+  constructor(private authService: AuthService) { }
+
+  get ciclos() {
+    return this.authService.usuario.ciclos ?? 0
+  }
+
+  get opcionesCiclos() {
+    return Array.from({ length: this.ciclos - this.columna + 1 }, (_, i) => this.columna + i);
+  }
 
   siguientePaso() {
     this.paso.emit(2)

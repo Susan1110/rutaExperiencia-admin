@@ -108,8 +108,9 @@ textarea {
     resize: none;
   }
 
-.entrada input,
-.entrada textarea {
+input,
+textarea,
+select {
     padding: 10px;
 }
 

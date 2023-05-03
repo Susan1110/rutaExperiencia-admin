@@ -1,164 +1,143 @@
+ .cuerpo {
+   display: flex;
+   flex-direction: column;
+   justify-content: start;
+   gap: 20px;
+ }
 
-  
-  .cuerpo {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    gap: 20px;
-  }
-  
-  .espacio {
-    padding: 20px;
-  }
-  
-  #scroll {
-    overflow-y: scroll;
-  }
-  
-  #scroll::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #F5F5F5;
-  }
-  
-  #scroll::-webkit-scrollbar {
-    width: 6px;
-    background-color: #F5F5F5;
-  }
-  
-  #scroll::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #010163 0%, #520252 100%);
-  }
-  
-  .ciclos {
-    display: flex;
-    gap: 20px;
-  }
-  
-  
-  
-  
-  .icono-img {
-    background: #CCCCCC;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    height: 50px;
-  }
-  
-  .icono img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-  
-  .acciones {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 10px;
-    margin: auto;
-  }
-  
-  .accion {
-    display: flex;
-    width: 25px;
-    height: 25px;
-    padding: 5px;
-    border-radius: 100px;
-    background: white;
-    cursor: pointer;
-  }
-  
-  .accion img {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .info {
-    padding: 20px;
-    border: 1px solid #BFBFBF;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .activeInfo {
-    font-weight: 700;
-    background: white;
-  }
-  
-  .video {
-    width: 100%;
-    background: #CCCCCC;
-    height: 200px;
-  }
-  
-  .slider {
-    position: relative;
-  }
-  
-  .imagen {
-    background: #CCCCCC;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    height: 200px;
-  }
-  
-  .imagen .acciones {
-    top: inherit;
-    bottom: 10px;
-    right: 10px;
-  }
-  
-  .imagen img {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .footer {
-    border-top: 1px solid #BFBFBF;
-    display: flex;
-    justify-content: flex-end;
-  }
-  
+ .espacio {
+   padding: 20px;
+ }
 
-  
-  
-  
+ #scroll {
+   overflow-y: scroll;
+ }
 
-  .tipo{
-    display: flex;
-  }
-  .tipo div{
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    gap: 10px;
-    flex: 1
-  }
+ #scroll::-webkit-scrollbar-track {
+   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+   background-color: #F5F5F5;
+ }
+
+ #scroll::-webkit-scrollbar {
+   width: 6px;
+   background-color: #F5F5F5;
+ }
+
+ #scroll::-webkit-scrollbar-thumb {
+   background: linear-gradient(180deg, #010163 0%, #520252 100%);
+ }
+
+ .ciclos {
+   display: flex;
+   gap: 20px;
+ }
+
+ .icono-img {
+   background: #CCCCCC;
+   position: relative;
+   display: flex;
+   justify-content: center;
+   padding: 5px;
+   height: 50px;
+ }
+
+ .icono img {
+   max-width: 100%;
+   max-height: 100%;
+ }
+
+ .acciones {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   right: 10px;
+   margin: auto;
+ }
+
+ .accion {
+   display: flex;
+   width: 25px;
+   height: 25px;
+   padding: 5px;
+   border-radius: 100px;
+   background: white;
+   cursor: pointer;
+ }
+
+ .accion img {
+   width: 100%;
+   height: 100%;
+ }
+
+ .info {
+   padding: 20px;
+   border: 1px solid #BFBFBF;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+ }
+
+ .activeInfo {
+   font-weight: 700;
+   background: white;
+ }
+
+ .slider {
+   position: relative;
+ }
+
+ .imagen {
+   background: #CCCCCC;
+   position: relative;
+   display: flex;
+   justify-content: center;
+   padding: 5px;
+   height: 200px;
+ }
+
+ .imagen .acciones {
+   top: inherit;
+   bottom: 10px;
+   right: 10px;
+ }
+
+ .imagen img {
+   width: 100%;
+   height: 100%;
+ }
+
+ .footer {
+   border-top: 1px solid #BFBFBF;
+   display: flex;
+   justify-content: flex-end;
+ }
 
 
 
-  
-.multimedia {
-    display: flex;
-  }
-  
-  .multimedia-opciones {
-    padding: 10px 0;
-    flex: 1;
-    text-align: center;
-    border: 1px solid #BFBFBF;
-    cursor: pointer;
-  }
-  
-  .activeMultimedia {
-    border: 0;
-    font-weight: 700;
-  }
+
+
+
+
+
+
+
+
+ .multimedia {
+   display: flex;
+ }
+
+ .multimedia-opciones {
+   padding: 10px 0;
+   flex: 1;
+   text-align: center;
+   border: 1px solid #BFBFBF;
+   cursor: pointer;
+ }
+
+ .activeMultimedia {
+   border: 0;
+   font-weight: 700;
+ }
