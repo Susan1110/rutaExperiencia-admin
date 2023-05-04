@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { AbrirForm, Experiencia } from '../../Interfaces/ruta-experiencia.interface';
+import { ContenidoService } from '../../services/contenido.service';
 
 @Component({
   selector: 'app-ruta-experiencia-page',
@@ -18,7 +19,7 @@ export class RutaExperienciaPageComponent {
   }
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private contenidoService: ContenidoService) { }
 
 
   abrirPopUp(arg: AbrirForm) {

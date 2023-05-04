@@ -2,17 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap, of, catchError } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
-
-interface Experiencia {
-  IdExperiencia: number;
-  ExNombre: string;
-  ExDescripcion: string;
-  ExCicloInicio: number;
-  ExCicloFin: number;
-  ExFila: number;
-  ExIconoUrl: string;
-  IdCarrera: number;
-}
+import { Experiencia } from '../Interfaces/ruta-experiencia.interface';
 
 
 @Injectable({
@@ -24,7 +14,7 @@ export class ExperienciaService {
   get experiencias() {
     return [...this._experiencias]
   }
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient) {
     this._experiencias = []
   }
 

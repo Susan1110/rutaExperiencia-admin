@@ -14,3 +14,12 @@ export interface AbrirForm {
     funcion: 'agregar' | 'editar'
     experiencia: Experiencia
 }
+
+export interface Contenido {
+    IdContenido:   number;
+    CoTitulo:      string;
+    CoDescripcion: string;
+    CoUrlMedia:    string;
+    IdTipoMedia:   number;
+    IdExperiencia: number;
+}
