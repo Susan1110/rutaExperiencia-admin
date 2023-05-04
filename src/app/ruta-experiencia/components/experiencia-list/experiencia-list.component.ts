@@ -24,9 +24,10 @@ interface Experiencia {
   styleUrls: ['./experiencia-list.component.css']
 })
 export class ExperienciaListComponent {
-  @Output() open: EventEmitter<{ modal: boolean, fila: number, columna: number }> = new EventEmitter()
+  @Output() open: EventEmitter<{ modal: boolean, fila: number, columna: number, experiencia?:Experiencia }> = new EventEmitter()
   modal: boolean = false;
-  filas: number = 8
+  filas: number = 8;
+
 
   constructor(private experienciaService: ExperienciaService, private authService: AuthService) { }
 
@@ -91,11 +92,12 @@ export class ExperienciaListComponent {
     return color
   }
 
-  abrirModal(fila: number, columna: number) {
+  abrirModal(fila: number, columna: number, experiencia?:Experiencia) {
     this.modal = true
-
-    this.open.emit({ modal: this.modal, fila, columna })
+    console.log(fila,columna,experiencia);
+    this.open.emit({ modal: this.modal, fila, columna,experiencia})
   }
+  
 
 
 
