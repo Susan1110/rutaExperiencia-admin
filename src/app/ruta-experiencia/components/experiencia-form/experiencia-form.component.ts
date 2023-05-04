@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, ViewChild, ElementRef, Input } from '@angular/core';
+import { Experiencia } from '../../Interfaces/ruta-experiencia.interface';
 
 @Component({
   selector: 'app-experiencia-form',
@@ -6,14 +7,14 @@ import { Component, Output, EventEmitter, ViewChild, ElementRef, Input } from '@
   styleUrls: ['./experiencia-form.component.css']
 })
 export class ExperienciaFormComponent {
-  @Input() fila: number = 0;
-  @Input() columna: number = 0;
+  @Input() funcion!: 'agregar' | 'editar'
+  @Input() datos!: Experiencia
   @Output() close: EventEmitter<boolean> = new EventEmitter()
 
   modal: boolean = true
   pasoActual: number = 1
 
-  actualizarPaso(arg:number) {
+  actualizarPaso(arg: number) {
     this.pasoActual = arg
   }
 

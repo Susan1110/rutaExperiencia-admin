@@ -1,22 +1,9 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { ExperienciaService } from '../../services/experiencia.service';
 import { AuthService } from '../../../auth/services/auth.service';
+import { AbrirForm, Experiencia } from '../../Interfaces/ruta-experiencia.interface';
 
-interface Posicion {
-  fila: number
-  ciclo: number
-}
 
-interface Experiencia {
-  IdExperiencia: number;
-  ExNombre: string;
-  ExDescripcion: string;
-  ExCicloInicio: number;
-  ExCicloFin: number;
-  ExFila: number;
-  ExIconoUrl: string;
-  IdCarrera: number;
-}
 
 @Component({
   selector: 'app-experiencia-list',
@@ -24,7 +11,7 @@ interface Experiencia {
   styleUrls: ['./experiencia-list.component.css']
 })
 export class ExperienciaListComponent {
-  @Output() open: EventEmitter<{ modal: boolean, fila: number, columna: number, experiencia?:Experiencia }> = new EventEmitter()
+  @Output() open: EventEmitter<AbrirForm> = new EventEmitter()
   modal: boolean = false;
   filas: number = 8;
 
@@ -44,17 +31,27 @@ export class ExperienciaListComponent {
     return this.experienciaService.experiencias
   }
 
-  get lista(): Posicion[][] {
+  get nuevasExperiencias(): Experiencia[][] {
     return new Array(this.filas).fill(0)
       .map((_, indiceFila) =>
         new Array(this.usuario.ciclos).fill(0)
           .map((_, indiceColumna) => (
             {
-              'fila': indiceFila + 1,
-              'ciclo': indiceColumna + 1,
+              ExNombre: '',
+              ExDescripcion: '',
+              ExCicloInicio: indiceColumna + 1,
+              ExCicloFin: indiceColumna + 1,
+              ExFila: indiceFila + 1,
+              ExIconoUrl: '',
+              IdCarrera: this.usuario.idCarrera!,
             })
           )
       )
+  }
+
+  abrirModal(funcion: 'agregar' | 'editar', experiencia: Experiencia) {
+    this.modal = true
+    this.open.emit({ modal: this.modal, funcion, experiencia })
   }
 
   gridLayout() {
@@ -91,14 +88,4 @@ export class ExperienciaListComponent {
     }
     return color
   }
-
-  abrirModal(fila: number, columna: number, experiencia?:Experiencia) {
-    this.modal = true
-    console.log(fila,columna,experiencia);
-    this.open.emit({ modal: this.modal, fila, columna,experiencia})
-  }
-  
-
-
-
 }
