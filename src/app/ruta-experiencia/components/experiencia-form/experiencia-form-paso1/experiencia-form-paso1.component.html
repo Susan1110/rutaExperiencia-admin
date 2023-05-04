@@ -4,14 +4,14 @@
             <div>
                 Ciclo Inicio:
             </div>
-            <input type="text" [value]="columna" disabled #txtCicloInicio>
+            <input type="text" [value]="experiencia.ExCicloInicio" disabled #txtCicloInicio>
         </div>
         <div class="entrada">
             <div>
                 Ciclo Fin:
             </div>
             <select #selCicloFin>
-                <option *ngFor="let ciclo of opcionesCiclos" [value]="ciclo">{{ciclo}}</option>
+                <option *ngFor="let ciclo of opcionesCiclos" [value]="ciclo">{{experiencia.ExCicloFin}}</option>
             </select>
         </div>
     </div>
@@ -19,13 +19,13 @@
         <div>
             Nombre Experiencia:
         </div>
-        <input type="text" #txtNombreExperiencia>
+        <input type="text" [value]="experiencia.ExNombre" #txtNombreExperiencia>
     </div>
     <div class="entrada">
         <div>
             Icono:
         </div>
-        <input type="text" #txtUrlIcono>
+        <input type="text" [value]="experiencia.ExIconoUrl" #txtUrlIcono>
     </div>
 </div>
 

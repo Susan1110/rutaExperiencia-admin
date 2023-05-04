@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild, Input, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../../../auth/services/auth.service';
+import { Experiencia } from 'src/app/ruta-experiencia/Interfaces/ruta-experiencia.interface';
 
 @Component({
   selector: 'app-experiencia-form-paso1',
@@ -8,8 +9,7 @@ import { AuthService } from '../../../../auth/services/auth.service';
 })
 export class ExperienciaFormPaso1Component {
 
-  @Input() columna: number = 0;
-  @Input() fila: number = 0;
+  @Input() experiencia!: Experiencia
   @Output() paso = new EventEmitter<number>();
   @ViewChild('txtCicloInicio') txtCicloInicio!: ElementRef<HTMLInputElement>
   @ViewChild('txtCicloFin') txtCicloFin!: ElementRef<HTMLInputElement>
@@ -23,7 +23,7 @@ export class ExperienciaFormPaso1Component {
   }
 
   get opcionesCiclos() {
-    return Array.from({ length: this.ciclos - this.columna + 1 }, (_, i) => this.columna + i);
+    return Array.from({ length: this.ciclos - this.experiencia.ExCicloInicio + 1 }, (_, i) => this.experiencia.ExCicloInicio + i);
   }
 
   siguientePaso() {

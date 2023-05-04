@@ -2,7 +2,7 @@
     <div class="add-edit">
         <div class="barraTitulo">
             <div class="h2 bold">
-                Agregar Experiencia
+                {{funcion | titlecase}} Experiencia
             </div>
             <div class="cerrar" (click)="cerrarModal()">
                 <img src="assets/cerrar.png" alt="">
@@ -10,7 +10,7 @@
         </div>
 
         <ng-container [ngSwitch]="pasoActual" id="scroll">
-            <app-experiencia-form-paso1 *ngSwitchCase="1" [fila]="fila" [columna]="columna" (paso)="actualizarPaso($event)"></app-experiencia-form-paso1>
+            <app-experiencia-form-paso1 *ngSwitchCase="1" [experiencia]="datos" (paso)="actualizarPaso($event)"></app-experiencia-form-paso1>
             <app-experiencia-form-paso2 *ngSwitchCase="2"></app-experiencia-form-paso2>
         </ng-container>
     </div>
