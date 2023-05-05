@@ -9,8 +9,9 @@
             </div>
         </div>
 
+
         <ng-container [ngSwitch]="pasoActual" id="scroll">
-            <app-experiencia-form-paso1 *ngSwitchCase="1" [experiencia]="datos" (paso)="actualizarPaso($event)"></app-experiencia-form-paso1>
+            <app-experiencia-form-paso1 *ngSwitchCase="1" [experiencia]="datos"  [funcion]="funcion" (paso)="actualizarPaso($event)"></app-experiencia-form-paso1>
             <app-experiencia-form-paso2 *ngSwitchCase="2"></app-experiencia-form-paso2>
         </ng-container>
     </div>

@@ -7,9 +7,10 @@ import { Experiencia } from '../../Interfaces/ruta-experiencia.interface';
   styleUrls: ['./experiencia-form.component.css']
 })
 export class ExperienciaFormComponent {
-  @Input() funcion!: 'agregar' | 'editar'
+  @Input() funcion!: 'agregar' | 'editar' 
   @Input() datos!: Experiencia
   @Output() close: EventEmitter<boolean> = new EventEmitter()
+
 
   modal: boolean = true
   pasoActual: number = 1

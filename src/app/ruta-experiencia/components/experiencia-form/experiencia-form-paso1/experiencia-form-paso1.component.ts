@@ -8,11 +8,11 @@ import { Experiencia } from 'src/app/ruta-experiencia/Interfaces/ruta-experienci
   styleUrls: ['./experiencia-form-paso1.component.css']
 })
 export class ExperienciaFormPaso1Component {
-
-  @Input() experiencia!: Experiencia
+  @Input() experiencia!: Experiencia;
+  @Input() funcion!: 'agregar' | 'editar';
   @Output() paso = new EventEmitter<number>();
   @ViewChild('txtCicloInicio') txtCicloInicio!: ElementRef<HTMLInputElement>
-  @ViewChild('txtCicloFin') txtCicloFin!: ElementRef<HTMLInputElement>
+  @ViewChild('selCicloFin') selCicloFin!: ElementRef<HTMLInputElement>
   @ViewChild('txtNombreExperiencia') txtNombreExperiencia!: ElementRef<HTMLInputElement>
   @ViewChild('txtUrlIcono') txtUrlIcono!: ElementRef<HTMLInputElement>
 
@@ -35,11 +35,12 @@ export class ExperienciaFormPaso1Component {
     const data = {
       "ExNombre": this.txtNombreExperiencia.nativeElement.value,
       "ExCicloInicio": this.txtCicloInicio.nativeElement.value,
-      "ExCicloFin": this.txtCicloFin.nativeElement.value,
-      "ExFila": 3,
+      "ExCicloFin": this.selCicloFin.nativeElement.value,
+      "ExFila": this.experiencia.ExFila,
       "ExIconoUrl": this.txtUrlIcono.nativeElement.value,
       "IdCarrera": 1
     }
+    console.log(data)
     const response = await fetch("http://localhost:4040/experiencia", {
       method: "post",
       body: JSON.stringify(data),
@@ -47,6 +48,32 @@ export class ExperienciaFormPaso1Component {
         'Content-Type': 'application/json'
       }
     });
+
+    this.txtNombreExperiencia.nativeElement.value=''
+    this.txtUrlIcono.nativeElement.value=''
+  }
+
+
+  async editarExperiencia() {
+    const data = {
+      "ExNombre": this.txtNombreExperiencia.nativeElement.value,
+      "ExCicloInicio": this.txtCicloInicio.nativeElement.value,
+      "ExCicloFin": this.selCicloFin.nativeElement.value,
+      "ExIconoUrl": this.txtUrlIcono.nativeElement.value,
+      "IdCarrera": 1
+    }
+    console.log(data)
+    const idExperiencia=this.experiencia.IdExperiencia
+    const response = await fetch(`http://localhost:4040/experiencia/${idExperiencia}`, {
+      method: "put",
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    this.txtNombreExperiencia.nativeElement.value=''
+    this.txtUrlIcono.nativeElement.value=''
   }
 
 }
