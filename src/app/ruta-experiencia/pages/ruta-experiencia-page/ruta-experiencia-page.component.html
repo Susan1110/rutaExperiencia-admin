@@ -7,7 +7,7 @@
 
     <app-ciclo-icons></app-ciclo-icons>
 
-    <app-experiencia-list (open)="abrirPopUp($event)"></app-experiencia-list>
+    <app-experiencia-list (open)="abrirPopUp($event)"(abrirContenido)="abrirContenido($event)"></app-experiencia-list>
 
     <app-beneficio-list></app-beneficio-list>
 
@@ -15,4 +15,9 @@
         <app-experiencia-form (close)="cerrarPopUp($event)" [funcion]="funcion" [datos]="datos"></app-experiencia-form>
     </ng-container>
 
+    <ng-container *ngIf="verContenido">
+        <app-experiencia-card (close)="cerrarContenido($event)"></app-experiencia-card>
+    </ng-container>
+
 </div>
+

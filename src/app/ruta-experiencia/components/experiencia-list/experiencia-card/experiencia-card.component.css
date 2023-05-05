@@ -1,0 +1,71 @@
+ /* #content{
+    float:left;
+    width: 50%;
+    min-height: 500px;
+}
+aside{
+    float:left;
+    width: 50%;
+    min-height: 500px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.text{
+    
+    margin-left: auto;
+    margin-right: auto;
+}
+input{
+    float: inline-end;
+}  */
+
+/* jw-modal {
+    display: none;
+    .jw-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background-color: rgba(0,0,0,.75);
+        padding: 40px;
+        overflow: auto;
+    }
+
+    .jw-modal-body {
+        padding: 20px;
+        background: #fff;
+        margin: 40px;
+    }
+
+}
+body.jw-modal-body-open {
+    overflow: hidden;
+} */
+
+*{
+    margin: 0;
+}
+body{
+    background: gray;
+    width: 1100px;
+    border: 1px;
+
+}
+header{
+    background:blueviolet;
+    height: 50px;
+    margin:0px;
+    border-bottom: 1px solid black;
+}
+section{
+    width: 50%;
+    min-height: 500px;
+    
+}
+aside{
+    width: calc(50%-60px);
+    padding: 30px;
+    text-align: justify;
+}
+
+

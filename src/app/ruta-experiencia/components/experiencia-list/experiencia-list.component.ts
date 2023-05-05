@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { ExperienciaService } from '../../services/experiencia.service';
 import { AuthService } from '../../../auth/services/auth.service';
 import { AbrirForm, Experiencia } from '../../Interfaces/ruta-experiencia.interface';
-
+import { ContenidoService } from '../../services/contenido.service';
 
 
 @Component({
@@ -13,9 +13,16 @@ import { AbrirForm, Experiencia } from '../../Interfaces/ruta-experiencia.interf
 export class ExperienciaListComponent {
   @Output() open: EventEmitter<AbrirForm> = new EventEmitter()
   modal: boolean = false;
+  verContenido:boolean=false;
+  @Output() abrirContenido: EventEmitter<boolean> = new EventEmitter()
   filas: number = 8
+ 
 
-  constructor(private experienciaService: ExperienciaService, private authService: AuthService) { }
+  constructor(
+    private experienciaService: ExperienciaService,
+    private authService: AuthService,
+    private contenidoService: ContenidoService) { }
+
 
   ngOnInit(): void {
     this.experienciaService.searchExperiencia(this.usuario.idCarrera!)
@@ -36,6 +43,7 @@ export class ExperienciaListComponent {
         new Array(this.usuario.ciclos).fill(0)
           .map((_, indiceColumna) => (
             {
+              IdExperiencia:0,
               ExNombre: '',
               ExDescripcion: '',
               ExCicloInicio: indiceColumna + 1,
@@ -51,6 +59,13 @@ export class ExperienciaListComponent {
   abrirModal(funcion: 'agregar' | 'editar', experiencia: Experiencia) {
     this.modal = true
     this.open.emit({ modal: this.modal, funcion, experiencia })
+  }
+  verContenidoPrevio(IdExperiencia: number) {
+    this.verContenido= true
+    this.abrirContenido.emit(this.verContenido)
+    this.contenidoService.buscarContenido(IdExperiencia)
+        .subscribe(respuesta=>console.log(respuesta))
+
   }
 
   gridLayout() {

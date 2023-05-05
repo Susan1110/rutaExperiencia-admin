@@ -12,7 +12,7 @@
     <div *ngFor="let experiencia of experiencias"
         [ngStyle]=posicionExperiencia(experiencia.ExCicloInicio,experiencia.ExCicloFin,experiencia.ExFila)
         class="editar">
-        <div class="icon">
+        <div (click)="verContenidoPrevio(experiencia.IdExperiencia)" class="icon">
             <img src="assets/ver.svg" alt="ver">
         </div>
         <div class="icon" (click)="abrirModal('editar',experiencia)">
