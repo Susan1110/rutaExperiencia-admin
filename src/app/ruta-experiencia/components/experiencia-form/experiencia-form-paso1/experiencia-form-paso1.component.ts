@@ -22,6 +22,10 @@ export class ExperienciaFormPaso1Component {
     return this.authService.usuario.ciclos ?? 0
   }
 
+  get carrera() {
+    return this.authService.usuario.idCarrera
+  }
+
   get opcionesCiclos() {
     return Array.from({ length: this.ciclos - this.experiencia.ExCicloInicio + 1 }, (_, i) => this.experiencia.ExCicloInicio + i);
   }
@@ -38,7 +42,7 @@ export class ExperienciaFormPaso1Component {
       "ExCicloFin": this.txtCicloFin.nativeElement.value,
       "ExFila": 3,
       "ExIconoUrl": this.txtUrlIcono.nativeElement.value,
-      "IdCarrera": 1
+      "IdCarrera": this.carrera
     }
     const response = await fetch("http://localhost:4040/experiencia", {
       method: "post",

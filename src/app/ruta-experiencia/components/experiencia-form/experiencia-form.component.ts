@@ -18,6 +18,11 @@ export class ExperienciaFormComponent {
     this.pasoActual = arg
   }
 
+  cerrarFormulario(arg: boolean) {
+    this.modal = arg
+    this.close.emit(this.modal)
+  }
+
 
   cerrarModal() {
     this.modal = false

@@ -99,6 +99,7 @@ p,
 
 .entrada {
     flex: 1;
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -106,7 +107,7 @@ p,
 
 textarea {
     resize: none;
-  }
+}
 
 input,
 textarea,
@@ -127,4 +128,10 @@ select {
     text-align: center;
     background: linear-gradient(90deg, #B3B3EE 0%, #E3B4E3 100%);
     color: #000000;
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: inherit;
+    pointer-events: none;
 }

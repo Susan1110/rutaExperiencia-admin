@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Contenido } from '../Interfaces/ruta-experiencia.interface';
+import { Contenido, NuevoContenido } from '../Interfaces/ruta-experiencia.interface';
 import { HttpClient } from '@angular/common/http';
 import { catchError, of, tap } from 'rxjs';
 
@@ -18,7 +18,7 @@ export class ContenidoService {
     this._contenido = []
   }
 
-  searchContenido(idExperiencia: number) {
+  buscarContenido(idExperiencia: number) {
     const URL = `http://localhost:4040/contenido/experiencia/${idExperiencia}`
     return this.http.get<Contenido[]>(URL)
       .pipe(
@@ -27,8 +27,10 @@ export class ContenidoService {
         }),
         catchError(err => of(false))
       )
-
   }
 
-
+  postContenido(nuevoContenido: NuevoContenido) {
+    const URL = 'http://localhost:4040/contenido'
+    return this.http.post(URL, nuevoContenido)
+  }
 }

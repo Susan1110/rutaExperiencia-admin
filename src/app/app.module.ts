@@ -13,6 +13,7 @@ import { ErroresModule } from './errores/errores.module';
 import { AppRoutingModule } from './app-routing.module';
 import { MainModule } from './main/main.module';
 import { AuthModule } from './auth/auth.module';
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AuthModule } from './auth/auth.module';
     ErroresModule,
     MainModule,
     AuthModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
