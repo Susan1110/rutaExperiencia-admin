@@ -9,6 +9,7 @@ import { ExperienciaListComponent } from './components/experiencia-list/experien
 import { ExperienciaCardComponent } from './components/experiencia-list/experiencia-card/experiencia-card.component';
 import { ExperienciaFormPaso1Component } from './components/experiencia-form/experiencia-form-paso1/experiencia-form-paso1.component';
 import { ExperienciaFormPaso2Component } from './components/experiencia-form/experiencia-form-paso2/experiencia-form-paso2.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -23,9 +24,11 @@ import { ExperienciaFormPaso2Component } from './components/experiencia-form/exp
     ExperienciaFormPaso2Component,
     ExperienciaListComponent,
     ExperienciaCardComponent,
+    
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     RutaExperienciaPageComponent
