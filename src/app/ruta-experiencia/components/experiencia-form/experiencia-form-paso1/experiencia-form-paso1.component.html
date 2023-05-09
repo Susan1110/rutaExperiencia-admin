@@ -28,11 +28,16 @@
         <div>
             Icono:
         </div>
-        <input type="text" [value]="experiencia.ExIconoUrl" #txtUrlIcono>
+      
+        <select #txtUrlIcono>
+            <option [selected]="opcion.url === experiencia.ExIconoUrl" *ngFor="let opcion of opciones" [value]="opcion.url">{{ opcion.nombre }}</option>
+          </select>
+        <!-- <input type="text" [value]="experiencia.ExIconoUrl" #txtUrlIcono> -->
         <!-- <div class="text-danger" >
             <span>El Url del icono es obligatorio</span>
         </div> -->
     </div>
+    
 </div>
 
 

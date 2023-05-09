@@ -1,6 +1,12 @@
 import { Component, ElementRef, ViewChild, Input, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../../../auth/services/auth.service';
 import { Experiencia } from 'src/app/ruta-experiencia/Interfaces/ruta-experiencia.interface';
+import { Router } from '@angular/router';
+
+interface Opcion {
+  nombre: string;
+  url: string;
+}
 
 @Component({
   selector: 'app-experiencia-form-paso1',
@@ -15,13 +21,24 @@ export class ExperienciaFormPaso1Component {
   @ViewChild('selCicloFin') selCicloFin!: ElementRef<HTMLInputElement>
   @ViewChild('txtNombreExperiencia') txtNombreExperiencia!: ElementRef<HTMLInputElement>
   @ViewChild('txtUrlIcono') txtUrlIcono!: ElementRef<HTMLInputElement>
+  
+  
 
-  constructor(private authService: AuthService) { }
 
+
+  constructor(private authService: AuthService,private router: Router) { }
+  opciones=[
+    {nombre: 'Icono 1',url:"https://cdn1-icons-png.flaticon.com/512/6378/6378141.png"},
+    {nombre: 'Icono 2',url:"https://cdn2-icons-png.flaticon.com/512/6378/6378141.png"},
+    {nombre: 'Icono 3',url:"https://cdn3-icons-png.flaticon.com/512/6378/6378141.png"},
+    {nombre: 'Icono 4',url:"https://cdn4-icons-png.flaticon.com/512/6378/6378141.png"}
+  ];
+  opcionSeleccionada=this.opciones[0];
+  
   get ciclos() {
     return this.authService.usuario.ciclos ?? 0
   }
-
+  
   get opcionesCiclos() {
     return Array.from({ length: this.ciclos - this.experiencia.ExCicloInicio + 1 }, (_, i) => this.experiencia.ExCicloInicio + i);
   }
