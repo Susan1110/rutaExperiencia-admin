@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ExperienciaService } from '../../services/experiencia.service';
 import { AuthService } from '../../../auth/services/auth.service';
-import { AbrirForm, Experiencia } from '../../Interfaces/ruta-experiencia.interface';
+import { Experiencia } from '../../Interfaces/ruta-experiencia.interface';
 import { ContenidoService } from '../../services/contenido.service';
+import { ModalService } from '../../services/modal.service';
 
 
 
@@ -12,16 +13,7 @@ import { ContenidoService } from '../../services/contenido.service';
   styleUrls: ['./experiencia-list.component.css']
 })
 export class ExperienciaListComponent {
-  @Output() open: EventEmitter<AbrirForm> = new EventEmitter()
-  modal: boolean = false;
   filas: number = 8
-
-  constructor(private experienciaService: ExperienciaService, private authService: AuthService, private contenidoService: ContenidoService) { }
-
-  ngOnInit(): void {
-    this.experienciaService.searchExperiencia(this.usuario.idCarrera!)
-      .subscribe()
-  }
 
   get usuario() {
     return this.authService.usuario
@@ -30,6 +22,19 @@ export class ExperienciaListComponent {
   get experiencias(): Experiencia[] {
     return this.experienciaService.experiencias
   }
+
+  constructor(
+    private experienciaService: ExperienciaService,
+    private authService: AuthService,
+    private contenidoService: ContenidoService,
+    private modalService: ModalService) { }
+
+  ngOnInit(): void {
+    this.experienciaService.buscarExperiencias(this.usuario.idCarrera!)
+      .subscribe()
+  }
+
+
 
   get nuevasExperiencias(): Experiencia[][] {
     return new Array(this.filas).fill(0)
@@ -51,8 +56,10 @@ export class ExperienciaListComponent {
   }
 
   abrirModal(funcion: 'agregar' | 'editar', experiencia: Experiencia) {
-    this.modal = true
-    this.open.emit({ modal: this.modal, funcion, experiencia })
+    this.modalService.abrirFormularioExperiencia(funcion)
+    this.experienciaService.obtenerExperiencia(experiencia)
+    // this.contenidoService.buscarContenido(experiencia.IdExperiencia)
+    //   .subscribe()
   }
 
   verContenido(idExperiencia: number) {

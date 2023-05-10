@@ -2,7 +2,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ContenidoService } from '../../../services/contenido.service';
-import { NuevoContenido } from 'src/app/ruta-experiencia/Interfaces/ruta-experiencia.interface';
+import { Contenido, NuevoContenido } from 'src/app/ruta-experiencia/Interfaces/ruta-experiencia.interface';
+import { ExperienciaService } from 'src/app/ruta-experiencia/services/experiencia.service';
+import { ToastrService } from 'ngx-toastr';
+import { ModalService } from '../../../services/modal.service';
 
 @Component({
   selector: 'app-experiencia-form-paso2',
@@ -11,20 +14,44 @@ import { NuevoContenido } from 'src/app/ruta-experiencia/Interfaces/ruta-experie
 })
 export class ExperienciaFormPaso2Component {
 
-  @Output() estadoFormularioEmisor = new EventEmitter<boolean>();
 
   opcionContenido: 'multimedia' | 'descripcion' = 'multimedia'
   contenidoForm: FormGroup;
   editarContenido: boolean = true
   videoUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/undefined')
 
-  constructor(private sanitizer: DomSanitizer, private formBuilder: FormBuilder, private contenidoService: ContenidoService) {
+
+
+  get contenido() {
+    return this.contenidoService.contenido[0]
+  }
+
+  constructor(
+    private sanitizer: DomSanitizer,
+    private formBuilder: FormBuilder,
+    private contenidoService: ContenidoService,
+    private toastr: ToastrService,
+    private modalService: ModalService
+  ) {
     this.contenidoForm = this.formBuilder.group({
       tipo: ['video', Validators.required],
       link: ['', Validators.required],
       titulo: ['', Validators.required],
       contenido: ['', Validators.required],
     })
+  }
+  
+  ngOnInit(): void {
+    if (this.contenido) {
+      this.contenidoForm.patchValue({
+        tipo: 'video',
+        link: this.contenido.CoUrlMedia,
+        titulo: this.contenido.CoTitulo,
+        contenido: this.contenido.CoDescripcion,
+      })
+      this.actualizarVideoUrl()
+    }
+
   }
 
   cambiarOpcion(nuevaOpcion: 'multimedia' | 'descripcion') {
@@ -38,10 +65,18 @@ export class ExperienciaFormPaso2Component {
   actualizarVideoUrl() {
     const linkControl = this.contenidoForm.get('link')
     if (linkControl) {
-      const videoId = linkControl.value.split('=')[1]
-      const url = `https://www.youtube.com/embed/${videoId}`
-      this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url)
+      const url = this.obtenerVideo(linkControl.value)
+      this.videoUrl = url
     }
+  }
+
+  obtenerVideo(url: string) {
+    const queryLink = url.split('?')[1]
+    const params = new URLSearchParams(queryLink)
+    const videoId = params.get('v')
+    const videoCompartido = `https://www.youtube.com/embed/${videoId}`
+    const linkSeguro = this.sanitizer.bypassSecurityTrustResourceUrl(videoCompartido)
+    return linkSeguro
   }
 
   subirContenido() {
@@ -54,15 +89,20 @@ export class ExperienciaFormPaso2Component {
         IdExperiencia: 1
       };
 
-      this.contenidoService.postContenido(contenido)
+
+      this.contenidoService.subirContenido(contenido)
         .subscribe(
           {
-            next: response => {
-              alert(`Contenido Creado ${response}`)
-              this.estadoFormularioEmisor.emit(false)
+            next: () => {
+              this.toastr.success('Contenido registrado exitosamente.', '', { timeOut: 2000, })
+                .onHidden
+                .subscribe(() => { this.modalService.cerrarFormularioExperiencia() })
+              // this.modalService.cerrarFormularioExperiencia()
+
             },
-            error: error => alert(`No se pudo crear contenido ${error}`),
-            complete: () => console.log('Observable complete')
+            error: error => {
+              this.toastr.error(`No se pudo crear contenido`)
+            }
           }
         )
     }

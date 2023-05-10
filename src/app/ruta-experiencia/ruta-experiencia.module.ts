@@ -10,6 +10,8 @@ import { ExperienciaCardComponent } from './components/experiencia-list/experien
 import { ExperienciaFormPaso1Component } from './components/experiencia-form/experiencia-form-paso1/experiencia-form-paso1.component';
 import { ExperienciaFormPaso2Component } from './components/experiencia-form/experiencia-form-paso2/experiencia-form-paso2.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 
 
@@ -27,7 +29,9 @@ import { ReactiveFormsModule } from "@angular/forms";
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   exports: [
     RutaExperienciaPageComponent

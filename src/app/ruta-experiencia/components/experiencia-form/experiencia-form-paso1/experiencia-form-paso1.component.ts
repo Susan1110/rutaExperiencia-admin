@@ -1,6 +1,8 @@
 import { Component, ElementRef, ViewChild, Input, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../../../auth/services/auth.service';
 import { Experiencia } from 'src/app/ruta-experiencia/Interfaces/ruta-experiencia.interface';
+import { ExperienciaService } from 'src/app/ruta-experiencia/services/experiencia.service';
+import { ContenidoService } from '../../../services/contenido.service';
 
 @Component({
   selector: 'app-experiencia-form-paso1',
@@ -9,17 +11,14 @@ import { Experiencia } from 'src/app/ruta-experiencia/Interfaces/ruta-experienci
 })
 export class ExperienciaFormPaso1Component {
 
-  @Input() experiencia!: Experiencia
   @Output() paso = new EventEmitter<number>();
   @ViewChild('txtCicloInicio') txtCicloInicio!: ElementRef<HTMLInputElement>
   @ViewChild('txtCicloFin') txtCicloFin!: ElementRef<HTMLInputElement>
   @ViewChild('txtNombreExperiencia') txtNombreExperiencia!: ElementRef<HTMLInputElement>
   @ViewChild('txtUrlIcono') txtUrlIcono!: ElementRef<HTMLInputElement>
 
-  constructor(private authService: AuthService) { }
-
-  get ciclos() {
-    return this.authService.usuario.ciclos ?? 0
+  get experiencia() {
+    return this.experienciaService.experiencia
   }
 
   get carrera() {
@@ -27,22 +26,41 @@ export class ExperienciaFormPaso1Component {
   }
 
   get opcionesCiclos() {
-    return Array.from({ length: this.ciclos - this.experiencia.ExCicloInicio + 1 }, (_, i) => this.experiencia.ExCicloInicio + i);
+    const ciclos = this.authService.usuario.ciclos ?? 0
+    return Array.from({ length: ciclos - this.experiencia.ExCicloInicio + 1 }, (_, i) => this.experiencia.ExCicloInicio + i);
   }
 
+  constructor(
+    private authService: AuthService,
+    private experienciaService: ExperienciaService,
+    private contenidoService: ContenidoService
+  ) { }
+
+  
+
+
+
   siguientePaso() {
-    this.paso.emit(2)
+    if (this.experiencia.IdExperiencia === 0) {
+      this.paso.emit(2)
+    }
+    else {
+      this.contenidoService.buscarContenido(this.experiencia.IdExperiencia)
+        .subscribe(_ => this.paso.emit(2))
+    }
   }
 
 
   async agregarexper() {
+    const carrera = this.authService.usuario.idCarrera
+    const fila = this.experiencia.ExFila
     const data = {
       "ExNombre": this.txtNombreExperiencia.nativeElement.value,
       "ExCicloInicio": this.txtCicloInicio.nativeElement.value,
       "ExCicloFin": this.txtCicloFin.nativeElement.value,
-      "ExFila": 3,
+      "ExFila": fila,
       "ExIconoUrl": this.txtUrlIcono.nativeElement.value,
-      "IdCarrera": this.carrera
+      "IdCarrera": carrera
     }
     const response = await fetch("http://localhost:4040/experiencia", {
       method: "post",

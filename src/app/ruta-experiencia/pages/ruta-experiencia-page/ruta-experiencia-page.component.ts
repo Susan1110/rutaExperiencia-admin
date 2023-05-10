@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
-import { AbrirForm, Experiencia } from '../../Interfaces/ruta-experiencia.interface';
+import { Experiencia } from '../../Interfaces/ruta-experiencia.interface';
 import { ContenidoService } from '../../services/contenido.service';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-ruta-experiencia-page',
@@ -12,24 +13,22 @@ export class RutaExperienciaPageComponent {
 
   funcion: 'agregar' | 'editar' = 'agregar'
   datos!: Experiencia
-  modal: boolean = false
 
   get usuario() {
     return this.authService.usuario
   }
-
-
-  constructor(private authService: AuthService, private contenidoService: ContenidoService) { }
-
-
-  abrirPopUp(arg: AbrirForm) {
-    this.modal = arg.modal
-    this.funcion = arg.funcion
-    this.datos = arg.experiencia
+  get formularioExperiencia() {
+    return this.modalService.estadoFormularioExperiencia
+  }
+  get tarjetaExperiencia(){
+    return this.modalService.estadoTarjetaExperiencia
   }
 
-  cerrarPopUp(arg: boolean) {
-    this.modal = arg
-  }
+
+  constructor(
+    private authService: AuthService,
+    private contenidoService: ContenidoService,
+    private modalService: ModalService) { }
+
 
 }

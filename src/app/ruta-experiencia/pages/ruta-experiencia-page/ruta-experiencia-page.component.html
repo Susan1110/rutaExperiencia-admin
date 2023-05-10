@@ -7,12 +7,12 @@
 
     <app-ciclo-icons></app-ciclo-icons>
 
-    <app-experiencia-list (open)="abrirPopUp($event)"></app-experiencia-list>
+    <app-experiencia-list></app-experiencia-list>
 
     <app-beneficio-list></app-beneficio-list>
 
-    <ng-container *ngIf="modal">
-        <app-experiencia-form (close)="cerrarPopUp($event)" [funcion]="funcion" [datos]="datos"></app-experiencia-form>
+    <ng-container *ngIf="formularioExperiencia">
+        <app-experiencia-form></app-experiencia-form>
     </ng-container>
 
 </div>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -14,7 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { MainModule } from './main/main.module';
 import { AuthModule } from './auth/auth.module';
 import { ReactiveFormsModule } from "@angular/forms";
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 @NgModule({
   declarations: [
     AppComponent
@@ -32,7 +33,9 @@ import { ReactiveFormsModule } from "@angular/forms";
     MainModule,
     AuthModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

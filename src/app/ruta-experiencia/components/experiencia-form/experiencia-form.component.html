@@ -4,14 +4,14 @@
             <div class="h2 bold">
                 {{funcion | titlecase}} Experiencia
             </div>
-            <div class="cerrar" (click)="cerrarModal()">
+            <div class="cerrar" (click)="cerrarFormulario()">
                 <img src="assets/cerrar.png" alt="">
             </div>
         </div>
 
         <ng-container [ngSwitch]="pasoActual" id="scroll">
-            <app-experiencia-form-paso1 *ngSwitchCase="1" [experiencia]="datos" (paso)="actualizarPaso($event)"></app-experiencia-form-paso1>
-            <app-experiencia-form-paso2 *ngSwitchCase="2" (estadoFormularioEmisor)="cerrarFormulario($event)"></app-experiencia-form-paso2>
+            <app-experiencia-form-paso1 *ngSwitchCase="1" (paso)="actualizarPaso($event)"></app-experiencia-form-paso1>
+            <app-experiencia-form-paso2 *ngSwitchCase="2"></app-experiencia-form-paso2>
         </ng-container>
     </div>
 

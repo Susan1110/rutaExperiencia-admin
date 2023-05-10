@@ -19,25 +19,25 @@ export interface NuevaExperiencia {
     IdCarrera: number;
 }
 
-export interface AbrirForm {
-    modal: boolean,
-    funcion: 'agregar' | 'editar'
-    experiencia: Experiencia
+export interface RetornoExperiencia {
+    ok: boolean,
+    msg: string,
+    id?: number
 }
 
 export interface Contenido {
-    IdContenido:   number;
-    CoTitulo:      string;
+    IdContenido: number;
+    CoTitulo: string;
     CoDescripcion: string;
-    CoUrlMedia:    string;
-    IdTipoMedia:   number;
+    CoUrlMedia: string;
+    IdTipoMedia: number;
     IdExperiencia: number;
 }
 
 export interface NuevoContenido {
-    CoTitulo:      string;
+    CoTitulo: string;
     CoDescripcion: string;
-    CoUrlMedia:    string;
-    IdTipoMedia:   number;
+    CoUrlMedia: string;
+    IdTipoMedia: number;
     IdExperiencia: number;
 }
