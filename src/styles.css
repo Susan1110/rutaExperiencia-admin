@@ -117,6 +117,7 @@ input,
 textarea,
 select {
     padding: 10px;
+    height: 45px;
 }
 
 .button-1 {
@@ -138,4 +139,20 @@ select {
     opacity: 0.5;
     cursor: inherit;
     pointer-events: none;
+}
+
+.mensaje-error {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: red;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.mensaje-error-icon,
+.mensaje-error-icon img {
+    height: 20px;
+    width: 20px;
 }

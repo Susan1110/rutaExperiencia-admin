@@ -30,7 +30,7 @@ export class ExperienciaListComponent {
     private modalService: ModalService) { }
 
   ngOnInit(): void {
-    this.experienciaService.buscarExperiencias(this.usuario.idCarrera!)
+    this.experienciaService.buscarExperiencias()
       .subscribe()
   }
 

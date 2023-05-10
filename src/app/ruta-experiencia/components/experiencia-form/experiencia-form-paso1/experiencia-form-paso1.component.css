@@ -1,7 +1,7 @@
  .cuerpo {
    display: flex;
    flex-direction: column;
-   justify-content: start;
+   justify-content: flex-start;
    gap: 20px;
  }
 
@@ -32,19 +32,6 @@
    gap: 20px;
  }
 
- .icono-img {
-   background: #CCCCCC;
-   position: relative;
-   display: flex;
-   justify-content: center;
-   padding: 5px;
-   height: 50px;
- }
-
- .icono img {
-   max-width: 100%;
-   max-height: 100%;
- }
 
  .acciones {
    display: flex;
@@ -85,6 +72,32 @@
    background: white;
  }
 
+ .icono {
+   display: flex;
+   align-items: flex-start;
+   gap: 10px;
+ }
+
+ .icono select {
+   flex: 4;
+ }
+
+ .icono-img {
+   flex: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   /* background: linear-gradient(90deg, #0202C6, #A304A3); */
+   background-color: rgb(128, 128, 128);
+   padding: 5px;
+   height: 45px;
+ }
+
+ .icono-img img {
+   height: 100%;
+   object-fit: contain;
+ }
+
  .slider {
    position: relative;
  }
@@ -114,11 +127,12 @@
    display: flex;
    justify-content: flex-end;
  }
-.text-danger{
-  text-align: start;
-  color: #f20c0c;
-  margin-left: 7px;
-}
+
+ .text-danger {
+   text-align: start;
+   color: #f20c0c;
+   margin-left: 7px;
+ }
 
 
 

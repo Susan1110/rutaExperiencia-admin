@@ -6,6 +6,7 @@ import { Contenido, NuevoContenido } from 'src/app/ruta-experiencia/Interfaces/r
 import { ExperienciaService } from 'src/app/ruta-experiencia/services/experiencia.service';
 import { ToastrService } from 'ngx-toastr';
 import { ModalService } from '../../../services/modal.service';
+import { RegistroService } from 'src/app/ruta-experiencia/services/registro.service';
 
 @Component({
   selector: 'app-experiencia-form-paso2',
@@ -20,7 +21,9 @@ export class ExperienciaFormPaso2Component {
   editarContenido: boolean = true
   videoUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/undefined')
 
-
+  get funcion() {
+    return this.modalService.funcionFormularioExperiancia
+  }
 
   get contenido() {
     return this.contenidoService.contenido[0]
@@ -31,7 +34,8 @@ export class ExperienciaFormPaso2Component {
     private formBuilder: FormBuilder,
     private contenidoService: ContenidoService,
     private toastr: ToastrService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private registroService: RegistroService,
   ) {
     this.contenidoForm = this.formBuilder.group({
       tipo: ['video', Validators.required],
@@ -40,7 +44,7 @@ export class ExperienciaFormPaso2Component {
       contenido: ['', Validators.required],
     })
   }
-  
+
   ngOnInit(): void {
     if (this.contenido) {
       this.contenidoForm.patchValue({
@@ -86,25 +90,10 @@ export class ExperienciaFormPaso2Component {
         CoDescripcion: this.contenidoForm.value.contenido,
         CoUrlMedia: this.contenidoForm.value.link,
         IdTipoMedia: 2,
-        IdExperiencia: 1
+        IdExperiencia: 0
       };
-
-
-      this.contenidoService.subirContenido(contenido)
-        .subscribe(
-          {
-            next: () => {
-              this.toastr.success('Contenido registrado exitosamente.', '', { timeOut: 2000, })
-                .onHidden
-                .subscribe(() => { this.modalService.cerrarFormularioExperiencia() })
-              // this.modalService.cerrarFormularioExperiencia()
-
-            },
-            error: error => {
-              this.toastr.error(`No se pudo crear contenido`)
-            }
-          }
-        )
+      this.registroService.asignarCotnenido(contenido)
+      this.registroService.registrarExperienciaYContenido()
     }
   }
 

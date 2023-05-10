@@ -1,9 +1,11 @@
 import { Component, ElementRef, ViewChild, Input, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../../../auth/services/auth.service';
-import { Experiencia } from 'src/app/ruta-experiencia/Interfaces/ruta-experiencia.interface';
+import { Experiencia, NuevaExperiencia } from 'src/app/ruta-experiencia/Interfaces/ruta-experiencia.interface';
 import { ExperienciaService } from 'src/app/ruta-experiencia/services/experiencia.service';
 import { ContenidoService } from '../../../services/contenido.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalService } from '../../../services/modal.service';
+import { RegistroService } from '../../../services/registro.service';
 
 
 @Component({
@@ -14,48 +16,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ExperienciaFormPaso1Component {
 
   experienciaForm: FormGroup;
-  @Input() funcion!: 'agregar' | 'editar';
   @Output() paso = new EventEmitter<number>();
-  @Output() nuevaExperiencia = new EventEmitter<any>();
-
-
-  get experiencia() {
-    return this.experienciaService.experiencia
-  }
-
-  get carrera() {
-    return this.authService.usuario.idCarrera
-  }
-
-  constructor(
-    private authService: AuthService,
-    private formBuilder: FormBuilder,
-    private experienciaService: ExperienciaService,
-    private contenidoService: ContenidoService) {
-    this.experienciaForm = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      url: ['', Validators.required],
-    })
-    if (this.experiencia) {
-      this.experienciaForm.patchValue({
-        nombre: this.experiencia.ExNombre,
-        url: this.experiencia.ExIconoUrl
-      })
-    }
-    console.log(this.experiencia)
-  }
-
-
+  @Output() nuevaExperiencia = new EventEmitter<NuevaExperiencia>();
   opciones = [
-    { nombre: 'Icono 1', url: "https://cdn1-icons-png.flaticon.com/512/6378/6378141.png" },
-    { nombre: 'Icono 2', url: "https://cdn2-icons-png.flaticon.com/512/6378/6378141.png" },
-    { nombre: 'Icono 3', url: "https://cdn3-icons-png.flaticon.com/512/6378/6378141.png" },
-    { nombre: 'Icono 4', url: "https://cdn4-icons-png.flaticon.com/512/6378/6378141.png" }
+    { nombre: 'Análisis Químico', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_analisis-quimico.png" },
+    { nombre: 'Cámara de Video', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_camara-de-video.png" },
+    { nombre: 'Certificación', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_certificacion.png" },
+    { nombre: 'DevApp', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_devApp.png" },
+    { nombre: 'Diseño App', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_diseno-app.png" },
+    { nombre: 'Estadística', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_estadistica.png" },
+    { nombre: 'Física', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_fisica.png" },
+    { nombre: 'Galería de Imágenes', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_galeria-de-imagenes.png" },
+    { nombre: 'Google Docs', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_google-docs.png" },
+    { nombre: 'Libro de Lectura', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_libro-de-lectura.png" },
+    { nombre: 'Libro', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_libro.png" },
+    { nombre: 'Moneda', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_moneda.png" },
+    { nombre: 'Portafolio', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_portafolio.png" },
+    { nombre: 'Simulador', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_simulador.png" },
+    { nombre: 'Vista 360', url: "https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_vista-360.png" },
   ];
-  opcionSeleccionada = this.opciones[0];
-  agregarExperiencia() {
-    console.log(this.experienciaForm);
-  }
+
   get ciclos() {
     return this.authService.usuario.ciclos ?? 0
   }
@@ -65,11 +45,59 @@ export class ExperienciaFormPaso1Component {
     return Array.from({ length: ciclos - this.experiencia.ExCicloInicio + 1 }, (_, i) => this.experiencia.ExCicloInicio + i);
   }
 
+  get funcion() {
+    return this.modalService.funcionFormularioExperiancia
+  }
 
+  get experiencia() {
+    return this.experienciaService.experiencia
+  }
 
+  constructor(
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private experienciaService: ExperienciaService,
+    private contenidoService: ContenidoService,
+    private modalService: ModalService,
+    private registroService: RegistroService) {
+    this.experienciaForm = this.formBuilder.group({
+      cicloInicio: [this.experiencia.ExCicloInicio || '', Validators.required],
+      cicloFin: [this.experiencia.ExCicloFin || '', Validators.required],
+      nombre: [this.experiencia.ExNombre || '', Validators.required],
+      urlIcon: [this.experiencia.ExIconoUrl || this.opciones[0].url, Validators.required],
+    })
+  }
 
+  agregarExperiencia() {
+    const carrera = this.authService.usuario.idCarrera
+    const fila = this.experiencia.ExFila
 
+    if (this.experienciaForm.valid) {
+      const data: NuevaExperiencia = {
+        "ExNombre": this.experienciaForm.value.nombre,
+        "ExCicloInicio": this.experienciaForm.value.cicloInicio,
+        "ExCicloFin": +this.experienciaForm.value.cicloFin,
+        "ExFila": fila,
+        "ExIconoUrl": this.experienciaForm.value.urlIcon,
+        "IdCarrera": carrera!
+      }
+      this.registroService.asignarExperiencia(data)
+      this.siguientePaso()
+    }
+  }
 
+  editarExperiencia() {
+    const idExperinecia = this.experiencia.IdExperiencia
+    const fila = this.experiencia.ExFila
+    const data = {
+      "ExNombre": this.experienciaForm.value.nombre,
+      "ExCicloInicio": this.experienciaForm.value.cicloInicio,
+      "ExCicloFin": this.experienciaForm.value.cicloFin,
+      "ExFila": fila,
+      "ExIconoUrl": this.experienciaForm.value.urlIcon
+    }
+    console.log(idExperinecia, data)
+  }
 
   siguientePaso() {
     if (this.experiencia.IdExperiencia === 0) {
@@ -79,51 +107,6 @@ export class ExperienciaFormPaso1Component {
       this.contenidoService.buscarContenido(this.experiencia.IdExperiencia)
         .subscribe(_ => this.paso.emit(2))
     }
-  }
-
-
-  async agregarexper() {
-    const carrera = this.authService.usuario.idCarrera
-    const fila = this.experiencia.ExFila
-    const data = {
-      // "ExNombre": this.txtNombreExperiencia.nativeElement.value,
-      // "ExCicloInicio": this.txtCicloInicio.nativeElement.value,
-      // "ExCicloFin": this.txtCicloFin.nativeElement.value,
-      // "ExFila": fila,
-      // "ExIconoUrl": this.txtUrlIcono.nativeElement.value,
-      // "IdCarrera": carrera
-    }
-    // this.nuevaExperiencia.emit(data);
-    // const response = await fetch("http://localhost:4040/experiencia", {
-    //   method: "post",
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // });
-
-    // this.txtNombreExperiencia.nativeElement.value=''
-    // this.txtUrlIcono.nativeElement.value=''
-  }
-
-
-  async editarExperiencia() {
-    const data = {
-      // "ExNombre": this.txtNombreExperiencia.nativeElement.value,
-      // "ExCicloInicio": this.txtCicloInicio.nativeElement.value,
-      // "ExCicloFin": this.selCicloFin.nativeElement.value,
-      // "ExIconoUrl": this.txtUrlIcono.nativeElement.value,
-      // "IdCarrera": 1
-    }
-    // console.log(this.experiencia)
-    // const idExperiencia = this.experiencia.IdExperiencia
-    // const response = await fetch(`http://localhost:4040/experiencia/${idExperiencia}`, {
-    //   method: "put",
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // });
   }
 
 }

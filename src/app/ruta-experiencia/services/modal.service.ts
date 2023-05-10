@@ -29,7 +29,7 @@ export class ModalService {
 
   abrirFormularioExperiencia(funcion: 'agregar' | 'editar') {
     this._estadoFormularioExperiencia = true
-    this._funcionFormularioExperiancia = funcion    
+    this._funcionFormularioExperiancia = funcion
   }
 
   cerrarFormularioExperiencia() {

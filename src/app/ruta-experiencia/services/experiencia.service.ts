@@ -20,7 +20,10 @@ export class ExperienciaService {
     return this._experiencia
   }
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+    ) {
     this._experiencias = []
   }
 
@@ -33,7 +36,8 @@ export class ExperienciaService {
       )
   }
 
-  buscarExperiencias(idCarrera: number) {
+  buscarExperiencias() {
+    const idCarrera = this.authService.usuario.idCarrera
     const URL = `http://localhost:4040/experiencia/carrera/${idCarrera}`
     return this.http.get<Experiencia[]>(URL)
       .pipe(

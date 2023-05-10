@@ -1,7 +1,6 @@
 export interface Experiencia {
     IdExperiencia: number;
     ExNombre: string;
-    ExDescripcion: string;
     ExCicloInicio: number;
     ExCicloFin: number;
     ExFila: number;
@@ -11,7 +10,6 @@ export interface Experiencia {
 
 export interface NuevaExperiencia {
     ExNombre: string;
-    ExDescripcion: string;
     ExCicloInicio: number;
     ExCicloFin: number;
     ExFila: number;
