@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div class="slide-cuerpo" *ngIf="editarContenido">
+            <div class="slide-cuerpo" *ngIf="abrirContenido">
                 <div class="slide-cuerpo-opciones">
                     <div class="slide-cuerpo-opciones-opcion" [ngClass]="{active: opcionContenido==='multimedia'}"
                         (click)="cambiarOpcion('multimedia')">
@@ -110,8 +110,23 @@
         </div>
     </div>
 </div>
-<div class="footer espacio">
+<div class="footer espacio" *ngIf="funcion === 'agregar'">
+    <div class="form-nav bold" (click)="anteriorPaso()">
+        Atras
+    </div>
     <div class="button-1 bold" [class.disabled]="contenidoForm.invalid" (click)="subirContenido()">
-        Guardar
+        Agregar
+    </div>
+</div>
+
+<div class="footer espacio" *ngIf="funcion === 'editar'">
+    <div class="form-nav bold" (click)="anteriorPaso()">
+        Atras
+    </div>
+    <div class="button-1 bold" [class.disabled]="contenidoForm.invalid" (click)="editarContenido()">
+        Editar
+    </div>
+    <div class="form-nav bold disabled">
+        Siguiente
     </div>
 </div>

@@ -6,6 +6,7 @@ import { ContenidoService } from '../../../services/contenido.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from '../../../services/modal.service';
 import { RegistroService } from '../../../services/registro.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -59,7 +60,8 @@ export class ExperienciaFormPaso1Component {
     private experienciaService: ExperienciaService,
     private contenidoService: ContenidoService,
     private modalService: ModalService,
-    private registroService: RegistroService) {
+    private registroService: RegistroService,
+    private toastr: ToastrService) {
     this.experienciaForm = this.formBuilder.group({
       cicloInicio: [this.experiencia.ExCicloInicio || '', Validators.required],
       cicloFin: [this.experiencia.ExCicloFin || '', Validators.required],
@@ -69,10 +71,10 @@ export class ExperienciaFormPaso1Component {
   }
 
   agregarExperiencia() {
-    const carrera = this.authService.usuario.idCarrera
-    const fila = this.experiencia.ExFila
 
     if (this.experienciaForm.valid) {
+      const carrera = this.authService.usuario.idCarrera
+      const fila = this.experiencia.ExFila
       const data: NuevaExperiencia = {
         "ExNombre": this.experienciaForm.value.nombre,
         "ExCicloInicio": this.experienciaForm.value.cicloInicio,
@@ -87,16 +89,29 @@ export class ExperienciaFormPaso1Component {
   }
 
   editarExperiencia() {
-    const idExperinecia = this.experiencia.IdExperiencia
-    const fila = this.experiencia.ExFila
-    const data = {
-      "ExNombre": this.experienciaForm.value.nombre,
-      "ExCicloInicio": this.experienciaForm.value.cicloInicio,
-      "ExCicloFin": this.experienciaForm.value.cicloFin,
-      "ExFila": fila,
-      "ExIconoUrl": this.experienciaForm.value.urlIcon
+    if (this.experienciaForm.valid) {
+      const idExperiencia = this.experiencia.IdExperiencia
+      const carrera = this.authService.usuario.idCarrera
+      const fila = this.experiencia.ExFila
+      const data: NuevaExperiencia = {
+        "ExNombre": this.experienciaForm.value.nombre,
+        "ExCicloInicio": this.experienciaForm.value.cicloInicio,
+        "ExCicloFin": this.experienciaForm.value.cicloFin,
+        "ExFila": fila,
+        "ExIconoUrl": this.experienciaForm.value.urlIcon,
+        "IdCarrera": carrera!
+      }
+      this.experienciaService.editarExperiencia(idExperiencia, data).subscribe(
+        {
+          next: () => {
+            this.toastr.success('Experiencia Editada')
+            this.siguientePaso()
+            this.experienciaService.buscarExperiencias().subscribe()
+          },
+          error: () => this.toastr.error('No se pudo editar la experiencia')
+        }
+      )
     }
-    console.log(idExperinecia, data)
   }
 
   siguientePaso() {

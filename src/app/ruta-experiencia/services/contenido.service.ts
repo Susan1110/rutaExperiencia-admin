@@ -18,11 +18,6 @@ export class ContenidoService {
     this._contenido = []
   }
 
-  subirContenido(nuevoContenido: NuevoContenido) {
-    const URL = 'http://localhost:4040/contenido'
-    return this.http.post(URL, nuevoContenido)
-  }
-
   buscarContenido(idExperiencia: number) {
     const URL = `http://localhost:4040/contenido/experiencia/${idExperiencia}`
     return this.http.get<Contenido[]>(URL)
@@ -32,5 +27,15 @@ export class ContenidoService {
         }),
         catchError(err => of(false))
       )
+  }
+
+  subirContenido(nuevoContenido: NuevoContenido) {
+    const URL = 'http://localhost:4040/contenido'
+    return this.http.post(URL, nuevoContenido)
+  }
+
+  editarContenido(idContenido: number, nuevoContenido: NuevoContenido) {
+    const URL = `http://localhost:4040/contenido/${idContenido}`
+    return this.http.put(URL, nuevoContenido)
   }
 }

@@ -49,13 +49,24 @@
     </div>
 </div>
 
-<div class="footer espacio">
+<div class="footer espacio" *ngIf="funcion === 'agregar'">
+    <div class="form-nav disabled bold">
+        Atras
+    </div>
     <div *ngIf="funcion === 'agregar'" class="button-1 bold" [class.disabled]="experienciaForm.invalid"
         (click)="agregarExperiencia()">
-        Agregar
+        Siguiente
     </div>
-    <div *ngIf="funcion === 'editar'" class="button-1 bold" [class.disabled]="experienciaForm.invalid"
-        (click)="editarExperiencia()">
+</div>
+
+<div class="footer espacio" *ngIf="funcion === 'editar'">
+    <div class="form-nav disabled bold">
+        Atras
+    </div>
+    <div class="button-1 bold" [class.disabled]="experienciaForm.invalid" (click)="editarExperiencia()">
         Editar
+    </div>
+    <div class="form-nav bold" (click)="siguientePaso()">
+        Siguiente
     </div>
 </div>

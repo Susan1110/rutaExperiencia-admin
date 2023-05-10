@@ -102,7 +102,6 @@
 .footer {
     border-top: 1px solid #BFBFBF;
     display: flex;
-    justify-content: flex-end;
-}
-
-
+    justify-content: space-between;
+    align-items: center;
+  }

@@ -18,8 +18,10 @@ export class ExperienciaFormPaso2Component {
 
   opcionContenido: 'multimedia' | 'descripcion' = 'multimedia'
   contenidoForm: FormGroup;
-  editarContenido: boolean = true
+  abrirContenido: boolean = true
   videoUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/undefined')
+
+  @Output() paso = new EventEmitter<number>();
 
   get funcion() {
     return this.modalService.funcionFormularioExperiancia
@@ -36,6 +38,7 @@ export class ExperienciaFormPaso2Component {
     private toastr: ToastrService,
     private modalService: ModalService,
     private registroService: RegistroService,
+    private experienciaService: ExperienciaService
   ) {
     this.contenidoForm = this.formBuilder.group({
       tipo: ['video', Validators.required],
@@ -63,7 +66,7 @@ export class ExperienciaFormPaso2Component {
   }
 
   verContenido() {
-    this.editarContenido = !this.editarContenido
+    this.abrirContenido = !this.abrirContenido
   }
 
   actualizarVideoUrl() {
@@ -95,6 +98,31 @@ export class ExperienciaFormPaso2Component {
       this.registroService.asignarCotnenido(contenido)
       this.registroService.registrarExperienciaYContenido()
     }
+  }
+  editarContenido() {
+    if (this.contenidoForm.valid) {
+      const contenido: NuevoContenido = {
+        CoTitulo: this.contenidoForm.value.titulo,
+        CoDescripcion: this.contenidoForm.value.contenido,
+        CoUrlMedia: this.contenidoForm.value.link,
+        IdTipoMedia: 2,
+        IdExperiencia: this.contenido.IdExperiencia
+      };
+      this.contenidoService.editarContenido(this.contenido.IdContenido, contenido)
+        .subscribe({
+          next: () => {
+            this.toastr.success('Contenido Editado')
+            this.modalService.cerrarFormularioExperiencia()
+            this.experienciaService.buscarExperiencias().subscribe()
+          },
+          error: () => this.toastr.error('No se pudo editar el contenido')
+        })
+
+    }
+  }
+
+  anteriorPaso() {
+    this.paso.emit(1)
   }
 
 }

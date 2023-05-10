@@ -23,17 +23,8 @@ export class ExperienciaService {
   constructor(
     private http: HttpClient,
     private authService: AuthService
-    ) {
+  ) {
     this._experiencias = []
-  }
-
-  subirExperiencia(nuevaExperiencia: NuevaExperiencia) {
-    const URL = 'http://localhost:4040/experiencia'
-    return this.http.post<RetornoExperiencia>(URL, nuevaExperiencia)
-      .pipe(
-        map(res => { return res.id }),
-        catchError(err => of(err))
-      )
   }
 
   buscarExperiencias() {
@@ -46,6 +37,20 @@ export class ExperienciaService {
         }),
         catchError(err => of(false))
       )
+  }
+
+  subirExperiencia(nuevaExperiencia: NuevaExperiencia) {
+    const URL = 'http://localhost:4040/experiencia'
+    return this.http.post<RetornoExperiencia>(URL, nuevaExperiencia)
+      .pipe(
+        map(res => { return res.id }),
+        catchError(err => of(err))
+      )
+  }
+
+  editarExperiencia(idExperiencia: number, experiencia: NuevaExperiencia) {
+    const URL = `http://localhost:4040/experiencia/${idExperiencia}`
+    return this.http.put(URL,experiencia)
   }
 
   obtenerExperiencia(experiencia: Experiencia) {

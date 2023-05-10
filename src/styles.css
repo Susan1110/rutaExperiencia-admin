@@ -156,3 +156,10 @@ select {
     height: 20px;
     width: 20px;
 }
+
+.form-nav {
+    cursor: pointer;
+    background: linear-gradient(90deg, #0202C6, #A304A3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
