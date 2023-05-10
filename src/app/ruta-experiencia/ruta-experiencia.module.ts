@@ -26,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     ExperienciaFormPaso2Component,
     ExperienciaListComponent,
     ExperienciaCardComponent,
+    
   ],
   imports: [
     CommonModule,

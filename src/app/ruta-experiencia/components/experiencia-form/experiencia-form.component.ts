@@ -17,6 +17,7 @@ export class ExperienciaFormComponent {
     return this.experienciaService.experiencia
   }
 
+
   modal: boolean = true
   pasoActual: number = 1
 

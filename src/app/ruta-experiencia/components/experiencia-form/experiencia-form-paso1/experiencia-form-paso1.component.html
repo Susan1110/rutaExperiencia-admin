@@ -1,36 +1,60 @@
-<div class="cuerpo espacio" id="scroll">
+<div  class="cuerpo espacio" id="scroll" [formGroup]="experienciaForm"  (ngSubmit)="agregarExperiencia()">
+
     <div class="ciclos">
         <div class="entrada">
             <div>
                 Ciclo Inicio:
             </div>
-            <input type="text" [value]="experiencia.ExCicloInicio" disabled #txtCicloInicio>
+            <input   type="text" [value]="experiencia.ExCicloInicio" disabled #txtCicloInicio>
+            
         </div>
         <div class="entrada">
             <div>
                 Ciclo Fin:
             </div>
-            <select #selCicloFin>
-                <option *ngFor="let ciclo of opcionesCiclos" [value]="ciclo">{{experiencia.ExCicloFin}}</option>
+            <select #selCicloFin  >
+                <option [selected]="ciclo === experiencia.ExCicloFin" *ngFor="let ciclo of opcionesCiclos" [value]="ciclo">{{ciclo}}</option>
             </select>
+            
         </div>
     </div>
     <div class="entrada">
         <div>
             Nombre Experiencia:
         </div>
-        <input type="text" [value]="experiencia.ExNombre" #txtNombreExperiencia>
+        <input formControlName="nombre" type="text"  [value]="experiencia.ExNombre" #txtNombreExperiencia >
+        <div class="text-danger" *ngIf="funcion === 'agregar'&&experienciaForm.get('nombre')?.hasError('required') && experienciaForm.get('nombre')?.touched">
+            <span>El nombre es obligatorio</span>
+        </div>
     </div>
     <div class="entrada">
         <div>
             Icono:
         </div>
-        <input type="text" [value]="experiencia.ExIconoUrl" #txtUrlIcono>
+      
+        <select formControlName="url"  #txtUrlIcono>
+            <option [selected]="opcion.url === experiencia.ExIconoUrl" *ngFor="let opcion of opciones" [value]="opcion.url">{{ opcion.nombre }}</option>
+          </select>
+          <div class="text-danger" *ngIf="funcion ==='agregar'&&experienciaForm.get('url')?.hasError('required') && experienciaForm.get('url')?.touched">
+            <span>El icono es obligatorio</span>
+        </div>
+        <!-- <input type="text" [value]="experiencia.ExIconoUrl" #txtUrlIcono> -->
+        <!-- <div class="text-danger" >
+            <span>El Url del icono es obligatorio</span>
+        </div> -->
     </div>
+
+    
+    
+    
 </div>
 
+
 <div class="footer espacio">
-    <div class="button-1 bold" (click)="siguientePaso()">
-        Siguiente
+    <div *ngIf="funcion === 'agregar'" class="button-1 bold" [class.disabled]="experienciaForm.invalid" (click)="agregarexper()">
+        Agregar
+    </div>
+    <div *ngIf="funcion === 'editar'" class="button-1 bold" (click)="editarExperiencia()">
+        Editar
     </div>
 </div>

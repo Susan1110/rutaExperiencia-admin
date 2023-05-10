@@ -10,6 +10,7 @@ import { PreguntasFrecuentesModule } from './preguntas-frecuentes/preguntas-frec
 import { CarrerasModule } from './carreras/carreras.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { ErroresModule } from './errores/errores.module';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { MainModule } from './main/main.module';
 import { AuthModule } from './auth/auth.module';
@@ -31,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     PreguntasFrecuentesModule,
     ErroresModule,
     MainModule,
+    FormsModule,
     AuthModule,
     HttpClientModule,
     ReactiveFormsModule,
