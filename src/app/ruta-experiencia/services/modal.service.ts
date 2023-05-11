@@ -9,6 +9,7 @@ export class ModalService {
 
   private _estadoFormularioExperiencia: boolean = false
   private _funcionFormularioExperiancia: 'agregar' | 'editar' = 'agregar'
+  
   private _estadoTarjetaExperiencia: boolean = false
 
   get estadoFormularioExperiencia() {
