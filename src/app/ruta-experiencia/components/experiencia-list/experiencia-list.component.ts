@@ -13,20 +13,20 @@ import { ContenidoService } from '../../services/contenido.service';
 export class ExperienciaListComponent {
   @Output() open: EventEmitter<AbrirForm> = new EventEmitter()
   modal: boolean = false;
-  verContenido:boolean=false;
-  @Output() abrirContenido: EventEmitter<boolean> = new EventEmitter()
+  verContenido:boolean=false;/* comentar*/
+  @Output() abrirContenido: EventEmitter<boolean> = new EventEmitter()/*comentar */
   filas: number = 8
  
 
   constructor(
-    private experienciaService: ExperienciaService,
+    private experienciaService: ExperienciaService, /*comentar*/
     private authService: AuthService,
     private contenidoService: ContenidoService) { }
 
 
   ngOnInit(): void {
     this.experienciaService.searchExperiencia(this.usuario.idCarrera!)
-      .subscribe()
+      .subscribe() /* comentar */
   }
 
   get usuario() {
@@ -60,7 +60,7 @@ export class ExperienciaListComponent {
     this.modal = true
     this.open.emit({ modal: this.modal, funcion, experiencia })
   }
-  verContenidoPrevio(IdExperiencia: number) {
+  verContenidoPrevio(IdExperiencia: number) { /*comentar*/
     this.verContenido= true
     this.abrirContenido.emit(this.verContenido)
     this.contenidoService.buscarContenido(IdExperiencia)

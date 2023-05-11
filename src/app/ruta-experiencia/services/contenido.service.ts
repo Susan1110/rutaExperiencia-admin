@@ -6,7 +6,7 @@ import { catchError, of, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ContenidoService {
+export class ContenidoService { /* comentar*/
   private _contenido: Contenido[]
   get contenido(){
     return this._contenido

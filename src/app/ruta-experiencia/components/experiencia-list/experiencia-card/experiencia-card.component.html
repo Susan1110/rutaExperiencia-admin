@@ -22,11 +22,13 @@
     </div>
 
 </div> -->
+<!-- 
 <body>
-    <div id=" container">
+    <div id="container">
         <header>
-            <div (click)="cerrarContenido()">
+            <div (click)="cerrarContenido()" >
                 x
+                
             </div>
 
         </header>
@@ -34,7 +36,6 @@
         <section id="content">
         <img width= 550px alt="laboratorios" [src]=contenido.CoUrlMedia />
         
-
         </section>
         <aside>
             <h1>{{contenido.CoTitulo}}</h1>
@@ -47,4 +48,39 @@
         </aside>
     </div>
 
-</body>
+</body> -->
+
+<div class="container">
+    <div class="add-edit">
+        <div class="barraTitulo">
+            
+            <div class="cerrar" (click)="cerrarContenido()">
+                <img src="assets/cerrar.png" alt="">
+            </div>
+        </div>
+        <div class="cuerpo">
+            <div class="imagen" > 
+                <img width= 550px alt="laboratorios" [src]=contenido.CoUrlMedia />
+                
+             
+                
+            </div>
+            <div class="texto">
+                <h1>{{contenido.CoTitulo}}</h1>
+    
+                <p >
+                    {{contenido.CoDescripcion}}
+                    
+                </p>
+                
+            
+        </div>
+
+
+    </div>
+        
+      
+        
+
+    
+</div>

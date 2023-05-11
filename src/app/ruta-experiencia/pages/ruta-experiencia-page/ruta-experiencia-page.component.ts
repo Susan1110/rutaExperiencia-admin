@@ -12,7 +12,7 @@ export class RutaExperienciaPageComponent {
   funcion: 'agregar' | 'editar' = 'agregar'
   datos!: Experiencia
   modal: boolean = false
-  verContenido:boolean=false
+  verContenido:boolean=false /* comentar*/
 
   get usuario() {
     return this.authService.usuario
@@ -29,10 +29,10 @@ export class RutaExperienciaPageComponent {
     
   }
   abrirContenido(arg:boolean){
-    this.verContenido=arg
+    this.verContenido=arg /*comentar*/
   }
   cerrarContenido(arg:boolean){
-    this.verContenido=arg
+    this.verContenido=arg /* comentar*/
   }
 
   cerrarPopUp(arg: boolean) {
