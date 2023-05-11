@@ -1,86 +1,45 @@
-<!-- <section id="content">
-    <img width= 600px alt="laboratorios" src="https://ucontinental.edu.pe/www/wp-content/uploads/2013/03/cursos_cec.jpg.webp" />
-    
-
-</section>
-<aside>
-    <h1>Laboratorios de Computo</h1>
-    <p class="text">
-        La Red de laboratorios de la universidad contienental brinda...
-        
-    </p>
-   
-
-    
-</aside> -->
-
-<!-- <input type="submit" value="***** " /> -->
-
-<!-- <div class="jw-modal">
-    <div class="jw-modal-body">
-        <ng-content></ng-content>
-    </div>
-
-</div> -->
-<!-- 
-<body>
-    <div id="container">
-        <header>
-            <div (click)="cerrarContenido()" >
-                x
-                
-            </div>
-
-        </header>
- 
-        <section id="content">
-        <img width= 550px alt="laboratorios" [src]=contenido.CoUrlMedia />
-        
-        </section>
-        <aside>
-            <h1>{{contenido.CoTitulo}}</h1>
-
-            <p class="text">
-                {{contenido.CoDescripcion}}
-                
-            </p>
-        
-        </aside>
-    </div>
-
-</body> -->
-
 <div class="container">
     <div class="add-edit">
         <div class="barraTitulo">
-            
+
+
             <div class="cerrar" (click)="cerrarContenido()">
                 <img src="assets/cerrar.png" alt="">
             </div>
         </div>
         <div class="cuerpo">
-            <div class="imagen" > 
-                <img width= 550px alt="laboratorios" [src]=contenido.CoUrlMedia />
-                
-             
-                
+
+            <div class="multimedia" *ngIf="contenido.IdTipoMedia===1">
+                <img [src]=contenido.CoUrlMedia alt="">
             </div>
+            <div class="multimedia" *ngIf="contenido.IdTipoMedia===2">
+                <iframe [src]=URL
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <!-- <div class="multimedia" *ngIf="contenido.IdTipoMedia===3">
+                <a-scene>
+                    <img [src]=contenido.CoUrlMedia alt="">
+                </a-scene>
+            </div> -->
             <div class="texto">
                 <h1>{{contenido.CoTitulo}}</h1>
-    
-                <p >
+
+                <p>
                     {{contenido.CoDescripcion}}
-                    
+
                 </p>
-                
-            
+
+
+            </div>
+
+
         </div>
 
 
-    </div>
-        
-      
-        
 
-    
-</div>
+
+
+    </div>
