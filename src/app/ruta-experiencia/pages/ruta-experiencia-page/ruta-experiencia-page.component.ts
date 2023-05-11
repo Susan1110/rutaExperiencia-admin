@@ -23,6 +23,9 @@ export class RutaExperienciaPageComponent {
   get tarjetaExperiencia(){
     return this.modalService.estadoTarjetaExperiencia
   }
+  get formularioBeneficio(){
+    return this.modalService.estadoFormularioBeneficio
+  }
 
 
   constructor(

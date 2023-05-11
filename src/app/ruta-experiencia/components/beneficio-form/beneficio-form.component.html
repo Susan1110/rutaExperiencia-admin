@@ -1,1 +1,33 @@
-<p>beneficio-form works!</p>
+<div  class="container">
+    <div class="add-edit">
+        <div class="barraTitulo">
+            <div class="h2 bold">
+                {{funcion | titlecase}} Beneficio
+            </div>
+            <div class="cerrar" (click)="cerrarFormulario()">
+                <img src="assets/cerrar.png" alt="">
+            </div>
+        </div>
+
+        <div class="cuerpo espacio">
+            <div class="entrada">
+                <div>
+                    Descripcion:
+                </div>
+                <input type="text"  #txtDescripcionBeneficio>
+            </div>
+        </div>
+        <div  class="footer espacio">
+            <div  class="button-1 bold" 
+            (click)="agregarBeneficio()">
+                Guardar
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>  
+    
+    
