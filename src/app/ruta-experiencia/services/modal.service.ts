@@ -40,4 +40,12 @@ export class ModalService {
   mostrarTarjetaExperiencia() {
     this._estadoTarjetaExperiencia = !this._estadoTarjetaExperiencia
   }
+
+  abrirTarjetaExperiencia(){
+    this._estadoTarjetaExperiencia = true
+  }
+
+  cerrarTarjetaExperiencia(){
+    this._estadoTarjetaExperiencia = false
+  }
 }

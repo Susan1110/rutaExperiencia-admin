@@ -15,6 +15,7 @@ import { ModalService } from '../../services/modal.service';
 export class ExperienciaListComponent {
   filas: number = 8
 
+
   get usuario() {
     return this.authService.usuario
   }
@@ -64,7 +65,9 @@ export class ExperienciaListComponent {
 
   verContenido(idExperiencia: number) {
     this.contenidoService.buscarContenido(idExperiencia)
-      .subscribe()
+      .subscribe({
+        next: () => this.modalService.abrirTarjetaExperiencia()
+      })
   }
 
   gridLayout() {

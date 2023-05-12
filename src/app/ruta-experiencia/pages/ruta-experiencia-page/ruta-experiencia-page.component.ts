@@ -23,12 +23,11 @@ export class RutaExperienciaPageComponent {
   get tarjetaExperiencia(){
     return this.modalService.estadoTarjetaExperiencia
   }
+  
 
 
   constructor(
     private authService: AuthService,
-    private contenidoService: ContenidoService,
     private modalService: ModalService) { }
-
 
 }
