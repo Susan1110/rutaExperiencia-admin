@@ -53,7 +53,7 @@ export class BeneficioListComponent {
     const color = this.background(cicloInicio, cicloFin, largo)
     return {
       'grid-column': `${cicloInicio} / span ${largo}`,
-      'background': color
+      'background': color,
     }
   }
 
