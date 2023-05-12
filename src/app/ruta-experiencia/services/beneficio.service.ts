@@ -3,27 +3,22 @@ import { HttpClient } from '@angular/common/http';
 import { tap, of, catchError, map } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
 import { Beneficio, NuevoBeneficio, RetornoBeneficio } from '../Interfaces/ruta-beneficio.interface';
-
+import { ModalService } from './modal.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BeneficioService {
   private _beneficios: Beneficio[]
-  private _beneficio!: Beneficio
 
-
-  get beneficios() {
+  get beneficios(): Beneficio[] {
     return [...this._beneficios]
   }
-
-  get beneficio() {
-    return this._beneficio
-  }
-
+  
   constructor(
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
     ) {
     this._beneficios = []
   }
@@ -31,8 +26,19 @@ export class BeneficioService {
     const URL = 'http://localhost:4040/beneficio'
     return this.http.post(URL, nuevoBeneficio)
   }
-  obtenerBeneficio(beneficio: Beneficio) {
-    this._beneficio = beneficio
+  
+  // obtener beneficio con get
+  buscarBeneficio() {
+    const IdBeneficio=this.authService.usuario.idCarrera
+    const URL = `http://localhost:4040/beneficio/${IdBeneficio}`
+    return this.http.get<Beneficio[]>(URL)
+    .pipe(
+      tap(rest=>{
+        this._beneficios= rest
+      }),
+      catchError(err => of(false))
+    )    
   }
+ 
  
 }

@@ -3,7 +3,7 @@ import { Beneficio, NuevoBeneficio } from '../../Interfaces/ruta-beneficio.inter
 import { ModalService } from '../../services/modal.service';
 import { BeneficioService } from '../../services/beneficio.service';
 import { AuthService } from './../../../auth/services/auth.service';
-import { RegistroService } from './../../services/registro.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -13,16 +13,19 @@ import { RegistroService } from './../../services/registro.service';
   styleUrls: ['./beneficio-form.component.css']
 })
 export class BeneficioFormComponent {
-  @Output() close: EventEmitter<boolean> = new EventEmitter()
   @ViewChild('txtDescripcionBeneficio') txtDescripcionBeneficio!: ElementRef<HTMLInputElement>
-
+  get beneficios(){
+    return this.beneficioService.beneficios
+    
+  }
   get funcion() {
     return this.modalService.funcionFormularioBeneficio
   }
   constructor(
     private modalService: ModalService,
     private authService: AuthService,
-    private RegistroService: RegistroService
+    private  beneficioService:  BeneficioService,
+    private toastr: ToastrService,
   ) { }
   modal: boolean = true
 
@@ -36,10 +39,12 @@ export class BeneficioFormComponent {
     const data:NuevoBeneficio = {
       BeDescripcion: this.txtDescripcionBeneficio.nativeElement.value,
       IdCarrera: carrera!};
+      this.beneficioService.subirBeneficio(data).subscribe(response=>{
+        console.log(response);
+        this.toastr.success('Contenido registrado exitosamente.')
+        this.modalService.cerrarFormularioBeneficio()
+      })
       console.log(data);
-      this.RegistroService.asignarBeneficio(data)
-      this.RegistroService.registrarBeneficio()
-
   }
   
 }

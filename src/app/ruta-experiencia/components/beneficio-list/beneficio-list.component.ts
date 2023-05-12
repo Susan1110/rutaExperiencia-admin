@@ -1,17 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import {  Beneficio } from '../../Interfaces/ruta-beneficio.interface';
 import { BeneficioService } from '../../services/beneficio.service';
 import { AuthService } from '../../../auth/services/auth.service';
 import { ModalService } from '../../services/modal.service';
-
-
-// interface Benef {
-//   id: string
-//   nombre: string
-//   descripcion: string
-//   cicloInicio: number
-//   cicloFin: number
-// }
+import { ToastrService } from 'ngx-toastr';
+import { Beneficio } from '../../Interfaces/ruta-beneficio.interface';
 
 @Component({
   selector: 'app-beneficio-list',
@@ -22,39 +14,25 @@ export class BeneficioListComponent {
 
   filas: number = this.beneficios.length + 1
   ciclos: number = 10
-
+  
+  get beneficios(){
+    return this.beneficioService.beneficios 
+  }
+ 
+  ngOnInit(): void {
+    this.beneficioService.buscarBeneficio().subscribe()
+  }
   constructor(
     private beneficioService: BeneficioService, 
     private authService: AuthService,
     private modalService: ModalService,
     ) { }
-  // benef: Benef[] = [
-  //   {
-  //     "id": "1",
-  //     "nombre": "prueba1",
-  //     "descripcion": "prueba1",
-  //     "cicloInicio": 1,
-  //     "cicloFin": 10
-  //   },
-  //   {
-  //     "id": "2",
-  //     "nombre": "prueba2",
-  //     "descripcion": "prueba2",
-  //     "cicloInicio": 1,
-  //     "cicloFin": 10
-  //   }
-  // ]
-
- 
 
   get usuario() {
     return this.authService.usuario
   }
 
-  get beneficios(): Beneficio[] {
-    return this.beneficioService.beneficios
-  }
-
+  
   abrirModal(funcion: 'agregar' | 'editar') {
     this.modalService.abrirFormularioBeneficio(funcion)
     //this.contenidoService.buscarContenido(experiencia.IdExperiencia)

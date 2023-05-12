@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ExperienciaService } from './experiencia.service';
-import { BeneficioService } from './beneficio.service';
 import { ContenidoService } from './contenido.service';
 import { NuevaExperiencia, NuevoContenido } from '../Interfaces/ruta-experiencia.interface';
 import{NuevoBeneficio} from '../Interfaces/ruta-beneficio.interface'
@@ -31,7 +30,6 @@ export class RegistroService {
 
   constructor(
     private experienciaService: ExperienciaService,
-    private beneficioService: BeneficioService,
     private contenidoService: ContenidoService,
     private toastr: ToastrService,
     private modalService:ModalService
@@ -69,18 +67,18 @@ export class RegistroService {
   asignarCotnenido(arg: NuevoContenido) {
     this._nuevoContenido = arg
   }
-  asignarBeneficio(arg: NuevoBeneficio) {
-    this._nuevoBeneficio = arg
-  }
-  registrarBeneficio(){
-    this.beneficioService.subirBeneficio(this._nuevoBeneficio).subscribe({
-      next: () => {
-        this.modalService.cerrarFormularioBeneficio()
-      },
-      error: (err) => {
-        console.error(err)
-        this.toastr.error('Ha ocurrido un error al registrar el contenido.')
-      }
-    })
-  }
+  // asignarBeneficio(arg: NuevoBeneficio) {
+  //   this._nuevoBeneficio = arg
+  // }
+  // registrarBeneficio(){
+  //   this.beneficioService.subirBeneficio(this._nuevoBeneficio).subscribe({
+  //     next: () => {
+  //       this.modalService.cerrarFormularioBeneficio()
+  //     },
+  //     error: (err) => {
+  //       console.error(err)
+  //       this.toastr.error('Ha ocurrido un error al registrar el contenido.')
+  //     }
+  //   })
+  // }
 }
