@@ -1,14 +1,11 @@
 <div class="container">
     <div class="add-edit">
         <div class="barraTitulo">
-
-
             <div class="cerrar" (click)="cerrarContenido()">
                 <img src="assets/cerrar.png" alt="">
             </div>
         </div>
         <div class="cuerpo">
-
             <div class="multimedia" *ngIf="contenido.IdTipoMedia===1">
                 <img [src]=contenido.CoUrlMedia alt="">
             </div>
@@ -19,27 +16,17 @@
                     allowfullscreen>
                 </iframe>
             </div>
-            <!-- <div class="multimedia" *ngIf="contenido.IdTipoMedia===3">
-                <a-scene>
-                    <img [src]=contenido.CoUrlMedia alt="">
-                </a-scene>
-            </div> -->
+            <div class="multimedia" *ngIf="contenido.IdTipoMedia===3">
+                <!-- <a-scene>
+                    <a-sky [src]=contenido.CoUrlMedia alt="">
+                    </a-sky>
+                </a-scene> -->
+            </div>
             <div class="texto">
                 <h1>{{contenido.CoTitulo}}</h1>
-
                 <p>
                     {{contenido.CoDescripcion}}
-
                 </p>
-
-
-            </div>
-
-
         </div>
-
-
-
-
-
     </div>
+</div>
