@@ -1,165 +1,164 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 :root {
-    --carrera-color-1: #0202C6;
-    --carrera-color-2: #6802C1;
-    --carrera-color-3: #A304A3;
-    --carrera-color-4: #EA0303;
-    --carrera-color-5: #FF521D;
-    --carrera-color-6: #B17DF4;
-    --carrera-color-7: #ED76F4;
-    --carrera-color-8: #F97373;
-    --carrera-color-9: #FF8773;
-    --carrera-color-10: #63FDCB;
-    --carrera-color-11: #57BDBD;
-    --carrera-color-12: #88D1F4;
-    --carrera-color-13: #E55F9F;
-    --carrera-color-14: #B965A5;
+  --carrera-color-1: #0202c6;
+  --carrera-color-2: #6802c1;
+  --carrera-color-3: #a304a3;
+  --carrera-color-4: #ea0303;
+  --carrera-color-5: #ff521d;
+  --carrera-color-6: #b17df4;
+  --carrera-color-7: #ed76f4;
+  --carrera-color-8: #f97373;
+  --carrera-color-9: #ff8773;
+  --carrera-color-10: #63fdcb;
+  --carrera-color-11: #57bdbd;
+  --carrera-color-12: #88d1f4;
+  --carrera-color-13: #e55f9f;
+  --carrera-color-14: #b965a5;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins';
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  box-sizing: border-box;
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 .body {
-    position: relative;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(2px);
+  position: relative;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(2px);
 }
 
 h1,
 .h1 {
-    font-size: 36px;
+  font-size: 36px;
 }
 
 h2,
 .h2 {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 p,
 .p {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .bold {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .regular {
-    font-weight: 400;
+  font-weight: 400;
 }
 
-
 .col1 {
-    background-color: var(--carrera-color-1);
+  background-color: var(--carrera-color-1);
 }
 
 .col2 {
-    background-color: var(--carrera-color-2);
+  background-color: var(--carrera-color-2);
 }
 
 .col3 {
-    background-color: var(--carrera-color-3);
+  background-color: var(--carrera-color-3);
 }
 
 .col4 {
-    background-color: var(--carrera-color-4);
+  background-color: var(--carrera-color-4);
 }
 
 .col5 {
-    background-color: var(--carrera-color-5);
+  background-color: var(--carrera-color-5);
 }
 
 .col6 {
-    background-color: var(--carrera-color-6);
+  background-color: var(--carrera-color-6);
 }
 
 .col7 {
-    background-color: var(--carrera-color-7);
+  background-color: var(--carrera-color-7);
 }
 
 .col8 {
-    background-color: var(--carrera-color-8);
+  background-color: var(--carrera-color-8);
 }
 
 .col9 {
-    background-color: var(--carrera-color-9);
+  background-color: var(--carrera-color-9);
 }
 
 .col10 {
-    background-color: var(--carrera-color-10);
+  background-color: var(--carrera-color-10);
 }
 
 .entrada {
-    flex: 1;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 textarea {
-    resize: none;
+  resize: none;
 }
 
 input,
 textarea,
 select {
-    padding: 10px;
-    height: 45px;
+  padding: 10px;
+  height: 45px;
 }
 
 .button-1 {
-    text-align: end;
-    padding: 10px 50px;
-    background: linear-gradient(90deg, #0202C6 0%, #A304A3 89.58%);
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
+  text-align: end;
+  padding: 10px 50px;
+  background: linear-gradient(90deg, #0202c6 0%, #a304a3 89.58%);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
 }
 
 .button-2 {
-    text-align: center;
-    background: linear-gradient(90deg, #B3B3EE 0%, #E3B4E3 100%);
-    color: #000000;
+  text-align: center;
+  background: linear-gradient(90deg, #b3b3ee 0%, #e3b4e3 100%);
+  color: #000000;
 }
 
 .disabled {
-    opacity: 0.5;
-    cursor: inherit;
-    pointer-events: none;
+  opacity: 0.5;
+  cursor: inherit;
+  pointer-events: none;
 }
 
 .mensaje-error {
-    position: absolute;
-    top: 0;
-    right: 0;
-    color: red;
-    display: flex;
-    gap: 5px;
-    align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: red;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 .mensaje-error-icon,
 .mensaje-error-icon img {
-    height: 20px;
-    width: 20px;
+  height: 20px;
+  width: 20px;
 }
 
 .form-nav {
-    cursor: pointer;
-    background: linear-gradient(90deg, #0202C6, #A304A3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  background: linear-gradient(90deg, #0202c6, #a304a3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
