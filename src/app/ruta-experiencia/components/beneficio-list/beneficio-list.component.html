@@ -1,19 +1,19 @@
 <div [ngStyle]=gridLayout()>
-
-    <div class="nuevo" [ngStyle]=posicionBeneficio() (click)="abrirModal('agregar')">
-        <img src="assets/agregar.svg" alt="">
-    </div>
+   
+        <div class="nuevo" [ngStyle]=posicionBeneficio() (click)="abrirModal('agregar')">
+            <img src="assets/agregar.svg" alt="">
+        </div>
+   
+    
 
     
     <div *ngFor="let beneficio of beneficios" [ngStyle]=posicionBeneficio() class="editar">
-        <div >
-            {{beneficio.BeDescripcion}}
-        </div>
+        
         <div class="contenidoIcono">
             <div class="icon">
                 <img src="assets/ver.svg" alt="ver">
             </div>
-            <div class="icon">
+            <div class="icon" (click)="abrirModalEditar('editar',beneficio)">
                 <img src="assets/editar.svg" alt="editar">
             </div>
             <div class="icon">

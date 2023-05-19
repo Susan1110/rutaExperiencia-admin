@@ -11,11 +11,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BeneficioService {
   private _beneficios: Beneficio[]
+  private _beneficio!: Beneficio
 
-  get beneficios(): Beneficio[] {
+
+  get beneficios() {
     return [...this._beneficios]
   }
-  
+  get beneficio() {
+    return this._beneficio
+  }
   constructor(
     private http: HttpClient,
     private authService: AuthService,
@@ -30,7 +34,7 @@ export class BeneficioService {
   // obtener beneficio con get
   buscarBeneficio() {
     const IdBeneficio=this.authService.usuario.idCarrera
-    const URL = `http://localhost:4040/beneficio/${IdBeneficio}`
+    const URL = `http://localhost:4040/beneficio/carrera/${IdBeneficio}`
     return this.http.get<Beneficio[]>(URL)
     .pipe(
       tap(rest=>{
@@ -38,6 +42,10 @@ export class BeneficioService {
       }),
       catchError(err => of(false))
     )    
+  }
+  obtenerBeneficio(beneficio: Beneficio) {
+    this._beneficio = beneficio
+    console.log(this._beneficio)
   }
  
  

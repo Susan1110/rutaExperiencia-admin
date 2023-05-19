@@ -15,10 +15,11 @@ export class BeneficioListComponent {
   filas: number = this.beneficios.length + 1
   ciclos: number = 10
   
-  get beneficios(){
-    return this.beneficioService.beneficios 
+  get beneficios(): Beneficio[]{
+    console.log(this.beneficioService.beneficios)
+    return this.beneficioService.beneficios
   }
- 
+  
   ngOnInit(): void {
     this.beneficioService.buscarBeneficio().subscribe()
   }
@@ -31,12 +32,15 @@ export class BeneficioListComponent {
   get usuario() {
     return this.authService.usuario
   }
-
+  
+  abrirModalEditar(funcion:'editar',beneficio: Beneficio){
+    this.modalService.abrirFormularioBeneficio(funcion)
+    this.beneficioService.obtenerBeneficio(beneficio)
+    console.log(beneficio)
+  }
   
   abrirModal(funcion: 'agregar' | 'editar') {
     this.modalService.abrirFormularioBeneficio(funcion)
-    //this.contenidoService.buscarContenido(experiencia.IdExperiencia)
-    //   .subscribe()
     console.log('se abrio')
   }
   gridLayout() {

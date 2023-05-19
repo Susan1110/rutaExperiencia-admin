@@ -14,9 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BeneficioFormComponent {
   @ViewChild('txtDescripcionBeneficio') txtDescripcionBeneficio!: ElementRef<HTMLInputElement>
-  get beneficios(){
-    return this.beneficioService.beneficios
-    
+  get beneficio(){
+    return this.beneficioService.beneficio
   }
   get funcion() {
     return this.modalService.funcionFormularioBeneficio
