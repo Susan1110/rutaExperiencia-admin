@@ -43,7 +43,7 @@ export class ExperienciaService {
     const URL = 'http://localhost:4040/experiencia'
     return this.http.post<RetornoExperiencia>(URL, nuevaExperiencia)
       .pipe(
-        map(res => { return res.id }),
+        map(res => { return res.ex_id }),
         catchError(err => of(err))
       )
   }

@@ -20,7 +20,7 @@ export interface NuevaExperiencia {
 export interface RetornoExperiencia {
     ok: boolean,
     msg: string,
-    id?: number
+    ex_id?: number
 }
 
 export interface Contenido {
