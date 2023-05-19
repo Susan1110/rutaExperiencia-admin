@@ -1,132 +1,155 @@
-<div [formGroup]="contenidoForm" class="cuerpo espacio" id="scroll">
-    <h2>Contenido</h2>
-    <div class="slides">
-        <div class="slide">
-            <div class="slide-cabecera">
-                <div class="slide-cabecera-titulo">
-                    Titulo
-                </div>
-                <div class="slide-cabecera-acciones">
-                    <div (click)="verContenido()">
-                        Editar
-                    </div>
-                    <div>
-                        Eliminar
-                    </div>
-                </div>
-            </div>
-            <div class="slide-cuerpo" *ngIf="abrirContenido">
-                <div class="slide-cuerpo-opciones">
-                    <div class="slide-cuerpo-opciones-opcion" [ngClass]="{active: opcionContenido==='multimedia'}"
-                        (click)="cambiarOpcion('multimedia')">
-                        Multimedia
-                    </div>
-                    <div class="slide-cuerpo-opciones-opcion" [ngClass]="{active: opcionContenido==='descripcion'}"
-                        (click)="cambiarOpcion('descripcion')">
-                        Descripción
-                    </div>
-                </div>
-                <!-- MULTIMEDIA -->
-                <div class="slide-cuerpo-multimedia" *ngIf="opcionContenido==='multimedia'">
-                    <div class="entrada">
-                        <div>
-                            Tipo:
-                        </div>
-                        <div class="tipo">
-                            <div>
-                                <input type="radio" formControlName="tipo" value="video">
-                                <label for="video">Video</label>
-                            </div>
-
-                            <div>
-                                <input type="radio" formControlName="tipo" value="imagen">
-                                <label for="imagen">Imagen</label>
-                            </div>
-
-                            <div>
-                                <input type="radio" formControlName="tipo" value="imagen360">
-                                <label for="imagen360">Imagen 360</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="entrada">
-                        <div>
-                            Link:
-                        </div>
-                        <input type="text" formControlName="link" (blur)="actualizarVideoUrl()">
-                        <div class="mensaje-error"
-                            *ngIf="contenidoForm.get('link')?.hasError('required') && contenidoForm.get('link')?.touched">
-                            <div class="mensaje-error-icon">
-                                <img src="assets/advertencia.png" alt="advertencia">
-                            </div>
-                            <div>
-                                El link es requerido.
-                            </div>
-                        </div>
-                        <iframe class="video" [src]=videoUrl title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe>
-
-                    </div>
-                </div>
-                <!-- DESCRIPCION -->
-                <div class="slide-cuerpo-descripcion" *ngIf="opcionContenido==='descripcion'">
-                    <div class="entrada">
-                        <div>
-                            Titulo:
-                        </div>
-                        <input type="text" formControlName="titulo">
-                        <div class="mensaje-error"
-                            *ngIf="contenidoForm.get('titulo')?.hasError('required') && contenidoForm.get('titulo')?.touched">
-                            <div class="mensaje-error-icon">
-                                <img src="assets/advertencia.png" alt="advertencia">
-                            </div>
-                            <div>
-                                El titulo es requerido.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="entrada">
-                        <div>
-                            Contenido:
-                        </div>
-                        <textarea cols="30" rows="10" formControlName="contenido"></textarea>
-                        <div class="mensaje-error"
-                            *ngIf="contenidoForm.get('contenido')?.hasError('required') && contenidoForm.get('contenido')?.touched">
-                            <div class="mensaje-error-icon">
-                                <img src="assets/advertencia.png" alt="advertencia">
-                            </div>
-                            <div>
-                                El contenido es requerido.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="cuerpo espacio" id="scroll">
+  <h2>Contenido</h2>
+  <div class="slides">
+    <div
+      class="slide"
+      *ngFor="let contenidoForm of contenidoForms; let i = index"
+      [formGroup]="contenidoForm"
+    >
+      <div class="slide-cabecera">
+        <div class="slide-cabecera-titulo">Titulo</div>
+        <div class="slide-cabecera-acciones">
+          <div (click)="verContenido(i)">Editar</div>
+          <div>Eliminar</div>
         </div>
-        <!-- OPCION PARA SLIDER -->
-        <div class="button-1 button-2 bold">
-            Agregar Contenido
+      </div>
+      <div class="slide-cuerpo" *ngIf="abrirContenido[i]">
+        <div class="slide-cuerpo-opciones">
+          <div
+            class="slide-cuerpo-opciones-opcion"
+            [ngClass]="{ active: opcionContenido === 'multimedia' }"
+            (click)="cambiarOpcion('multimedia')"
+          >
+            Multimedia
+          </div>
+          <div
+            class="slide-cuerpo-opciones-opcion"
+            [ngClass]="{ active: opcionContenido === 'descripcion' }"
+            (click)="cambiarOpcion('descripcion')"
+          >
+            Descripción
+          </div>
         </div>
+        <!-- MULTIMEDIA -->
+        <div
+          class="slide-cuerpo-multimedia"
+          *ngIf="opcionContenido === 'multimedia'"
+        >
+          <div class="entrada">
+            <div>Tipo:</div>
+            <div class="tipo">
+              <div>
+                <input type="radio" formControlName="tipo" value="video" />
+                <label for="video">Video</label>
+              </div>
+
+              <div>
+                <input type="radio" formControlName="tipo" value="imagen" />
+                <label for="imagen">Imagen</label>
+              </div>
+
+              <div>
+                <input type="radio" formControlName="tipo" value="imagen360" />
+                <label for="imagen360">Imagen 360</label>
+              </div>
+            </div>
+          </div>
+          <div class="entrada">
+            <div>Link:</div>
+            <input
+              type="text"
+              formControlName="link"
+              (blur)="actualizarVideoUrl()"
+            />
+            <div
+              class="mensaje-error"
+              *ngIf="
+                contenidoForm.get('link')?.hasError('required') &&
+                contenidoForm.get('link')?.touched
+              "
+            >
+              <div class="mensaje-error-icon">
+                <img src="assets/advertencia.png" alt="advertencia" />
+              </div>
+              <div>El link es requerido.</div>
+            </div>
+            <iframe
+              class="video"
+              [src]="videoUrl"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <!-- DESCRIPCION -->
+        <div
+          class="slide-cuerpo-descripcion"
+          *ngIf="opcionContenido === 'descripcion'"
+        >
+          <div class="entrada">
+            <div>Titulo:</div>
+            <input type="text" formControlName="titulo" />
+            <div
+              class="mensaje-error"
+              *ngIf="
+                contenidoForm.get('titulo')?.hasError('required') &&
+                contenidoForm.get('titulo')?.touched
+              "
+            >
+              <div class="mensaje-error-icon">
+                <img src="assets/advertencia.png" alt="advertencia" />
+              </div>
+              <div>El titulo es requerido.</div>
+            </div>
+          </div>
+          <div class="entrada">
+            <div>Contenido:</div>
+            <textarea
+              cols="30"
+              rows="10"
+              formControlName="contenido"
+            ></textarea>
+            <div
+              class="mensaje-error"
+              *ngIf="
+                contenidoForm.get('contenido')?.hasError('required') &&
+                contenidoForm.get('contenido')?.touched
+              "
+            >
+              <div class="mensaje-error-icon">
+                <img src="assets/advertencia.png" alt="advertencia" />
+              </div>
+              <div>El contenido es requerido.</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- OPCION PARA SLIDER -->
+    <div class="button-1 button-2 bold" (click)="agregarSlide()">Agregar Contenido</div>
+  </div>
 </div>
 <div class="footer espacio" *ngIf="funcion === 'agregar'">
-    <div class="form-nav bold" (click)="anteriorPaso()">
-        Atras
-    </div>
-    <div class="button-1 bold" [class.disabled]="contenidoForm.invalid" (click)="subirContenido()">
-        Agregar
-    </div>
+  <div class="form-nav bold" (click)="anteriorPaso()">Atras</div>
+  <div
+    class="button-1 bold"
+    [class.disabled]="!isFormArrayValid()"
+    (click)="subirContenido()"
+  >
+    Agregar
+  </div>
 </div>
 
 <div class="footer espacio" *ngIf="funcion === 'editar'">
-    <div class="form-nav bold" (click)="anteriorPaso()">
-        Atras
-    </div>
-    <div class="button-1 bold" [class.disabled]="contenidoForm.invalid" (click)="editarContenido()">
-        Editar
-    </div>
-    <div class="form-nav bold disabled">
-        Siguiente
-    </div>
+  <div class="form-nav bold" (click)="anteriorPaso()">Atras</div>
+  <div
+    class="button-1 bold"
+    [class.disabled]="!isFormArrayValid()"
+    (click)="editarContenido()"
+  >
+    Editar
+  </div>
+  <div class="form-nav bold disabled">Siguiente</div>
 </div>

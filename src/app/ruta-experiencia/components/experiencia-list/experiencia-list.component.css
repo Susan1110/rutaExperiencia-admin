@@ -1,26 +1,39 @@
 .agregar,
 .editar {
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    border-radius: 4px;
-    gap: 10px;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 4px;
+  gap: 10px;
 }
 
 .icon {
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 100px;
-    vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 100px;
+  vertical-align: middle;
 }
 
 .icon img {
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
+}
+
+.agregar .icon {
+  background: linear-gradient(90deg, #0202c6ab 0%, #a304a3ab 89.58%);
+  /* background: #a304a3; */
+  /* background: #0202c6; */
+  /* background: linear-gradient(90deg, #b3b3ee 0%, #e3b4e3 100%); */
+  /* background: #e3b4e3 ; */
+  /* background: #b3b3ee 0%; */
+}
+
+.agregar .icon:hover {
+  background: linear-gradient(90deg, #0202c6 0%, #a304a3 89.58%);
 }
 
 .icon:hover {
-    background-color: #00000040;
+  background: #00000040;
 }

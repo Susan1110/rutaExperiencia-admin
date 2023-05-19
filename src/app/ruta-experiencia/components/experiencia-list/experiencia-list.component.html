@@ -1,28 +1,42 @@
-<div [ngStyle]=gridLayout()>
-
-    <ng-container *ngFor="let filas of nuevasExperiencias">
-        <div *ngFor="let experiencia of filas" class="agregar"
-            [ngStyle]=posicionExperiencia(experiencia.ExCicloInicio,experiencia.ExCicloFin,experiencia.ExFila)>
-            <div class="icon" (click)="abrirModal('agregar',experiencia)">
-                <img src="assets/agregar.svg" alt="agregarExperiencia">
-            </div>
-        </div>
-    </ng-container>
-
-    <div *ngFor="let experiencia of experiencias"
-        [ngStyle]=posicionExperiencia(experiencia.ExCicloInicio,experiencia.ExCicloFin,experiencia.ExFila)
-        class="editar">
-        <div class="icon" (click)="verContenido(experiencia.IdExperiencia)">
-            <img src="assets/ver.svg" alt="ver">
-        </div>
-        <div class="icon" (click)="abrirModal('editar',experiencia)">
-            <img src="assets/editar.svg" alt="editar">
-        </div>
-        <div class="icon">
-            <img src="assets/eliminar.svg" alt="eliminar">
-        </div>
+<div [ngStyle]="gridLayout()">
+  <ng-container *ngFor="let filas of nuevasExperiencias">
+    <div
+      *ngFor="let experiencia of filas"
+      [ngStyle]="
+        posicionExperiencia(
+          experiencia.ExCicloInicio,
+          experiencia.ExCicloFin,
+          experiencia.ExFila,
+          true
+        )
+      "
+      class="agregar"
+    >
+      <div class="icon" (click)="abrirModal('agregar', experiencia)">
+        <img src="assets/agregar.svg" alt="agregarExperiencia" />
+      </div>
     </div>
+  </ng-container>
 
-    
-
+  <div
+    *ngFor="let experiencia of experiencias"
+    [ngStyle]="
+      posicionExperiencia(
+        experiencia.ExCicloInicio,
+        experiencia.ExCicloFin,
+        experiencia.ExFila
+      )
+    "
+    class="editar"
+  >
+    <div class="icon" (click)="verContenido(experiencia.IdExperiencia)">
+      <img src="assets/ver.svg" alt="ver" />
+    </div>
+    <div class="icon" (click)="abrirModal('editar', experiencia)">
+      <img src="assets/editar.svg" alt="editar" />
+    </div>
+    <div class="icon">
+      <img src="assets/eliminar.svg" alt="eliminar" />
+    </div>
+  </div>
 </div>
