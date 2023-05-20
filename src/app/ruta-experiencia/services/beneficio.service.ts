@@ -31,10 +31,10 @@ export class BeneficioService {
     return this.http.post(URL, nuevoBeneficio)
   }
   
-  // obtener beneficio con get
+  // me obtiene todos los beneficios del IdCarrera
   buscarBeneficio() {
-    const IdBeneficio=this.authService.usuario.idCarrera
-    const URL = `http://localhost:4040/beneficio/carrera/${IdBeneficio}`
+    const IdCarrera=this.authService.usuario.idCarrera
+    const URL = `http://localhost:4040/beneficio/carrera/${IdCarrera}`
     return this.http.get<Beneficio[]>(URL)
     .pipe(
       tap(rest=>{
