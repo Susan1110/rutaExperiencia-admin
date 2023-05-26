@@ -47,6 +47,10 @@ export class BeneficioService {
     this._beneficio = beneficio
     console.log(this._beneficio)
   }
+  editarBeneficio(idBeneficio:number, beneficio: NuevoBeneficio){
+    const URL = `http://localhost:4040/beneficio/${idBeneficio}`
+    return this.http.put(URL,beneficio)
+  }
  
  
 }
