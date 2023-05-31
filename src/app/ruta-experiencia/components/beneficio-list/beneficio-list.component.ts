@@ -35,8 +35,8 @@ export class BeneficioListComponent {
     this.beneficioService
       .eliminarBeneficio(beneficio.IdBeneficio)
       .subscribe((response) => {
-        console.log(response);
         this.toastr.success('Beneficio eliminado exitosamente.');
+        this.beneficioService.buscarBeneficio().subscribe();
       });
   }
 

@@ -85,6 +85,7 @@ export class BeneficioFormComponent {
         next: () => {
           this.toastr.success('Experiencia Editada'),
           this.modalService.cerrarFormularioBeneficio();
+          this.beneficioService.buscarBeneficio();
         },
         error: () => this.toastr.error('No se pudo editar el beneficio'),
       });
