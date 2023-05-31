@@ -6,7 +6,15 @@
     border-radius: 4px;
     cursor: default;
 }
-
+.editar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 5px;
+    border-radius: 4px;
+    gap: 10px;
+}
 .nuevo {
     border-radius: 4px;
     padding: 2px;
@@ -17,8 +25,8 @@
 .nuevo img {
     cursor: pointer;
     padding: 4px;
-    width: 18px;
-    height: 18px;
+    width: 30px;
+    height: 30px;
     border-radius: 100px;
     vertical-align: middle;
 
@@ -26,4 +34,32 @@
 
 .nuevo img:hover {
     background-color: #00000040;
+}
+
+
+.icon {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    vertical-align: middle;
+}
+.contenidoIcono{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction:row;
+}
+.icon:hover {
+    background-color: #00000040;
+}
+#list{
+    display: flex;
+    color: beige;
+    width: 1100px;
+    font-size: 15px;
+    flex-direction: row;
+    justify-content: flex-start;
 }

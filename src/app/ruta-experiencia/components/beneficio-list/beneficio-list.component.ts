@@ -1,39 +1,53 @@
-import { Component } from '@angular/core';
-
-interface Beneficio {
-  id: string;
-  nombre: string;
-  descripcion: string;
-  cicloInicio: number;
-  cicloFin: number;
-}
-
+import { Component, OnInit } from '@angular/core';
+import { BeneficioService } from '../../services/beneficio.service';
+import { AuthService } from '../../../auth/services/auth.service';
+import { ModalService } from '../../services/modal.service';
+import { ToastrService } from 'ngx-toastr';
+import { Beneficio } from '../../Interfaces/ruta-beneficio.interface';
 @Component({
   selector: 'app-beneficio-list',
   templateUrl: './beneficio-list.component.html',
   styleUrls: ['./beneficio-list.component.css'],
 })
-export class BeneficioListComponent {
-  beneficios: Beneficio[] = [
-    {
-      id: '1',
-      nombre: 'prueba1',
-      descripcion: 'prueba1',
-      cicloInicio: 1,
-      cicloFin: 10,
-    },
-    {
-      id: '2',
-      nombre: 'prueba2',
-      descripcion: 'prueba2',
-      cicloInicio: 1,
-      cicloFin: 10,
-    },
-  ];
-
+export class BeneficioListComponent implements OnInit {
   filas: number = this.beneficios.length + 1;
   ciclos = 10;
 
+  get beneficios(): Beneficio[] {
+    console.log(this.beneficioService.beneficios);
+    return this.beneficioService.beneficios;
+  }
+
+  ngOnInit(): void {
+    this.beneficioService.buscarBeneficio().subscribe();
+  }
+  constructor(
+    private beneficioService: BeneficioService,
+    private authService: AuthService,
+    private modalService: ModalService,
+    private toastr: ToastrService
+  ) {}
+
+  get usuario() {
+    return this.authService.usuario;
+  }
+  eliminar(beneficio: Beneficio) {
+    this.beneficioService
+      .eliminarBeneficio(beneficio.IdBeneficio)
+      .subscribe(response => {
+        this.toastr.success('Beneficio eliminado exitosamente.');
+        this.beneficioService.buscarBeneficio().subscribe();
+      });
+  }
+
+  abrirModalEditar(funcion: 'editar', beneficio: Beneficio) {
+    this.modalService.abrirFormularioBeneficio(funcion);
+    this.beneficioService.obtenerBeneficio(beneficio);
+  }
+
+  abrirModal(funcion: 'agregar' | 'editar') {
+    this.modalService.abrirFormularioBeneficio(funcion);
+  }
   gridLayout() {
     return {
       display: 'grid',

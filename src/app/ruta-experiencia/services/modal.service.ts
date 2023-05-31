@@ -9,6 +9,10 @@ export class ModalService {
 
   private _estadoTarjetaExperiencia = false;
 
+  private _estadoFormularioBeneficio = false;
+  private _funcionFormularioBeneficio: 'agregar' | 'editar' = 'agregar';
+  private _estadoTarjetaBeneficio = false;
+  //Experiencia
   get estadoFormularioExperiencia() {
     return this._estadoFormularioExperiencia;
   }
@@ -19,6 +23,18 @@ export class ModalService {
 
   get estadoTarjetaExperiencia() {
     return this._estadoTarjetaExperiencia;
+  }
+  //Beneficios
+  get estadoFormularioBeneficio() {
+    return this._estadoFormularioBeneficio;
+  }
+
+  get funcionFormularioBeneficio() {
+    return this._funcionFormularioBeneficio;
+  }
+
+  get estadoTarjetaBeneficio() {
+    return this._estadoTarjetaBeneficio;
   }
 
   abrirFormularioExperiencia(funcion: 'agregar' | 'editar') {
@@ -40,5 +56,17 @@ export class ModalService {
 
   cerrarTarjetaExperiencia() {
     this._estadoTarjetaExperiencia = false;
+  }
+  //Beneficio
+  abrirFormularioBeneficio(funcion: 'agregar' | 'editar') {
+    this._estadoFormularioBeneficio = true;
+    this._funcionFormularioBeneficio = funcion;
+  }
+
+  cerrarFormularioBeneficio() {
+    this._estadoFormularioBeneficio = false;
+  }
+  mostrarTarjetaBeneficio() {
+    this._estadoTarjetaBeneficio = !this._estadoTarjetaBeneficio;
   }
 }
