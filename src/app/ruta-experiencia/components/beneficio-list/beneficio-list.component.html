@@ -1,10 +1,11 @@
-<div [ngStyle]=gridLayout()>
-    <div *ngFor="let beneficio of beneficios" [ngStyle]=posicionBeneficio(beneficio.cicloInicio,beneficio.cicloFin)
-        class="beneficio">
-        {{beneficio.descripcion}}
-    </div>
-    <div class="nuevo" [ngStyle]=posicionBeneficio()>
-        <img src="assets/agregar.svg" alt="">
-    </div>
-
+<div [ngStyle]="gridLayout()">
+  <div
+    *ngFor="let beneficio of beneficios"
+    [ngStyle]="posicionBeneficio(beneficio.cicloInicio, beneficio.cicloFin)"
+    class="beneficio">
+    {{ beneficio.descripcion }}
+  </div>
+  <div class="nuevo" [ngStyle]="posicionBeneficio()">
+    <img src="assets/agregar.svg" alt="" />
+  </div>
 </div>

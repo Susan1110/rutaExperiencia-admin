@@ -1,32 +1,35 @@
 <div class="container">
-    <div class="add-edit">
-        <div class="barraTitulo">
-            <div class="cerrar" (click)="cerrarContenido()">
-                <img src="assets/cerrar.png" alt="">
-            </div>
-        </div>
-        <div class="cuerpo">
-            <div class="multimedia" *ngIf="contenido.IdTipoMedia===1">
-                <img [src]=contenido.CoUrlMedia alt="">
-            </div>
-            <div class="multimedia" *ngIf="contenido.IdTipoMedia===2">
-                <iframe [src]=URL
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <div class="multimedia" *ngIf="contenido.IdTipoMedia===3">
-                <!-- <a-scene>
+  <div class="add-edit">
+    <div class="barraTitulo">
+      <div class="cerrar" (click)="cerrarContenido()">
+        <img src="assets/cerrar.png" alt="" />
+      </div>
+    </div>
+    <div class="cuerpo">
+      <div class="multimedia" *ngIf="contenido.IdTipoMedia === 1">
+        <img [src]="contenido.CoUrlMedia" alt="" />
+      </div>
+      <div class="multimedia" *ngIf="contenido.IdTipoMedia === 2">
+        <iframe
+          [src]="URL"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="multimedia" *ngIf="contenido.IdTipoMedia === 3">
+        <!-- <a-scene>
                     <a-sky [src]=contenido.CoUrlMedia alt="">
                     </a-sky>
                 </a-scene> -->
-            </div>
-            <div class="texto">
-                <h1>{{contenido.CoTitulo}}</h1>
-                <p>
-                    {{contenido.CoDescripcion}}
-                </p>
-        </div>
+      </div>
+      <div class="texto">
+        <h1>{{ contenido.CoTitulo }}</h1>
+        <p>
+          {{ contenido.CoDescripcion }}
+        </p>
+      </div>
     </div>
+  </div>
 </div>

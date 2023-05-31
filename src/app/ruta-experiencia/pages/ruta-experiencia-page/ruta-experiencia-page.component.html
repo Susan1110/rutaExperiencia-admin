@@ -1,23 +1,21 @@
 <div class="ruta">
-    <div class="carrera">
-        <h1>
-            {{usuario.carrera}}
-        </h1>
-    </div>
+  <div class="carrera">
+    <h1>
+      {{ usuario.carrera }}
+    </h1>
+  </div>
 
-    <app-ciclo-icons></app-ciclo-icons>
+  <app-ciclo-icons></app-ciclo-icons>
 
-    <app-experiencia-list></app-experiencia-list>
+  <app-experiencia-list></app-experiencia-list>
 
-    <app-beneficio-list></app-beneficio-list>
+  <app-beneficio-list></app-beneficio-list>
 
-    <ng-container *ngIf="formularioExperiencia">
-        <app-experiencia-form></app-experiencia-form>
-    </ng-container>
+  <ng-container *ngIf="formularioExperiencia">
+    <app-experiencia-form></app-experiencia-form>
+  </ng-container>
 
-    <ng-container *ngIf="tarjetaExperiencia">
-        <app-experiencia-card></app-experiencia-card>
-    </ng-container>
-
+  <ng-container *ngIf="tarjetaExperiencia">
+    <app-experiencia-card></app-experiencia-card>
+  </ng-container>
 </div>
-

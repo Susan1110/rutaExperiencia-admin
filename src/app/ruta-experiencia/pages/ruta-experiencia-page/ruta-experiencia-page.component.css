@@ -1,42 +1,42 @@
 .ruta {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
-.carrera{
-    display: flex;
-    justify-content: flex-end;
+.carrera {
+  display: flex;
+  justify-content: flex-end;
 }
 .carrera h1 {
-    background: linear-gradient(90deg, #0202C6, #A304A3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-align: end;
+  background: linear-gradient(90deg, #0202c6, #a304a3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: end;
 }
 
-.agregar{
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    border-radius: 4px;
-    gap: 10px;
+.agregar {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 4px;
+  gap: 10px;
 }
 
 .icon {
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 100px;
-    vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 100px;
+  vertical-align: middle;
 }
 
 .icon img {
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
 }
 
 .icon:hover {
-    background-color: #00000040;
+  background-color: #00000040;
 }

@@ -18,7 +18,7 @@ img {
 
 .add-edit {
   position: relative;
-  background: #FBF3FB;
+  background: #fbf3fb;
   width: 600px;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@ img {
   align-items: center;
   padding: 20px;
   background: linear-gradient(90deg, #010163 0%, #520252 100%);
-  color: white
+  color: white;
 }
 
 .cerrar {

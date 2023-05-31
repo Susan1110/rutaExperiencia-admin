@@ -34,7 +34,7 @@ export class ExperienciaService {
       tap(resp => {
         this._experiencias = resp;
       }),
-      catchError(_ => of(false))
+      catchError(() => of(false))
     );
   }
 

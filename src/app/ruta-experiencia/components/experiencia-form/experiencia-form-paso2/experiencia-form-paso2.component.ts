@@ -9,7 +9,7 @@ import {
 import { ExperienciaService } from 'src/app/ruta-experiencia/services/experiencia.service';
 import { ToastrService } from 'ngx-toastr';
 import { ModalService } from '../../../services/modal.service';
-import { concat, forkJoin } from 'rxjs';
+import { concat } from 'rxjs';
 
 @Component({
   selector: 'app-experiencia-form-paso2',
