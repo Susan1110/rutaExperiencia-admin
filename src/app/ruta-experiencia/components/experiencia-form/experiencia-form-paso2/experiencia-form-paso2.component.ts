@@ -217,88 +217,88 @@ export class ExperienciaFormPaso2Component implements OnInit {
     }
   }
 
-  subirContenido() {
-    if (this.isFormArrayValid()) {
-      const editarContenidoObservables = this.contenidoForms.map(form => {
-        const tipo = form.value.tipo;
-        let urlMedia = '';
+  // subirContenido() {
+  //   if (this.isFormArrayValid()) {
+  //     const editarContenidoObservables = this.contenidoForms.map(form => {
+  //       const tipo = form.value.tipo;
+  //       let urlMedia = '';
 
-        switch (tipo) {
-          case 1: // Tipo imagen
-            urlMedia = form.value.linkImagen;
-            break;
-          case 2: // Tipo video
-            urlMedia = form.value.linkVideo;
-            break;
-          case 3: // Tipo imagen 360
-            urlMedia = form.value.linkImagen360;
-            break;
-        }
-        const contenido: NuevoContenido = {
-          CoTitulo: form.value.titulo,
-          CoDescripcion: form.value.contenido,
-          CoUrlMedia: urlMedia,
-          IdTipoMedia: form.value.tipo,
-          IdExperiencia: this.idExperiencia,
-        };
-        return this.contenidoService.subirContenido(contenido);
-      });
-      forkJoin(editarContenidoObservables).subscribe({
-        next: () => {
-          this.toastr.success('Contenidos creados');
-          this.modalService.cerrarFormularioExperiencia();
-          this.experienciaService.buscarExperiencias().subscribe();
-        },
-        error: () => this.toastr.error('No se pudieron guardar los contenidos'),
-      });
-    }
-  }
+  //       switch (tipo) {
+  //         case 1: // Tipo imagen
+  //           urlMedia = form.value.linkImagen;
+  //           break;
+  //         case 2: // Tipo video
+  //           urlMedia = form.value.linkVideo;
+  //           break;
+  //         case 3: // Tipo imagen 360
+  //           urlMedia = form.value.linkImagen360;
+  //           break;
+  //       }
+  //       const contenido: NuevoContenido = {
+  //         CoTitulo: form.value.titulo,
+  //         CoDescripcion: form.value.contenido,
+  //         CoUrlMedia: urlMedia,
+  //         IdTipoMedia: form.value.tipo,
+  //         IdExperiencia: this.idExperiencia,
+  //       };
+  //       return this.contenidoService.subirContenido(contenido);
+  //     });
+  //     forkJoin(editarContenidoObservables).subscribe({
+  //       next: () => {
+  //         this.toastr.success('Contenidos creados');
+  //         this.modalService.cerrarFormularioExperiencia();
+  //         this.experienciaService.buscarExperiencias().subscribe();
+  //       },
+  //       error: () => this.toastr.error('No se pudieron guardar los contenidos'),
+  //     });
+  //   }
+  // }
 
-  editarContenido() {
-    if (this.isFormArrayValid()) {
-      const editarContenidoObservables = this.contenidoForms.map(form => {
-        const tipo = form.value.tipo;
-        let urlMedia = '';
-        switch (tipo) {
-          case 1: // Tipo imagen
-            urlMedia = form.value.linkImagen;
-            break;
-          case 2: // Tipo video
-            urlMedia = form.value.linkVideo;
-            break;
-          case 3: // Tipo imagen 360
-            urlMedia = form.value.linkImagen360;
-            break;
-        }
-        const contenido: NuevoContenido = {
-          CoTitulo: form.value.titulo,
-          CoDescripcion: form.value.contenido,
-          CoUrlMedia: urlMedia,
-          IdTipoMedia: form.value.tipo,
-          IdExperiencia: this.idExperiencia,
-        };
+  // editarContenido() {
+  //   if (this.isFormArrayValid()) {
+  //     const editarContenidoObservables = this.contenidoForms.map(form => {
+  //       const tipo = form.value.tipo;
+  //       let urlMedia = '';
+  //       switch (tipo) {
+  //         case 1: // Tipo imagen
+  //           urlMedia = form.value.linkImagen;
+  //           break;
+  //         case 2: // Tipo video
+  //           urlMedia = form.value.linkVideo;
+  //           break;
+  //         case 3: // Tipo imagen 360
+  //           urlMedia = form.value.linkImagen360;
+  //           break;
+  //       }
+  //       const contenido: NuevoContenido = {
+  //         CoTitulo: form.value.titulo,
+  //         CoDescripcion: form.value.contenido,
+  //         CoUrlMedia: urlMedia,
+  //         IdTipoMedia: form.value.tipo,
+  //         IdExperiencia: this.idExperiencia,
+  //       };
 
-        if (form.value.idContenido === 0) {
-          // Agregar nuevo contenido
-          return this.contenidoService.subirContenido(contenido);
-        } else {
-          // Editar contenido existente
-          return this.contenidoService.editarContenido(
-            form.value.idContenido,
-            contenido
-          );
-        }
-      });
-      forkJoin(editarContenidoObservables).subscribe({
-        next: () => {
-          this.toastr.success('Contenidos guardados');
-          this.modalService.cerrarFormularioExperiencia();
-          this.experienciaService.buscarExperiencias().subscribe();
-        },
-        error: () => this.toastr.error('No se pudieron guardar los contenidos'),
-      });
-    }
-  }
+  //       if (form.value.idContenido === 0) {
+  //         // Agregar nuevo contenido
+  //         return this.contenidoService.subirContenido(contenido);
+  //       } else {
+  //         // Editar contenido existente
+  //         return this.contenidoService.editarContenido(
+  //           form.value.idContenido,
+  //           contenido
+  //         );
+  //       }
+  //     });
+  //     forkJoin(editarContenidoObservables).subscribe({
+  //       next: () => {
+  //         this.toastr.success('Contenidos guardados');
+  //         this.modalService.cerrarFormularioExperiencia();
+  //         this.experienciaService.buscarExperiencias().subscribe();
+  //       },
+  //       error: () => this.toastr.error('No se pudieron guardar los contenidos'),
+  //     });
+  //   }
+  // }
 
   // imagenSubida = '';
   // imagenEnlace: string[] = [];
