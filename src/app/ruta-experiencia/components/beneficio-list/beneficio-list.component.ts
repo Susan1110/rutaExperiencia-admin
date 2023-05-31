@@ -34,7 +34,7 @@ export class BeneficioListComponent implements OnInit {
   eliminar(beneficio: Beneficio) {
     this.beneficioService
       .eliminarBeneficio(beneficio.IdBeneficio)
-      .subscribe(response => {
+      .subscribe(() => {
         this.toastr.success('Beneficio eliminado exitosamente.');
         this.beneficioService.buscarBeneficio().subscribe();
       });
