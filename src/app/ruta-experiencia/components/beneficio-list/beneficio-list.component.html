@@ -8,20 +8,23 @@
 
     
     <div *ngFor="let beneficio of beneficios" [ngStyle]=posicionBeneficio() class="editar">
-        <div>
-            {{beneficio.BeDescripcion}}
+        <div class="beneficiolist">
+           <p class="benef"> {{beneficio.BeDescripcion}}</p>
         </div>
-        <div class="contenidoIcono">
-            <div class="icon">
-                <img src="assets/ver.svg" alt="ver">
-            </div>
-            <div class="icon" (click)="abrirModalEditar('editar',beneficio)">
-                <img src="assets/editar.svg" alt="editar">
-            </div>
-            <div class="icon">
-                <img src="assets/eliminar.svg" alt="eliminar">
+        <div class="beneficiolist">
+            <div class="contenidoIcono">
+                <div class="icon">
+                    <img src="assets/ver.svg" alt="ver">
+                </div>
+                <div class="icon" (click)="abrirModalEditar('editar',beneficio)">
+                    <img src="assets/editar.svg" alt="editar">
+                </div>
+                <div class="icon">
+                    <img src="assets/eliminar.svg" alt="eliminar" (click)="eliminar(beneficio)" >
+                </div>
             </div>
         </div>
+        
     </div>
 
 

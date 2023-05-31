@@ -32,16 +32,17 @@ export class BeneficioListComponent {
   get usuario() {
     return this.authService.usuario
   }
+ eliminar(beneficio: Beneficio){
+  this.beneficioService.eliminarBeneficio(beneficio.IdBeneficio).subscribe()
+ }
   
   abrirModalEditar(funcion:'editar',beneficio: Beneficio){
     this.modalService.abrirFormularioBeneficio(funcion)
     this.beneficioService.obtenerBeneficio(beneficio)
-    console.log(beneficio)
   }
   
   abrirModal(funcion: 'agregar' | 'editar') {
     this.modalService.abrirFormularioBeneficio(funcion)
-    console.log('se abrio')
   }
   gridLayout() {
     return {

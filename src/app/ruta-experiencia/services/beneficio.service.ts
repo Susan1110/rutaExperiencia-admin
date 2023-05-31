@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap, of, catchError, map } from 'rxjs';
+import { tap, of, catchError, map, Observable } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
 import { Beneficio, NuevoBeneficio, RetornoBeneficio } from '../Interfaces/ruta-beneficio.interface';
 import { ModalService } from './modal.service';
@@ -50,6 +50,10 @@ export class BeneficioService {
   editarBeneficio(idBeneficio:number, beneficio: NuevoBeneficio){
     const URL = `http://localhost:4040/beneficio/${idBeneficio}`
     return this.http.put(URL,beneficio)
+  }
+  eliminarBeneficio(idBeneficio:number){
+    const URL=`http://localhost:4040/beneficio/${idBeneficio}`
+    return this.http.delete(URL)
   }
  
  
