@@ -1,32 +1,33 @@
-<div [ngStyle]=gridLayout()>
-   
-        <div class="nuevo" [ngStyle]=posicionBeneficio() (click)="abrirModal('agregar')">
-            <img src="assets/agregar.svg" alt="">
-        </div>
-   
-    
+<div [ngStyle]="gridLayout()">
+  <div
+    class="nuevo"
+    [ngStyle]="posicionBeneficio()"
+    (click)="abrirModal('agregar')"
+  >
+    <img src="assets/agregar.svg" alt="" />
+  </div>
 
-    
-    <div *ngFor="let beneficio of beneficios" [ngStyle]=posicionBeneficio() class="editar">
-        <div class="beneficiolist">
-           <p class="benef"> {{beneficio.BeDescripcion}}</p>
-        </div>
-        <div class="beneficiolist">
-            <div class="contenidoIcono">
-                <div class="icon">
-                    <img src="assets/ver.svg" alt="ver">
-                </div>
-                <div class="icon" (click)="abrirModalEditar('editar',beneficio)">
-                    <img src="assets/editar.svg" alt="editar">
-                </div>
-                <div class="icon">
-                    <img src="assets/eliminar.svg" alt="eliminar" (click)="eliminar(beneficio)" >
-                </div>
-            </div>
-        </div>
-        
+  <div
+    *ngFor="let beneficio of beneficios"
+    [ngStyle]="posicionBeneficio()"
+    class="editar"
+  >
+    <div>
+      <p id="list">{{ beneficio.BeDescripcion |  slice : 0 : 180 }}</p>
     </div>
-
-
-
+    <div id="beneficiolist">
+      <div class="contenidoIcono">
+        <div class="icon" (click)="abrirModalEditar('editar', beneficio)">
+          <img src="assets/editar.svg" alt="editar" />
+        </div>
+        <div class="icon">
+          <img
+            src="assets/eliminar.svg"
+            alt="eliminar"
+            (click)="eliminar(beneficio)"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
