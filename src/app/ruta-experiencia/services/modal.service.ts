@@ -1,51 +1,44 @@
 import { Injectable } from '@angular/core';
-import { Experiencia, NuevaExperiencia } from '../Interfaces/ruta-experiencia.interface';
-import { ExperienciaService } from './experiencia.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ModalService {
+  private _estadoFormularioExperiencia = false;
+  private _funcionFormularioExperiancia: 'agregar' | 'editar' = 'agregar';
 
-  private _estadoFormularioExperiencia: boolean = false
-  private _funcionFormularioExperiancia: 'agregar' | 'editar' = 'agregar'
-  
-  private _estadoTarjetaExperiencia: boolean = false
+  private _estadoTarjetaExperiencia = false;
 
   get estadoFormularioExperiencia() {
-    return this._estadoFormularioExperiencia
+    return this._estadoFormularioExperiencia;
   }
 
   get funcionFormularioExperiancia() {
-    return this._funcionFormularioExperiancia
+    return this._funcionFormularioExperiancia;
   }
 
   get estadoTarjetaExperiencia() {
-    return this._estadoTarjetaExperiencia
+    return this._estadoTarjetaExperiencia;
   }
 
-  constructor(
-    private experienciaService: ExperienciaService
-  ) { }
-
   abrirFormularioExperiencia(funcion: 'agregar' | 'editar') {
-    this._estadoFormularioExperiencia = true
-    this._funcionFormularioExperiancia = funcion
+    this._estadoFormularioExperiencia = true;
+    this._funcionFormularioExperiancia = funcion;
   }
 
   cerrarFormularioExperiencia() {
-    this._estadoFormularioExperiencia = false
+    this._estadoFormularioExperiencia = false;
   }
 
   mostrarTarjetaExperiencia() {
-    this._estadoTarjetaExperiencia = !this._estadoTarjetaExperiencia
+    this._estadoTarjetaExperiencia = !this._estadoTarjetaExperiencia;
   }
 
-  abrirTarjetaExperiencia(){
-    this._estadoTarjetaExperiencia = true
+  abrirTarjetaExperiencia() {
+    this._estadoTarjetaExperiencia = true;
   }
 
-  cerrarTarjetaExperiencia(){
-    this._estadoTarjetaExperiencia = false
+  cerrarTarjetaExperiencia() {
+    this._estadoTarjetaExperiencia = false;
   }
 }

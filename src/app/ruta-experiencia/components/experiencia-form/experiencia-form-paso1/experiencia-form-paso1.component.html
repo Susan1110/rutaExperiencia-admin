@@ -1,72 +1,67 @@
 <div class="cuerpo espacio" id="scroll" [formGroup]="experienciaForm">
-
-    <div class="ciclos">
-        <div class="entrada">
-            <div>
-                Ciclo Inicio:
-            </div>
-            <input type="text" formControlName="cicloInicio">
-
-        </div>
-        <div class="entrada">
-            <div>
-                Ciclo Fin:
-            </div>
-            <select formControlName="cicloFin">
-                <option *ngFor="let ciclo of opcionesCiclos" [value]="ciclo">{{ciclo}}</option>
-            </select>
-
-        </div>
+  <div class="ciclos">
+    <div class="entrada">
+      <div>Ciclo Inicio:</div>
+      <input type="text" formControlName="cicloInicio" />
     </div>
     <div class="entrada">
-        <div>
-            Nombre Experiencia:
-        </div>
-        <input formControlName="nombre" type="text">
-        <div class="mensaje-error"
-            *ngIf="experienciaForm.get('nombre')?.hasError('required') && experienciaForm.get('nombre')?.touched">
-            <div class="mensaje-error-icon">
-                <img src="assets/advertencia.png" alt="advertencia">
-            </div>
-            <div>
-                El nombre es requerido.
-            </div>
-        </div>
+      <div>Ciclo Fin:</div>
+      <select formControlName="cicloFin">
+        <option *ngFor="let ciclo of opcionesCiclos" [value]="ciclo">
+          {{ ciclo }}
+        </option>
+      </select>
     </div>
-    <div class="entrada">
-        <div>
-            Icono:
-        </div>
+  </div>
+  <div class="entrada">
+    <div>Nombre Experiencia:</div>
+    <input formControlName="nombre" type="text" />
+    <div
+      class="mensaje-error"
+      *ngIf="
+        experienciaForm.get('nombre')?.hasError('required') &&
+        experienciaForm.get('nombre')?.touched
+      ">
+      <div class="mensaje-error-icon">
+        <img src="assets/advertencia.png" alt="advertencia" />
+      </div>
+      <div>El nombre es requerido.</div>
+    </div>
+  </div>
+  <div class="entrada">
+    <div>Icono:</div>
 
-        <div class="icono">
-            <select formControlName="urlIcon">
-                <option *ngFor="let opcion of opciones" [value]="opcion.url">{{ opcion.nombre }}</option>
-            </select>
-            <div class="icono-img">
-                <img [src]=experienciaForm.value.urlIcon alt="">
-            </div>
-        </div>
+    <div class="icono">
+      <select formControlName="urlIcon">
+        <option *ngFor="let opcion of opciones" [value]="opcion.url">
+          {{ opcion.nombre }}
+        </option>
+      </select>
+      <div class="icono-img">
+        <img [src]="experienciaForm.value.urlIcon" alt="" />
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="footer espacio" *ngIf="funcion === 'agregar'">
-    <div class="form-nav disabled bold">
-        Atras
-    </div>
-    <div *ngIf="funcion === 'agregar'" class="button-1 bold" [class.disabled]="experienciaForm.invalid"
-        (click)="agregarExperiencia()">
-        Siguiente
-    </div>
+  <div class="form-nav disabled bold">Atras</div>
+  <div
+    *ngIf="funcion === 'agregar'"
+    class="button-1 bold"
+    [class.disabled]="experienciaForm.invalid"
+    (click)="actualizarExperiencia(true)">
+    Siguiente
+  </div>
 </div>
 
 <div class="footer espacio" *ngIf="funcion === 'editar'">
-    <div class="form-nav disabled bold">
-        Atras
-    </div>
-    <div class="button-1 bold" [class.disabled]="experienciaForm.invalid" (click)="editarExperiencia()">
-        Editar
-    </div>
-    <div class="form-nav bold" (click)="siguientePaso()">
-        Siguiente
-    </div>
+  <div class="form-nav disabled bold">Atras</div>
+  <div
+    class="button-1 bold"
+    [class.disabled]="experienciaForm.invalid"
+    (click)="actualizarExperiencia(false)">
+    Editar
+  </div>
+  <div class="form-nav bold" (click)="siguientePaso()">Siguiente</div>
 </div>

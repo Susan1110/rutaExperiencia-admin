@@ -4,8 +4,7 @@
     <div
       class="slide"
       *ngFor="let contenidoForm of contenidoForms; let i = index"
-      [formGroup]="contenidoForm"
-    >
+      [formGroup]="contenidoForm">
       <div class="slide-cabecera">
         <div class="slide-cabecera-titulo">Titulo</div>
         <div class="slide-cabecera-acciones">
@@ -17,77 +16,110 @@
         <div class="slide-cuerpo-opciones">
           <div
             class="slide-cuerpo-opciones-opcion"
-            [ngClass]="{ active: opcionContenido === 'multimedia' }"
-            (click)="cambiarOpcion('multimedia')"
-          >
+            [ngClass]="{ active: opcionContenido[i] === 'multimedia' }"
+            (click)="cambiarOpcion(i, 'multimedia')">
             Multimedia
           </div>
           <div
             class="slide-cuerpo-opciones-opcion"
-            [ngClass]="{ active: opcionContenido === 'descripcion' }"
-            (click)="cambiarOpcion('descripcion')"
-          >
+            [ngClass]="{ active: opcionContenido[i] === 'descripcion' }"
+            (click)="cambiarOpcion(i, 'descripcion')">
             Descripción
           </div>
         </div>
-        <!-- MULTIMEDIA -->
+        <!-- MULTIMEDIA INICIO-->
         <div
           class="slide-cuerpo-multimedia"
-          *ngIf="opcionContenido === 'multimedia'"
-        >
+          *ngIf="opcionContenido[i] === 'multimedia'">
           <div class="entrada">
             <div>Tipo:</div>
             <div class="tipo">
-              <div>
-                <input type="radio" formControlName="tipo" value="video" />
-                <label for="video">Video</label>
-              </div>
-
-              <div>
-                <input type="radio" formControlName="tipo" value="imagen" />
-                <label for="imagen">Imagen</label>
-              </div>
-
-              <div>
-                <input type="radio" formControlName="tipo" value="imagen360" />
-                <label for="imagen360">Imagen 360</label>
+              <div *ngFor="let tipo of media">
+                <input
+                  type="radio"
+                  formControlName="tipo"
+                  [value]="tipo.id"
+                  [id]="tipo.id"
+                  (change)="tipoSeleccionado[i] = tipo.id" />
+                <label [for]="tipo.id">{{ tipo.nombre }}</label>
               </div>
             </div>
           </div>
-          <div class="entrada">
+
+          <!-- IMAGEN INICIO-->
+          <div class="entrada" *ngIf="tipoSeleccionado[i] === 1">
             <div>Link:</div>
-            <input
-              type="text"
-              formControlName="link"
-              (blur)="actualizarVideoUrl()"
-            />
+            <input type="text" formControlName="linkImagen" />
             <div
               class="mensaje-error"
               *ngIf="
-                contenidoForm.get('link')?.hasError('required') &&
-                contenidoForm.get('link')?.touched
+                contenidoForm.get('linkImagen')?.hasError('required') &&
+                contenidoForm.get('linkImagen')?.touched
+              ">
+              <div class="mensaje-error-icon">
+                <img src="assets/advertencia.png" alt="advertencia" />
+              </div>
+              <div>La imagen es requerida.</div>
+            </div>
+          </div>
+          <!-- IMAGEN FIN-->
+
+          <!-- VIDEO INICIO-->
+          <div class="entrada" *ngIf="tipoSeleccionado[i] === 2">
+            <div>Link:</div>
+            <input type="text" formControlName="linkVideo" />
+            <iframe
+              class="video"
+              [src]="
+                convertirALinkSeguro(
+                  convertirAVideoCompartido(
+                    contenidoForm.get('linkVideo')?.value
+                  )
+                )
               "
-            >
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+            <div
+              class="mensaje-error"
+              *ngIf="
+                contenidoForm.get('linkVideo')?.hasError('required') &&
+                contenidoForm.get('linkVideo')?.touched
+              ">
               <div class="mensaje-error-icon">
                 <img src="assets/advertencia.png" alt="advertencia" />
               </div>
               <div>El link es requerido.</div>
             </div>
-            <iframe
-              class="video"
-              [src]="videoUrl"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
           </div>
+          <!-- VIDEO FIN-->
+
+          <!-- IMAGEN360 INICIO-->
+          <div class="entrada" *ngIf="tipoSeleccionado[i] === 3">
+            <div>Link:</div>
+            <input type="text" formControlName="linkImagen360" />
+            <div
+              class="mensaje-error"
+              *ngIf="
+                contenidoForm.get('linkImagen360')?.hasError('required') &&
+                contenidoForm.get('linkImagen360')?.touched
+              ">
+              <div class="mensaje-error-icon">
+                <img src="assets/advertencia.png" alt="advertencia" />
+              </div>
+              <div>La imagen360 requerido.</div>
+            </div>
+          </div>
+          <!-- IMAGEN360 FIN-->
         </div>
-        <!-- DESCRIPCION -->
+        <!-- MULTIMEDIA FIN-->
+
+        <!-- DESCRIPCION INICIO-->
         <div
           class="slide-cuerpo-descripcion"
-          *ngIf="opcionContenido === 'descripcion'"
-        >
+          *ngIf="opcionContenido[i] === 'descripcion'">
           <div class="entrada">
             <div>Titulo:</div>
             <input type="text" formControlName="titulo" />
@@ -96,8 +128,7 @@
               *ngIf="
                 contenidoForm.get('titulo')?.hasError('required') &&
                 contenidoForm.get('titulo')?.touched
-              "
-            >
+              ">
               <div class="mensaje-error-icon">
                 <img src="assets/advertencia.png" alt="advertencia" />
               </div>
@@ -109,15 +140,13 @@
             <textarea
               cols="30"
               rows="10"
-              formControlName="contenido"
-            ></textarea>
+              formControlName="contenido"></textarea>
             <div
               class="mensaje-error"
               *ngIf="
                 contenidoForm.get('contenido')?.hasError('required') &&
                 contenidoForm.get('contenido')?.touched
-              "
-            >
+              ">
               <div class="mensaje-error-icon">
                 <img src="assets/advertencia.png" alt="advertencia" />
               </div>
@@ -125,31 +154,40 @@
             </div>
           </div>
         </div>
+        <!-- DESCRIPCION FIN-->
       </div>
     </div>
-    <!-- OPCION PARA SLIDER -->
-    <div class="button-1 button-2 bold" (click)="agregarSlide()">Agregar Contenido</div>
+    <!-- OPCION PARA AGREGAR SLIDER INICIO-->
+    <div
+      class="button-1 button-2 bold"
+      (click)="agregarSlide()"
+      [class.disabled]="sliderDeshabilitado">
+      Agregar Contenido
+    </div>
+    <!-- OPCION PARA AGREGAR SLIDER FIN-->
   </div>
 </div>
+<!-- AGREGAR CONTENIDO INICIO -->
 <div class="footer espacio" *ngIf="funcion === 'agregar'">
   <div class="form-nav bold" (click)="anteriorPaso()">Atras</div>
   <div
     class="button-1 bold"
     [class.disabled]="!isFormArrayValid()"
-    (click)="subirContenido()"
-  >
+    (click)="guardarContenido()">
     Agregar
   </div>
 </div>
+<!-- AGREGAR CONTENIDO FIN -->
 
+<!-- EDITAR CONTENIDO INICIO -->
 <div class="footer espacio" *ngIf="funcion === 'editar'">
   <div class="form-nav bold" (click)="anteriorPaso()">Atras</div>
   <div
     class="button-1 bold"
     [class.disabled]="!isFormArrayValid()"
-    (click)="editarContenido()"
-  >
+    (click)="guardarContenido()">
     Editar
   </div>
   <div class="form-nav bold disabled">Siguiente</div>
 </div>
+<!-- EDITAR CONTENIDO FIN -->

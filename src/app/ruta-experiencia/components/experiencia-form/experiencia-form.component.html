@@ -1,19 +1,19 @@
 <div class="container">
-    <div class="add-edit">
-        <div class="barraTitulo">
-            <div class="h2 bold">
-                {{funcion | titlecase}} Experiencia
-            </div>
-            <div class="cerrar" (click)="cerrarFormulario()">
-                <img src="assets/cerrar.png" alt="">
-            </div>
-        </div>
-
-
-        <ng-container [ngSwitch]="pasoActual" id="scroll">
-            <app-experiencia-form-paso1 *ngSwitchCase="1" (paso)="actualizarPaso($event)"></app-experiencia-form-paso1>
-            <app-experiencia-form-paso2 *ngSwitchCase="2" (paso)="actualizarPaso($event)"></app-experiencia-form-paso2>
-        </ng-container>
+  <div class="add-edit">
+    <div class="barraTitulo">
+      <div class="h2 bold">{{ funcion | titlecase }} Experiencia</div>
+      <div class="cerrar" (click)="cerrarFormulario()">
+        <img src="assets/cerrar.png" alt="" />
+      </div>
     </div>
 
+    <ng-container [ngSwitch]="pasoActual" id="scroll">
+      <app-experiencia-form-paso1
+        *ngSwitchCase="1"
+        (paso)="actualizarPaso($event)"></app-experiencia-form-paso1>
+      <app-experiencia-form-paso2
+        *ngSwitchCase="2"
+        (paso)="actualizarPaso($event)"></app-experiencia-form-paso2>
+    </ng-container>
+  </div>
 </div>

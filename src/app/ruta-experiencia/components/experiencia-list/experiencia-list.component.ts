@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ExperienciaService } from '../../services/experiencia.service';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Experiencia } from '../../Interfaces/ruta-experiencia.interface';
@@ -10,8 +10,8 @@ import { ModalService } from '../../services/modal.service';
   templateUrl: './experiencia-list.component.html',
   styleUrls: ['./experiencia-list.component.css'],
 })
-export class ExperienciaListComponent {
-  filas: number = 8;
+export class ExperienciaListComponent implements OnInit {
+  filas = 8;
 
   get usuario() {
     return this.authService.usuario;
@@ -50,8 +50,6 @@ export class ExperienciaListComponent {
   abrirModal(funcion: 'agregar' | 'editar', experiencia: Experiencia) {
     this.modalService.abrirFormularioExperiencia(funcion);
     this.experienciaService.obtenerExperiencia(experiencia);
-    // this.contenidoService.buscarContenido(experiencia.IdExperiencia)
-    //   .subscribe()
   }
 
   verContenido(idExperiencia: number) {
