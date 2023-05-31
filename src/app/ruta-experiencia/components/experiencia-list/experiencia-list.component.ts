@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ExperienciaService } from '../../services/experiencia.service';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Experiencia } from '../../Interfaces/ruta-experiencia.interface';
