@@ -24,7 +24,7 @@ export class CicloIconsComponent implements OnInit {
   gridCiclos() {
     return {
       display: 'grid',
-      'grid-template-rows': '70px',
+      'grid-template-rows': '50px',
       'grid-template-columns': `repeat(${this.ciclos},1fr)`,
       gap: '30px',
     };

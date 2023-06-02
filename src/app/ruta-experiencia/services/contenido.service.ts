@@ -5,6 +5,7 @@ import {
 } from '../Interfaces/ruta-experiencia.interface';
 import { HttpClient } from '@angular/common/http';
 import { catchError, of, tap } from 'rxjs';
+import { API_URL } from 'src/app/api.constants';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class ContenidoService {
   constructor(private http: HttpClient) {}
 
   buscarContenido(idExperiencia: number) {
-    const URL = `http://localhost:4040/contenido/experiencia/${idExperiencia}`;
+    const URL = `${API_URL}/contenido/experiencia/${idExperiencia}`;
     return this.http.get<Contenido[]>(URL).pipe(
       tap(resp => {
         this._contenido = resp;
@@ -34,12 +35,12 @@ export class ContenidoService {
   }
 
   subirContenido(nuevoContenido: NuevoContenido) {
-    const URL = 'http://localhost:4040/contenido';
+    const URL = `${API_URL}/contenido`;
     return this.http.post(URL, nuevoContenido);
   }
 
   editarContenido(idContenido: number, nuevoContenido: NuevoContenido) {
-    const URL = `http://localhost:4040/contenido/${idContenido}`;
+    const URL = `${API_URL}/contenido/${idContenido}`;
     return this.http.put(URL, nuevoContenido);
   }
 

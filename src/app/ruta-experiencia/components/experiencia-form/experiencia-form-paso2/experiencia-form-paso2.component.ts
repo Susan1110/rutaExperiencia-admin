@@ -1,4 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ContenidoService } from '../../../services/contenido.service';
@@ -16,7 +22,7 @@ import { concat } from 'rxjs';
   templateUrl: './experiencia-form-paso2.component.html',
   styleUrls: ['./experiencia-form-paso2.component.css'],
 })
-export class ExperienciaFormPaso2Component implements OnInit {
+export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
   media = [
     { id: 1, nombre: 'Imagen' },
     { id: 2, nombre: 'Video' },
@@ -63,6 +69,11 @@ export class ExperienciaFormPaso2Component implements OnInit {
     }
     this.abrirContenido[0] = true;
   }
+  ngOnDestroy(): void {
+    this.contenidoForms.forEach((formGroup: FormGroup) => {
+      formGroup.reset();
+    });
+  }
 
   cambiarOpcion(index: number, nuevaOpcion: 'multimedia' | 'descripcion') {
     this.opcionContenido[index] = nuevaOpcion;
@@ -87,11 +98,24 @@ export class ExperienciaFormPaso2Component implements OnInit {
   //   }
   // }
 
-  convertirAVideoCompartido(url = 'https://www.youtube.com/watch?v=undefined') {
+  convertirAVideoCompartido(url: string) {
+    if (!url) {
+      return 'https://www.youtube.com/embed/undefined';
+    }
+
     const queryLink = url.split('?')[1];
+    if (!queryLink) {
+      return 'https://www.youtube.com/embed/undefined';
+    }
+
     const params = new URLSearchParams(queryLink);
     const videoId = params.get('v');
+    if (!videoId) {
+      return 'https://www.youtube.com/embed/undefined';
+    }
+
     const videoCompartido = `https://www.youtube.com/embed/${videoId}`;
+    console.log(videoCompartido);
     return videoCompartido;
   }
 

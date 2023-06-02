@@ -7,6 +7,7 @@ import {
   NuevaExperiencia,
   RetornoExperiencia,
 } from '../Interfaces/ruta-experiencia.interface';
+import { API_URL } from 'src/app/api.constants';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +30,7 @@ export class ExperienciaService {
 
   buscarExperiencias() {
     const idCarrera = this.authService.usuario.idCarrera;
-    const URL = `http://localhost:4040/experiencia/carrera/${idCarrera}`;
+    const URL = `${API_URL}/experiencia/carrera/${idCarrera}`;
     return this.http.get<Experiencia[]>(URL).pipe(
       tap(resp => {
         this._experiencias = resp;
@@ -39,7 +40,7 @@ export class ExperienciaService {
   }
 
   subirExperiencia(nuevaExperiencia: NuevaExperiencia) {
-    const URL = 'http://localhost:4040/experiencia';
+    const URL = `${API_URL}/experiencia`;
     return this.http.post<RetornoExperiencia>(URL, nuevaExperiencia).pipe(
       map(res => {
         return res.id;
@@ -49,7 +50,7 @@ export class ExperienciaService {
   }
 
   editarExperiencia(idExperiencia: number, experiencia: NuevaExperiencia) {
-    const URL = `http://localhost:4040/experiencia/${idExperiencia}`;
+    const URL = `${API_URL}/experiencia/${idExperiencia}`;
     return this.http.put(URL, experiencia).pipe(
       map(() => {
         return idExperiencia;

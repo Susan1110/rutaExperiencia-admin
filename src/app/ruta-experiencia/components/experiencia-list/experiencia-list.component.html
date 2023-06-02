@@ -11,7 +11,7 @@
         )
       "
       class="agregar">
-      <div class="icon" (click)="abrirModal('agregar', experiencia)">
+      <div class="add" (click)="abrirModal('agregar', experiencia)">
         <img src="assets/agregar.svg" alt="agregarExperiencia" />
       </div>
     </div>
@@ -27,13 +27,19 @@
       )
     "
     class="editar">
-    <div class="icon" (click)="verContenido(experiencia.IdExperiencia)">
+    <div class="nombre">
+      {{ experiencia.ExNombre | titlecase }}
+    </div>
+    <div class="icon default">
+      <img [src]="experiencia.ExIconoUrl" alt="" />
+    </div>
+    <div class="icon actions" (click)="verContenido(experiencia.IdExperiencia)">
       <img src="assets/ver.svg" alt="ver" />
     </div>
-    <div class="icon" (click)="abrirModal('editar', experiencia)">
+    <div class="icon actions" (click)="abrirModal('editar', experiencia)">
       <img src="assets/editar.svg" alt="editar" />
     </div>
-    <div class="icon">
+    <div class="icon actions">
       <img src="assets/eliminar.svg" alt="eliminar" />
     </div>
   </div>

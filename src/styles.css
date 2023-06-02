@@ -13,10 +13,10 @@
   --carrera-color-8: #f97373;
   --carrera-color-9: #ff8773;
   --carrera-color-10: #63fdcb;
-  --carrera-color-11: #57bdbd;
-  --carrera-color-12: #88d1f4;
-  --carrera-color-13: #e55f9f;
-  --carrera-color-14: #b965a5;
+  --carrera-color-11: #1DF1EB;
+  --carrera-color-12: #ED739B;
+  --carrera-color-13: #E44D85;
+  --carrera-color-14: #C616BC;
 }
 
 * {
@@ -58,46 +58,6 @@ p,
 
 .regular {
   font-weight: 400;
-}
-
-.col1 {
-  background-color: var(--carrera-color-1);
-}
-
-.col2 {
-  background-color: var(--carrera-color-2);
-}
-
-.col3 {
-  background-color: var(--carrera-color-3);
-}
-
-.col4 {
-  background-color: var(--carrera-color-4);
-}
-
-.col5 {
-  background-color: var(--carrera-color-5);
-}
-
-.col6 {
-  background-color: var(--carrera-color-6);
-}
-
-.col7 {
-  background-color: var(--carrera-color-7);
-}
-
-.col8 {
-  background-color: var(--carrera-color-8);
-}
-
-.col9 {
-  background-color: var(--carrera-color-9);
-}
-
-.col10 {
-  background-color: var(--carrera-color-10);
 }
 
 .entrada {

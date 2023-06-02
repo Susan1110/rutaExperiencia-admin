@@ -6,6 +6,7 @@ import {
   Beneficio,
   NuevoBeneficio,
 } from '../Interfaces/ruta-beneficio.interface';
+import { API_URL } from 'src/app/api.constants';
 
 @Injectable({
   providedIn: 'root',
@@ -24,19 +25,19 @@ export class BeneficioService {
     this._beneficios = [];
   }
   subirBeneficio(nuevoBeneficio: NuevoBeneficio) {
-    const URL = 'http://localhost:4040/beneficio';
+    const URL = `${API_URL}/beneficio`;
     return this.http.post(URL, nuevoBeneficio);
   }
 
   // me obtiene todos los beneficios del IdCarrera
   buscarBeneficio() {
     const IdCarrera = this.authService.usuario.idCarrera;
-    const URL = `http://localhost:4040/beneficio/carrera/${IdCarrera}`;
+    const URL = `${API_URL}/beneficio/carrera/${IdCarrera}`;
     return this.http.get<Beneficio[]>(URL).pipe(
       tap(rest => {
         this._beneficios = rest;
       }),
-      catchError(err => of(false))
+      catchError(() => of(false))
     );
   }
   obtenerBeneficio(beneficio: Beneficio) {
@@ -44,11 +45,11 @@ export class BeneficioService {
     console.log(this._beneficio);
   }
   editarBeneficio(idBeneficio: number, beneficio: NuevoBeneficio) {
-    const URL = `http://localhost:4040/beneficio/${idBeneficio}`;
+    const URL = `${API_URL}/beneficio/${idBeneficio}`;
     return this.http.put(URL, beneficio);
   }
   eliminarBeneficio(idBeneficio: number) {
-    const URL = `http://localhost:4040/beneficio/${idBeneficio}`;
+    const URL = `${API_URL}/beneficio/${idBeneficio}`;
     return this.http.delete(URL);
   }
 }

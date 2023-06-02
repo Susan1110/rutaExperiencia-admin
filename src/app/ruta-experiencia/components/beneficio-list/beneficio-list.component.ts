@@ -14,7 +14,6 @@ export class BeneficioListComponent implements OnInit {
   ciclos = 10;
 
   get beneficios(): Beneficio[] {
-    console.log(this.beneficioService.beneficios);
     return this.beneficioService.beneficios;
   }
 

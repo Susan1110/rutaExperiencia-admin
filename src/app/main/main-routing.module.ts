@@ -15,43 +15,43 @@ const routes: Routes = [
     children: [
       {
         path: 'rutaExperiencia',
-        component: RutaExperienciaPageComponent
+        component: RutaExperienciaPageComponent,
       },
       {
         path: 'facultades',
-        component: FacultadesPageComponent
+        component: FacultadesPageComponent,
       },
       {
         path: 'carreras',
-        component: CarrerasPageComponent
+        component: CarrerasPageComponent,
       },
       {
         path: 'usuarios',
-        component: UsuariosPageComponent
+        component: UsuariosPageComponent,
       },
       {
         path: 'preguntasFrecuentes',
-        component: PreguntasFrecuentesPageComponent
+        component: PreguntasFrecuentesPageComponent,
       },
       {
         path: 'errores',
-        component: ErroresPageComponent
+        component: ErroresPageComponent,
       },
       {
         path: '**',
-        redirectTo: 'rutaExperiencia'
+        redirectTo: 'rutaExperiencia',
       },
       {
         path: '',
         redirectTo: '/admin/rutaExperiencia',
-        pathMatch: 'full'
-      }
-    ]
-  }
+        pathMatch: 'full',
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class MainRoutingModule { }
+export class MainRoutingModule {}
