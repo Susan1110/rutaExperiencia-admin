@@ -4,11 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href=/admin/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "postinstall": "ng build --prod",
+    "postinstall": "ng build",
     "forever": "forever start ./server.js",
     "stop": "forever stop ./server.js",
     "list": "forever list"
