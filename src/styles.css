@@ -13,10 +13,10 @@
   --carrera-color-8: #f97373;
   --carrera-color-9: #ff8773;
   --carrera-color-10: #63fdcb;
-  --carrera-color-11: #1DF1EB;
-  --carrera-color-12: #ED739B;
-  --carrera-color-13: #E44D85;
-  --carrera-color-14: #C616BC;
+  --carrera-color-11: #1df1eb;
+  --carrera-color-12: #ed739b;
+  --carrera-color-13: #e44d85;
+  --carrera-color-14: #c616bc;
 }
 
 * {
@@ -30,34 +30,14 @@ html,
 body {
   height: 100%;
 }
-
+img {
+  width: 100%;
+  height: 100%;
+}
 .body {
   position: relative;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(2px);
-}
-
-h1,
-.h1 {
-  font-size: 36px;
-}
-
-h2,
-.h2 {
-  font-size: 18px;
-}
-
-p,
-.p {
-  font-size: 16px;
-}
-
-.bold {
-  font-weight: 700;
-}
-
-.regular {
-  font-weight: 400;
 }
 
 .entrada {
@@ -121,4 +101,23 @@ select {
   background: linear-gradient(90deg, #0202c6, #a304a3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* SLIDER */
+.carousel-item,
+.carousel-inner {
+  height: 100%;
+}
+button.carousel-control-next,
+button.carousel-control-prev {
+  top: inherit;
+  bottom: inherit;
+  width: auto;
+  margin: 0 10px;
+  filter: brightness(10%);
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
 }

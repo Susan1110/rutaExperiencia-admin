@@ -6,7 +6,12 @@
       *ngFor="let contenidoForm of contenidoForms; let i = index"
       [formGroup]="contenidoForm">
       <div class="slide-cabecera">
-        <div class="slide-cabecera-titulo">Titulo</div>
+        <div class="slide-cabecera-titulo">
+          {{
+            contenidoForm.get('titulo')?.value || 'Contenido' + (i + 1)
+              | titlecase
+          }}
+        </div>
         <div class="slide-cabecera-acciones">
           <div (click)="verContenido(i)">Editar</div>
           <div>Eliminar</div>
@@ -67,16 +72,11 @@
           <!-- VIDEO INICIO-->
           <div class="entrada" *ngIf="tipoSeleccionado[i] === 2">
             <div>Link:</div>
-            <input type="text" formControlName="linkVideo" />
-            <iframe
-              class="video"
-              [src]="
-                convertirALinkSeguro(
-                  convertirAVideoCompartido(
-                    contenidoForm.get('linkVideo')?.value
-                  )
-                )
-              ">
+            <input
+              type="text"
+              formControlName="linkVideo"
+              (blur)="actualizarMedia(i)" />
+            <iframe class="video" [src]="convertirALinkSeguro(urlVideo[i])">
             </iframe>
             <div
               class="mensaje-error"
@@ -157,7 +157,7 @@
     <div
       class="button-1 button-2 bold"
       (click)="agregarSlide()"
-      [class.disabled]="sliderDeshabilitado">
+      *ngIf="!sliderDeshabilitado">
       Agregar Contenido
     </div>
     <!-- OPCION PARA AGREGAR SLIDER FIN-->

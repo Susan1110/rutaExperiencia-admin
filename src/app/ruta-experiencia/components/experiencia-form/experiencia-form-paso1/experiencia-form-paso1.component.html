@@ -45,22 +45,20 @@
 </div>
 
 <div class="footer espacio" *ngIf="funcion === 'agregar'">
-  <div class="form-nav disabled bold">Atras</div>
   <div
     *ngIf="funcion === 'agregar'"
     class="button-1 bold"
     [class.disabled]="experienciaForm.invalid"
-    (click)="actualizarExperiencia(true)">
+    (click)="actualizarExperiencia()">
     Siguiente
   </div>
 </div>
 
 <div class="footer espacio" *ngIf="funcion === 'editar'">
-  <div class="form-nav disabled bold">Atras</div>
   <div
     class="button-1 bold"
     [class.disabled]="experienciaForm.invalid"
-    (click)="actualizarExperiencia(false)">
+    (click)="actualizarExperiencia()">
     Editar
   </div>
   <div class="form-nav bold" (click)="siguientePaso()">Siguiente</div>

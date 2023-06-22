@@ -9,9 +9,11 @@
   <div
     *ngFor="let beneficio of beneficios"
     [ngStyle]="posicionBeneficio()"
-    class="editar">
-    <div>
-      <p id="list">{{ beneficio.BeDescripcion | slice : 0 : 180 }}</p>
+    class="editar w-100">
+    <div class="flex-grow-1 d-flex">
+      <p class="text-white m-0">
+        {{ beneficio.BeDescripcion | slice : 0 : 180 }}
+      </p>
     </div>
     <div id="beneficiolist">
       <div class="contenidoIcono">

@@ -1,34 +1,39 @@
-.navbar {
+img{
+  width: auto;
+}
+.nav {
   height: 100%;
-  min-height: 100vh;
   background: linear-gradient(180deg, #010163 0%, #520252 100%);
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.navbar-logo {
+.nav-logo {
   padding: 10px;
 }
 
-.navbar-icons {
+.nav-icons {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.navbar-icons-icon {
+.nav-icons-icon {
   display: flex;
   align-items: center;
   width: 100%;
   position: relative;
+  cursor: pointer;
 }
 
-.navbar-icons-icon-image {
+.nav-icons-icon-image {
   display: flex;
   justify-content: center;
   padding: 10px 0;
   width: 100%;
 }
 
-.navbar-icons-icon-name {
+.nav-icons-icon-name {
   z-index: 1;
   position: absolute;
   padding: 4px 10px;
@@ -46,7 +51,7 @@
   font-size: 16px;
 }
 
-.navbar-icons-icon-name::before {
+.nav-icons-icon-name::before {
   z-index: -1;
   content: '';
   position: absolute;
@@ -56,7 +61,7 @@
   display: none;
 }
 
-.navbar-icons-icon:hover {
+.nav-icons-icon:hover {
   background: linear-gradient(
     180deg,
     rgba(163, 4, 163, 0) 42.19%,
@@ -64,7 +69,7 @@
   );
 }
 
-.navbar-icons-icon:hover .navbar-icons-icon-name,
-.navbar-icons-icon:hover .navbar-icons-icon-name::before {
+.nav-icons-icon:hover .nav-icons-icon-name,
+.nav-icons-icon:hover .nav-icons-icon-name::before {
   display: inherit;
 }
