@@ -11,7 +11,9 @@ import { ExperienciaFormPaso1Component } from './components/experiencia-form/exp
 import { ExperienciaFormPaso2Component } from './components/experiencia-form/experiencia-form-paso2/experiencia-form-paso2.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { YouTubePlayerModule } from '@angular/youtube-player';
+import { NgxView360Module } from '@egjs/ngx-view360';
 
 @NgModule({
   declarations: [
@@ -28,8 +30,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    YouTubePlayerModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule,
+    NgbModule,
+    NgxView360Module,
   ],
   exports: [RutaExperienciaPageComponent],
 })

@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ContenidoService } from '../../../services/contenido.service';
 import {
   Contenido,
@@ -16,6 +16,8 @@ import { ExperienciaService } from 'src/app/ruta-experiencia/services/experienci
 import { ToastrService } from 'ngx-toastr';
 import { ModalService } from '../../../services/modal.service';
 import { concat } from 'rxjs';
+import { tipoMedia } from 'src/app/api.constants';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-experiencia-form-paso2',
@@ -23,21 +25,14 @@ import { concat } from 'rxjs';
   styleUrls: ['./experiencia-form-paso2.component.css'],
 })
 export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
-  media = [
-    { id: 1, nombre: 'Imagen' },
-    { id: 2, nombre: 'Video' },
-    { id: 3, nombre: 'Imagen360' },
-  ];
-
+  media = tipoMedia;
   idExperiencia = 0;
+  sliderDeshabilitado = false;
   opcionContenido: ('multimedia' | 'descripcion')[] = [];
   contenidoForms: FormGroup[] = [];
   abrirContenido: boolean[] = [];
-  sliderDeshabilitado = false;
   tipoSeleccionado: number[] = [];
-  // urlVideo: string[] = [];
-  // urlImagen: string[] = [];
-  // urlImagen360: string[] = [];
+  urlVideo: string[] = [];
 
   @Output() paso = new EventEmitter<number>();
 
@@ -46,7 +41,7 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
   }
 
   get contenidos() {
-    return this.contenidoService.contenido;
+    return this.contenidoService.contenidos;
   }
 
   constructor(
@@ -80,23 +75,14 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
   }
 
   verContenido(id: number) {
-    this.abrirContenido.fill(false);
-    this.abrirContenido[id] = true;
+    this.abrirContenido[id] = !this.abrirContenido[id];
   }
 
-  // actualizarMedia(index: number, tipo: number) {
-  //   const formGroup = this.contenidoForms.at(index);
-  //   const inputLink = formGroup?.get('link')?.value;
-  //   // this.contenidoForms[index]
-
-  //   if (tipo === 1) {
-  //     this.urlImagen[index] = inputLink;
-  //   } else if (tipo === 2) {
-  //     this.urlVideo[index] = inputLink;
-  //   } else if (tipo === 3) {
-  //     this.urlImagen360[index] = inputLink;
-  //   }
-  // }
+  actualizarMedia(index: number) {
+    const formGroup = this.contenidoForms.at(index);
+    const inputLink = formGroup?.get('linkVideo')?.value;
+    this.urlVideo[index] = this.convertirAVideoCompartido(inputLink);
+  }
 
   convertirAVideoCompartido(url: string) {
     if (!url) {
@@ -115,11 +101,10 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
     }
 
     const videoCompartido = `https://www.youtube.com/embed/${videoId}`;
-    console.log(videoCompartido);
     return videoCompartido;
   }
 
-  convertirALinkSeguro(url: string) {
+  convertirALinkSeguro(url = 'https://www.youtube.com/embed/undefined') {
     const linkSeguro = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     return linkSeguro;
   }
@@ -140,19 +125,20 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
       nuevoFormGroup.patchValue({ linkImagen: url });
     } else if (contenido?.IdTipoMedia === 2) {
       nuevoFormGroup.patchValue({ linkVideo: url });
+      this.urlVideo.push(this.convertirAVideoCompartido(url));
     } else if (contenido?.IdTipoMedia === 3) {
       nuevoFormGroup.patchValue({ linkImagen360: url });
     }
     this.abrirContenido.push(false);
     this.opcionContenido.push('multimedia');
     this.tipoSeleccionado.push(contenido?.IdTipoMedia || 1);
+    this.contenidoForms.push(nuevoFormGroup);
 
     if (this.contenidoForms.length >= 4) {
       this.sliderDeshabilitado = true;
     } else {
       this.sliderDeshabilitado = false;
     }
-    this.contenidoForms.push(nuevoFormGroup);
   }
 
   anteriorPaso() {
@@ -198,6 +184,9 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
     if (this.isFormArrayValid()) {
       const contenidoObservables = this.contenidoForms.map(form => {
         const tipo = form.value.tipo;
+        const titleCasePipe = new TitleCasePipe();
+        const tituloValue = form.value.titulo;
+        const tituloTitleCase = titleCasePipe.transform(tituloValue);
         let urlMedia = '';
         switch (tipo) {
           case 1: // Tipo imagen
@@ -211,7 +200,7 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
             break;
         }
         const contenido: NuevoContenido = {
-          CoTitulo: form.value.titulo,
+          CoTitulo: tituloTitleCase,
           CoDescripcion: form.value.contenido,
           CoUrlMedia: urlMedia,
           IdTipoMedia: form.value.tipo,
@@ -240,132 +229,4 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
       });
     }
   }
-
-  // subirContenido() {
-  //   if (this.isFormArrayValid()) {
-  //     const editarContenidoObservables = this.contenidoForms.map(form => {
-  //       const tipo = form.value.tipo;
-  //       let urlMedia = '';
-
-  //       switch (tipo) {
-  //         case 1: // Tipo imagen
-  //           urlMedia = form.value.linkImagen;
-  //           break;
-  //         case 2: // Tipo video
-  //           urlMedia = form.value.linkVideo;
-  //           break;
-  //         case 3: // Tipo imagen 360
-  //           urlMedia = form.value.linkImagen360;
-  //           break;
-  //       }
-  //       const contenido: NuevoContenido = {
-  //         CoTitulo: form.value.titulo,
-  //         CoDescripcion: form.value.contenido,
-  //         CoUrlMedia: urlMedia,
-  //         IdTipoMedia: form.value.tipo,
-  //         IdExperiencia: this.idExperiencia,
-  //       };
-  //       return this.contenidoService.subirContenido(contenido);
-  //     });
-  //     forkJoin(editarContenidoObservables).subscribe({
-  //       next: () => {
-  //         this.toastr.success('Contenidos creados');
-  //         this.modalService.cerrarFormularioExperiencia();
-  //         this.experienciaService.buscarExperiencias().subscribe();
-  //       },
-  //       error: () => this.toastr.error('No se pudieron guardar los contenidos'),
-  //     });
-  //   }
-  // }
-
-  // editarContenido() {
-  //   if (this.isFormArrayValid()) {
-  //     const editarContenidoObservables = this.contenidoForms.map(form => {
-  //       const tipo = form.value.tipo;
-  //       let urlMedia = '';
-  //       switch (tipo) {
-  //         case 1: // Tipo imagen
-  //           urlMedia = form.value.linkImagen;
-  //           break;
-  //         case 2: // Tipo video
-  //           urlMedia = form.value.linkVideo;
-  //           break;
-  //         case 3: // Tipo imagen 360
-  //           urlMedia = form.value.linkImagen360;
-  //           break;
-  //       }
-  //       const contenido: NuevoContenido = {
-  //         CoTitulo: form.value.titulo,
-  //         CoDescripcion: form.value.contenido,
-  //         CoUrlMedia: urlMedia,
-  //         IdTipoMedia: form.value.tipo,
-  //         IdExperiencia: this.idExperiencia,
-  //       };
-
-  //       if (form.value.idContenido === 0) {
-  //         // Agregar nuevo contenido
-  //         return this.contenidoService.subirContenido(contenido);
-  //       } else {
-  //         // Editar contenido existente
-  //         return this.contenidoService.editarContenido(
-  //           form.value.idContenido,
-  //           contenido
-  //         );
-  //       }
-  //     });
-  //     forkJoin(editarContenidoObservables).subscribe({
-  //       next: () => {
-  //         this.toastr.success('Contenidos guardados');
-  //         this.modalService.cerrarFormularioExperiencia();
-  //         this.experienciaService.buscarExperiencias().subscribe();
-  //       },
-  //       error: () => this.toastr.error('No se pudieron guardar los contenidos'),
-  //     });
-  //   }
-  // }
-
-  // imagenSubida = '';
-  // imagenEnlace: string[] = [];
-
-  // subirImagen(event: any, index: number) {
-  //   const archivo = event.target.files[0];
-  //   this.extraerBase64(archivo).then((imagen: any) => {
-  //     this.imagenSubida = imagen.base;
-  //     console.log(imagen);
-  //   });
-  // }
-
-  // extraerBase64 = async ($event: any) =>
-  //   new Promise((resolve, reject) => {
-  //     try {
-  //       const reader = new FileReader();
-  //       reader.readAsDataURL($event);
-  //       reader.onload = () => {
-  //         resolve({
-  //           base: reader.result,
-  //         });
-  //       };
-  //       reader.onerror = error => {
-  //         resolve({
-  //           base: null,
-  //           error,
-  //         });
-  //       };
-  //     } catch (e) {
-  //       reject({
-  //         base: null,
-  //         error: e,
-  //       });
-  //     }
-  //   });
-
-  // guardarImagen(index: number) {
-  //   // // Aquí debes implementar la lógica para subir la imagen a Oracle Cloud
-  //   // // y obtener el enlace correspondiente
-  //   // // Una vez obtenido el enlace, puedes asignarlo al formulario
-  //   // const enlaceImagen =
-  //   //   'https://objectstorage.sa-santiago-1.oraclecloud.com/p/uQX9oUnIJfHFnt3Mu9is1SPIv95TulLc0GS_DNTmRKIQrqZuydNm477vBhROHfBp/n/axth4ig2xaeu/b/rutaexperiencia-media/o/icon_camara-de-video.png';
-  //   // this.imagenEnlace[index] = enlaceImagen;
-  //   // this.contenidoForms[index].get('link').setValue(enlaceImagen);
-  // }
 }

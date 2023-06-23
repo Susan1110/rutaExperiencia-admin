@@ -11,11 +11,11 @@ import { API_URL } from 'src/app/api.constants';
   providedIn: 'root',
 })
 export class ContenidoService {
-  private _contenido: Contenido[] = [];
+  private _contenidos: Contenido[] = [];
   private _idExperiencia = 0;
 
-  get contenido() {
-    return this._contenido;
+  get contenidos() {
+    return this._contenidos;
   }
 
   get idExperiencia() {
@@ -28,13 +28,14 @@ export class ContenidoService {
     const URL = `${API_URL}/contenido/experiencia/${idExperiencia}`;
     return this.http.get<Contenido[]>(URL).pipe(
       tap(resp => {
-        this._contenido = resp;
+        this._contenidos = resp;
       }),
       catchError(() => of(false))
     );
   }
 
   subirContenido(nuevoContenido: NuevoContenido) {
+    console.log(nuevoContenido);
     const URL = `${API_URL}/contenido`;
     return this.http.post(URL, nuevoContenido);
   }

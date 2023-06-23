@@ -55,11 +55,3 @@
 .icon:hover {
     background-color: #00000040;
 }
-#list{
-    display: flex;
-    color: beige;
-    width: 1100px;
-    font-size: 15px;
-    flex-direction: row;
-    justify-content: flex-start;
-}
