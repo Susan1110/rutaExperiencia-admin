@@ -1,15 +1,59 @@
 <div class="ruta">
   <div class="carrera">
-    <h1>
-      {{ usuario.carrera }}
-    </h1>
+    <h2>{{ sede }} - {{ carrera }}</h2>
   </div>
 
-  <app-ciclo-icons></app-ciclo-icons>
+  <div class="d-grid" [ngStyle]="tabla()" style="z-index: 0">
+    <app-ciclo-icons *ngFor="let ciclo of ciclos" [ciclo]="ciclo">
+    </app-ciclo-icons>
+    <ng-container *ngFor="let filas of nuevasExperiencias">
+      <app-experiencias-nuevas
+        *ngFor="let experiencia of filas"
+        [experiencia]="experiencia"
+        [ngStyle]="
+          posicionExperiencia(
+            experiencia.ExCicloInicio,
+            experiencia.ExCicloFin,
+            experiencia.ExFila + 1,
+            true
+          )
+        "
+        style="z-index: -1">
+      </app-experiencias-nuevas>
+    </ng-container>
+    <app-experiencias
+      *ngFor="let experiencia of experiencias"
+      [experiencia]="experiencia"
+      [ngStyle]="
+        posicionExperiencia(
+          experiencia.ExCicloInicio,
+          experiencia.ExCicloFin,
+          experiencia.ExFila + 1
+        )
+      "
+      style="border-radius: 4px">
+    </app-experiencias>
+    <app-beneficios-nuevo
+      [ngStyle]="posicionBeneficio()"
+      style="border-radius: 4px"
+      class="beneficio">
+    </app-beneficios-nuevo>
+    <app-beneficios
+      *ngFor="let beneficio of beneficios"
+      [ngStyle]="posicionBeneficio()"
+      class="beneficio"
+      [beneficio]="beneficio"
+      style="border-radius: 4px">
+    </app-beneficios>
 
-  <app-experiencia-list></app-experiencia-list>
+    <!-- <app-experiencia-list></app-experiencia-list> -->
+  </div>
 
-  <app-beneficio-list></app-beneficio-list>
+  <!-- <app-ciclo-icons [ciclos]="ciclos"></app-ciclo-icons> -->
+
+  <!-- <app-experiencia-list></app-experiencia-list> -->
+
+  <!-- <app-beneficio-list></app-beneficio-list> -->
 
   <ng-container *ngIf="formularioExperiencia">
     <app-experiencia-form></app-experiencia-form>
@@ -19,6 +63,6 @@
   </ng-container>
 
   <ng-container *ngIf="tarjetaExperiencia">
-    <app-experiencia-card></app-experiencia-card>
+    <app-card></app-card>
   </ng-container>
 </div>

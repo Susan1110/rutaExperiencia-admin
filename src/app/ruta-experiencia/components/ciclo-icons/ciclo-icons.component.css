@@ -1,9 +1,23 @@
 .ciclo {
     display: flex;
     justify-content: center;
-}
-
-.ciclo img {
-    width: 100%;
     height: 100%;
-}
+  }
+  .ciclo img {
+    width: inherit;
+    cursor: pointer;
+    transition: transform 0.5s ease, filter 0.2s ease;
+  }
+  .ciclo img:hover {
+    filter: saturate(200%);
+    transform: scale(1.2);
+  }
+  
+  @media screen and (max-width: 768px) {
+    .ciclo img {
+      /* width: 100%; */
+      height: 80px;
+      /* height: 100px; */
+    }
+  }
+  

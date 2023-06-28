@@ -1,25 +1,26 @@
 import { Component } from '@angular/core';
-import { ContenidoService } from 'src/app/ruta-experiencia/services/contenido.service';
-import { ModalService } from '../../../services/modal.service';
 import { EquirectProjection } from '@egjs/ngx-view360';
+import { ContenidoService } from '../../services/contenido.service';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
-  selector: 'app-experiencia-card',
-  templateUrl: './experiencia-card.component.html',
-  styleUrls: ['./experiencia-card.component.css'],
+  selector: 'app-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.css'],
 })
-export class ExperienciaCardComponent {
+export class CardComponent {
   get contenidos() {
     return this.contenidoService.contenidos;
   }
-
   constructor(
     private contenidoService: ContenidoService,
     private modalService: ModalService
   ) {}
+
   cerrarContenido() {
     this.modalService.cerrarTarjetaExperiencia();
   }
+
   obtenerIdVideo(url: string) {
     if (!url) {
       return 'undefined';
@@ -34,7 +35,6 @@ export class ExperienciaCardComponent {
     if (!videoId) {
       return 'undefined';
     }
-    console.log(videoId);
     return videoId;
   }
   options(url: string) {
