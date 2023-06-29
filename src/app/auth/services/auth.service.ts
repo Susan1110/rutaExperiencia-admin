@@ -45,4 +45,10 @@ export class AuthService {
       catchError(() => of(false))
     );
   }
+  logout() {
+    localStorage.removeItem('usuario');
+    this._usuario = {
+      ok: false,
+    };
+  }
 }

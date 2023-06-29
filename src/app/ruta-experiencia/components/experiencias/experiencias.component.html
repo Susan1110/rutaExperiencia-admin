@@ -11,7 +11,9 @@
   <div class="icon actions" (click)="abrirModal('editar', experiencia)">
     <img src="assets/editar.svg" alt="editar" />
   </div>
-  <div class="icon actions">
+  <div
+    class="icon actions"
+    (click)="deleteExperiencia(experiencia.IdExperiencia)">
     <img src="assets/eliminar.svg" alt="eliminar" />
   </div>
 </div>

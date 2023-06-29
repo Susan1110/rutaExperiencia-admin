@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { tap, of, catchError, map } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
 import {
+  DeleteExperienciaResponse,
   Experiencia,
   NuevaExperiencia,
   RetornoExperiencia,
@@ -57,6 +58,11 @@ export class ExperienciaService {
       }),
       catchError(err => of(err))
     );
+  }
+
+  deleteExperiencia(idExperiencia: number) {
+    const URL = `${API_URL}/experiencia/${idExperiencia}`;
+    return this.http.delete<DeleteExperienciaResponse>(URL);
   }
 
   obtenerExperiencia(experiencia: Experiencia) {

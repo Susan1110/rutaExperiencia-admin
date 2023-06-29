@@ -1,57 +1,36 @@
-img{
+img {
   width: auto;
 }
-.nav {
-  height: 100%;
-  background: linear-gradient(180deg, #010163 0%, #520252 100%);
-  flex-direction: column;
-  justify-content: flex-start;
+.navegador {
+  background: black;
 }
 
-.nav-logo {
+.navegador-logo {
   padding: 10px;
 }
 
-.nav-icons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.nav-icons-icon {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  position: relative;
+.navegador-icons-icon {
   cursor: pointer;
 }
 
-.nav-icons-icon-image {
-  display: flex;
-  justify-content: center;
+.navegador-icons-icon-image {
   padding: 10px 0;
-  width: 100%;
 }
 
-.nav-icons-icon-name {
+.navegador-icons-icon-name {
   z-index: 1;
-  position: absolute;
   padding: 4px 10px;
   left: 69px;
-  display: flex;
-  align-items: center;
   background: #00002d;
-  border-radius: 5px;
   white-space: nowrap;
   color: white;
   display: none;
-
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
 }
 
-.nav-icons-icon-name::before {
+.navegador-icons-icon-name::before {
   z-index: -1;
   content: '';
   position: absolute;
@@ -61,7 +40,8 @@ img{
   display: none;
 }
 
-.nav-icons-icon:hover {
+.navegador-icons-icon:hover,
+.navegador-user:hover .navegador-user-img {
   background: linear-gradient(
     180deg,
     rgba(163, 4, 163, 0) 42.19%,
@@ -69,7 +49,32 @@ img{
   );
 }
 
-.nav-icons-icon:hover .nav-icons-icon-name,
-.nav-icons-icon:hover .nav-icons-icon-name::before {
+.navegador-icons-icon:hover .navegador-icons-icon-name,
+.navegador-icons-icon:hover .navegador-icons-icon-name::before {
+  display: inherit;
+}
+
+.navegador-user-img {
+  cursor: pointer;
+  padding: 10px 0;
+}
+.navegador-user-txt {
+  z-index: 1;
+  padding: 10px;
+  left: 60px;
+  bottom: 0;
+  background: black;
+  white-space: nowrap;
+  color: white;
+  display: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  border-top-right-radius: 6px;
+}
+.button-1{
+  padding: 10px;
+}
+.navegador-user-img:hover + .navegador-user-txt, .navegador-user-txt:hover {
   display: inherit;
 }

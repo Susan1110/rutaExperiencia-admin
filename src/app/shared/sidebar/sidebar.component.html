@@ -1,49 +1,65 @@
-<div class="nav">
-  <div class="nav-logo">
+<div class="d-flex flex-column h-100 navegador">
+  <div class="navegador-logo">
     <img src="assets/logoConti.png" alt="Contintental" />
   </div>
 
-  <div class="nav-icons">
-    <div routerLink="/main/rutaExperiencia" class="nav-icons-icon">
-      <div class="nav-icons-icon-image">
+  <div class="d-flex flex-grow-1 flex-column align-items-center">
+    <div
+      routerLink="/main/rutaExperiencia"
+      class="navegador-icons-icon d-flex justify-content-center w-100 position-relative">
+      <div
+        class="navegador-icons-icon-image d-flex justify-content-center w-100">
         <img src="assets/rutaIcon.png" alt="Ruta_Experiencia" />
       </div>
-      <div class="nav-icons-icon-name">Ruta Experiencia</div>
-    </div>
-
-    <!-- <div routerLink="/main/facultades" class="nav-icons-icon">
-      <div class="nav-icons-icon-image">
-        <img src="../assets/facultadIcon.png" alt="Facultades" />
-      </div>
-      <div class="nav-icons-icon-name">Facultades</div>
-    </div>
-
-    <div routerLink="/main/carreras" class="nav-icons-icon">
-      <div class="nav-icons-icon-image">
-        <img src="../assets/carreraIcon.png" alt="Carreras" />
-        <div class="nav-icons-icon-name">Carreras</div>
+      <div
+        class="navegador-icons-icon-name position-absolute align-items-center rounded">
+        Ruta Experiencia
       </div>
     </div>
-
-    <div routerLink="/main/usuarios" class="nav-icons-icon">
-      <div class="nav-icons-icon-image">
-        <img src="../assets/usuariosIcon.png" alt="Usuarios" />
-      </div>
-      <div class="nav-icons-icon-name">Usuarios</div>
+  </div>
+  <div
+    class="navegador-user d-flex justify-content-center w-100 position-relative">
+    <div class="navegador-user-img d-flex justify-content-center w-100">
+      <img src="assets/user.png" alt="" />
     </div>
-
-    <div routerLink="/main/preguntasFrecuentes" class="nav-icons-icon">
-      <div class="nav-icons-icon-image">
-        <img src="../assets/preguntasIcon.png" alt="Preguntas_Frecuentes" />
-      </div>
-      <div class="nav-icons-icon-name">Preguntas Frecuentes</div>
+    <div
+      class="navegador-user-txt flex-column justify-content-start position-absolute">
+      <p>Renzo Rosales</p>
+      <div class="button-1" (click)="logout()">Cerrar Sesion</div>
     </div>
-
-    <div routerLink="/main/errores" class="nav-icons-icon">
-      <div class="nav-icons-icon-image">
-        <img src="../assets/erroresIcon.png" alt="Errores" />
-      </div>
-      <div class="nav-icons-icon-name">Errores</div>
-    </div> -->
   </div>
 </div>
+<!-- <div routerLink="/main/facultades" class="navegador-icons-icon">
+      <div class="navegador-icons-icon-image">
+        <img src="../assets/facultadIcon.png" alt="Facultades" />
+      </div>
+      <div class="navegador-icons-icon-name">Facultades</div>
+    </div>
+
+    <div routerLink="/main/carreras" class="navegador-icons-icon">
+      <div class="navegador-icons-icon-image">
+        <img src="../assets/carreraIcon.png" alt="Carreras" />
+        <div class="navegador-icons-icon-name">Carreras</div>
+      </div>
+    </div>
+
+    <div routerLink="/main/usuarios" class="navegador-icons-icon">
+      <div class="navegador-icons-icon-image">
+        <img src="../assets/usuariosIcon.png" alt="Usuarios" />
+      </div>
+      <div class="navegador-icons-icon-name">Usuarios</div>
+    </div>
+
+    <div routerLink="/main/preguntasFrecuentes" class="navegador-icons-icon">
+      <div class="navegador-icons-icon-image">
+        <img src="../assets/preguntasIcon.png" alt="Preguntas_Frecuentes" />
+      </div>
+      <div class="navegador-icons-icon-name">Preguntas Frecuentes</div>
+    </div>
+
+    <div routerLink="/main/errores" class="navegador-icons-icon">
+      <div class="navegador-icons-icon-image">
+        <img src="../assets/erroresIcon.png" alt="Errores" />
+      </div>
+      <div class="navegador-icons-icon-name">Errores</div>
+    </div> -->
