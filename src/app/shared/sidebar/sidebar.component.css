@@ -62,19 +62,25 @@ img {
   z-index: 1;
   padding: 10px;
   left: 60px;
+  width: 180px;
   bottom: 0;
   background: black;
-  white-space: nowrap;
-  color: white;
   display: none;
+  border-top-right-radius: 6px;
+}
+.navegador-user-txt p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  border-top-right-radius: 6px;
+  color: white;
 }
-.button-1{
+.button-1 {
   padding: 10px;
 }
-.navegador-user-img:hover + .navegador-user-txt, .navegador-user-txt:hover {
+.navegador-user-img:hover + .navegador-user-txt,
+.navegador-user-txt:hover {
   display: inherit;
 }
