@@ -64,7 +64,7 @@
               *ngIf="!contenidoForm.get('linkImagen')?.value"></div>
             <img
               *ngIf="contenidoForm.get('linkImagen')?.value"
-              [src]="contenidoForm.get('linkImagen')?.value"
+              [src]="contenidoForm.get('linkImagen')?.value.startsWith('http') ? contenidoForm.get('linkImagen')?.value : (apiUrl + '/' + contenidoForm.get('linkImagen')?.value)"
               [alt]="
                 contenidoForm.get('titulo')?.value || 'Contenido' + (i + 1)
                   | titlecase

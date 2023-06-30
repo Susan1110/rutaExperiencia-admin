@@ -18,6 +18,7 @@ import { ModalService } from '../../../services/modal.service';
 import { concat } from 'rxjs';
 import { tipoMedia } from 'src/app/api.constants';
 import { TitleCasePipe } from '@angular/common';
+import { API_URL } from 'src/app/api.constants';
 
 @Component({
   selector: 'app-experiencia-form-paso2',
@@ -34,6 +35,7 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
   tipoSeleccionado: number[] = [];
   urlVideo: string[] = [];
   files: File[] = [];
+  apiUrl = API_URL;
 
   //file: File | null = null;
   // nuevoContenido: NuevoContenido = {
