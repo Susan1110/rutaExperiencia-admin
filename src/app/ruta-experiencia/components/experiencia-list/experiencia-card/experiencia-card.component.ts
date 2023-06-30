@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ContenidoService } from 'src/app/ruta-experiencia/services/contenido.service';
 import { ModalService } from '../../../services/modal.service';
 import { EquirectProjection } from '@egjs/ngx-view360';
+import { API_URL } from 'src/app/api.constants';
 
 @Component({
   selector: 'app-experiencia-card',
@@ -9,6 +10,9 @@ import { EquirectProjection } from '@egjs/ngx-view360';
   styleUrls: ['./experiencia-card.component.css'],
 })
 export class ExperienciaCardComponent {
+
+  apiUrl = API_URL;
+
   get contenidos() {
     return this.contenidoService.contenidos;
   }

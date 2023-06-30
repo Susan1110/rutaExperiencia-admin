@@ -33,6 +33,16 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
   abrirContenido: boolean[] = [];
   tipoSeleccionado: number[] = [];
   urlVideo: string[] = [];
+  files: File[] = [];
+
+  //file: File | null = null;
+  // nuevoContenido: NuevoContenido = {
+  //   CoTitulo: '',
+  //   CoDescripcion: '',
+  //   CoUrlMedia: '',
+  //   IdTipoMedia: 0,
+  //   IdExperiencia: 0,
+  // };
 
   @Output() paso = new EventEmitter<number>();
 
@@ -63,6 +73,16 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
       this.agregarSlide();
     }
     this.abrirContenido[0] = true;
+
+    // this.nuevoContenido = {
+    //   CoTitulo: '',
+    //   CoDescripcion: '',
+    //   CoUrlMedia: '',
+    //   IdTipoMedia: 0,
+    //   IdExperiencia: 0,
+    // };
+
+    //console.log('Form paso 2 new');
   }
   ngOnDestroy(): void {
     this.contenidoForms.forEach((formGroup: FormGroup) => {
@@ -134,6 +154,8 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
     this.tipoSeleccionado.push(contenido?.IdTipoMedia || 1);
     this.contenidoForms.push(nuevoFormGroup);
 
+    this.files.push();
+
     if (this.contenidoForms.length >= 4) {
       this.sliderDeshabilitado = true;
     } else {
@@ -180,14 +202,23 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
     );
   }
 
+  onFileSelected(event: any, index: number) {
+    const file: File = event.target.files[0];
+    //console.log(this.nuevoContenido);
+    this.files[index] = file;
+    this.contenidoForms[index].patchValue({ linkImagen: file.name });
+  }
+
   guardarContenido() {
     if (this.isFormArrayValid()) {
+      let index = 0;
       const contenidoObservables = this.contenidoForms.map(form => {
         const tipo = form.value.tipo;
         const titleCasePipe = new TitleCasePipe();
         const tituloValue = form.value.titulo;
         const tituloTitleCase = titleCasePipe.transform(tituloValue);
         let urlMedia = '';
+        //let file: File | null = null;
         switch (tipo) {
           case 1: // Tipo imagen
             urlMedia = form.value.linkImagen;
@@ -199,6 +230,7 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
             urlMedia = form.value.linkImagen360;
             break;
         }
+
         const contenido: NuevoContenido = {
           CoTitulo: tituloTitleCase,
           CoDescripcion: form.value.contenido,
@@ -207,14 +239,30 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
           IdExperiencia: this.idExperiencia,
         };
 
+        if (!form.value.linkImagen.startsWith('uploads')) {
+          contenido.CoFile = this.files[index];
+        }
+        //console.log(form.value.linkImagen);
+
+        // Para enviar el file correctamente al backend se requiere encodearlo en multipart/form-data
+        const formData: any = new FormData();
+        formData.append('CoTitulo', contenido.CoTitulo);
+        formData.append('CoDescripcion', contenido.CoDescripcion);
+        formData.append('CoUrlMedia', contenido.CoUrlMedia);
+        formData.append('IdTipoMedia', contenido.IdTipoMedia);
+        formData.append('IdExperiencia', contenido.IdExperiencia);
+        formData.append('CoFile', contenido.CoFile);
+
+        index++;
+
         if (form.value.idContenido === 0) {
           // Agregar nuevo contenido
-          return this.contenidoService.subirContenido(contenido);
+          return this.contenidoService.subirContenido2(formData);
         } else {
           // Editar contenido existente
-          return this.contenidoService.editarContenido(
+          return this.contenidoService.editarContenido2(
             form.value.idContenido,
-            contenido
+            formData
           );
         }
       });

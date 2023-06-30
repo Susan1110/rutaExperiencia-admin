@@ -40,7 +40,18 @@ export class ContenidoService {
     return this.http.post(URL, nuevoContenido);
   }
 
+  subirContenido2(nuevoContenido: FormData) {
+    console.log(nuevoContenido);
+    const URL = `${API_URL}/contenido`;
+    return this.http.post(URL, nuevoContenido);
+  }
+
   editarContenido(idContenido: number, nuevoContenido: NuevoContenido) {
+    const URL = `${API_URL}/contenido/${idContenido}`;
+    return this.http.put(URL, nuevoContenido);
+  }
+
+  editarContenido2(idContenido: number, nuevoContenido: FormData) {
     const URL = `${API_URL}/contenido/${idContenido}`;
     return this.http.put(URL, nuevoContenido);
   }

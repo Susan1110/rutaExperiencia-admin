@@ -17,7 +17,10 @@
       <ng-template ngbSlide *ngFor="let contenido of contenidos; let i = index">
         <div class="row flex-wrap h-100">
           <div class="col-md-6 multimedia">
-            <ng-container *ngIf="contenido.IdTipoMedia === 1">
+            <ng-container *ngIf="contenido.IdTipoMedia === 1 && !contenido.CoUrlMedia.startsWith('http')">
+              <img [src]="apiUrl + '/' + contenido.CoUrlMedia" [alt]="contenido.CoTitulo" />
+            </ng-container>
+            <ng-container *ngIf="contenido.IdTipoMedia === 1 && contenido.CoUrlMedia.startsWith('http')">
               <img [src]="contenido.CoUrlMedia" [alt]="contenido.CoTitulo" />
             </ng-container>
             <ng-container *ngIf="contenido.IdTipoMedia === 2">

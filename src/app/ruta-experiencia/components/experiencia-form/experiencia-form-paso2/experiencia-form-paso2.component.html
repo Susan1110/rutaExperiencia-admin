@@ -54,7 +54,7 @@
           <!-- IMAGEN INICIO-->
           <div class="entrada" *ngIf="tipoSeleccionado[i] === 1">
             <div>Link:</div>
-            <input type="text" formControlName="linkImagen" />
+            <input type="file" (change)="onFileSelected($event, i)" formControlName="linkImagen" />
             <div
               class="mensaje-error"
               *ngIf="

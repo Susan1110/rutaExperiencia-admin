@@ -38,4 +38,5 @@ export interface NuevoContenido {
   CoUrlMedia: string;
   IdTipoMedia: number;
   IdExperiencia: number;
+  CoFile?: File | null;
 }
