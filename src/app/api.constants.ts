@@ -1,4 +1,4 @@
-export const API_URL = 'http://localhost:4040'; //144.22.59.87
+export const API_URL = 'http://144.22.59.87:4040'; //
 
 export const iconos = [
   {
