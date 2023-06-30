@@ -1,0 +1,19 @@
+.nuevo {
+  border-radius: 4px;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+}
+
+.nuevo img {
+  cursor: pointer;
+  padding: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  vertical-align: middle;
+}
+
+.nuevo img:hover {
+  background-color: #00000040;
+}

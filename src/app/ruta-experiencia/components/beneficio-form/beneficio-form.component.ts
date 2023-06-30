@@ -58,7 +58,7 @@ export class BeneficioFormComponent {
       this.beneficioService.subirBeneficio(data).subscribe(response => {
         console.log(response);
         this.toastr.success('Contenido registrado exitosamente.');
-        this.beneficioService.buscarBeneficio().subscribe();
+        this.beneficioService.buscarBeneficios().subscribe();
         this.modalService.cerrarFormularioBeneficio();
       });
       console.log(data);
@@ -75,7 +75,7 @@ export class BeneficioFormComponent {
       this.beneficioService.editarBeneficio(idBeneficio, data).subscribe({
         next: () => {
           this.toastr.success('Experiencia Editada');
-          this.beneficioService.buscarBeneficio().subscribe();
+          this.beneficioService.buscarBeneficios().subscribe();
           this.modalService.cerrarFormularioBeneficio();
         },
         error: () => this.toastr.error('No se pudo editar el beneficio'),

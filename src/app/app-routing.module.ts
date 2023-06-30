@@ -1,25 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
+import { authGuard } from './auth/guards/auth.guard';
+import { loginGuard } from './auth/guards/login.guard';
 // import { MainPageComponent } from './main/main-page/main-page.component';
 
 const routes: Routes = [
-  { path: '', children: [
-    {
-      path: 'login',
-      component: LoginComponent,
-    },
-    {
-      path: 'main',
-      // component: MainPageComponent
-      loadChildren: () => import('./main/main.module').then(m => m.MainModule),
-    },
-    {
-      path: '',
-      redirectTo: 'login',
-      pathMatch: 'full',
-    },
-  ]},
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [loginGuard],
+  },
+  {
+    path: 'main',
+    // component: MainPageComponent
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule),
+    canActivate: [authGuard],
+  },
   {
     path: '',
     redirectTo: 'admin',
@@ -28,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { 
+  imports: [RouterModule.forRoot(routes, {
     // Configura la ruta base
     useHash: false, // Usa el hash en la URL (opcional, si es necesario)
   })],

@@ -60,7 +60,7 @@ select {
 }
 
 .button-1 {
-  text-align: end;
+  text-align: center;
   padding: 10px 50px;
   background: linear-gradient(90deg, #0202c6 0%, #a304a3 89.58%);
   border-radius: 5px;

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AuthService } from '../../../../auth/services/auth.service';
 import { NuevaExperiencia } from 'src/app/ruta-experiencia/Interfaces/ruta-experiencia.interface';
 import { ExperienciaService } from 'src/app/ruta-experiencia/services/experiencia.service';
@@ -17,16 +17,12 @@ export class ExperienciaFormPaso1Component {
   experienciaForm: FormGroup;
   idExperiencia = 0;
   opciones = iconos;
+  @Input() ciclo = 0;
   @Output() paso = new EventEmitter<number>();
 
-  get ciclos() {
-    return this.authService.usuario.ciclos ?? 0;
-  }
-
   get opcionesCiclos() {
-    const ciclos = this.authService.usuario.ciclos ?? 0;
     return Array.from(
-      { length: ciclos - this.experiencia.ExCicloInicio + 1 },
+      { length: this.ciclo - this.experiencia.ExCicloInicio + 1 },
       (_, i) => this.experiencia.ExCicloInicio + i
     );
   }

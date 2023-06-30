@@ -23,6 +23,11 @@ export interface RetornoExperiencia {
   id?: number;
 }
 
+export interface DeleteExperienciaResponse {
+  ok: boolean;
+  msg: string;
+}
+
 export interface Contenido {
   IdContenido: number;
   CoTitulo: string;
@@ -38,4 +43,5 @@ export interface NuevoContenido {
   CoUrlMedia: string;
   IdTipoMedia: number;
   IdExperiencia: number;
+  CoFile?: File | null;
 }
