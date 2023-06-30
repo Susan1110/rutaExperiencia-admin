@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ContenidoService } from '../../../services/contenido.service';
 import {
   Contenido,

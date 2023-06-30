@@ -7,7 +7,7 @@
   display: flex;
   justify-content: flex-end;
 }
-.carrera h1 {
+.carrera h2 {
   background: linear-gradient(90deg, #0202c6, #a304a3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -15,28 +15,8 @@
   text-align: end;
 }
 
-.agregar {
-  display: flex;
-  justify-content: center;
-  padding: 5px;
+.beneficio {
+  border: 1px inset #ff0000;
   border-radius: 4px;
-  gap: 10px;
-}
-
-.icon {
-  display: flex;
-  justify-content: center;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 100px;
-  vertical-align: middle;
-}
-
-.icon img {
-  width: 15px;
-  height: 15px;
-}
-
-.icon:hover {
-  background-color: #00000040;
+  padding: 1px 5px;
 }

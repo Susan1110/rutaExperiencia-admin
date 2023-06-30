@@ -1,0 +1,19 @@
+<div class="editar">
+  <div class="nombre">
+    {{ experiencia.ExNombre | titlecase }}
+  </div>
+  <div class="icon default">
+    <img [src]="experiencia.ExIconoUrl" alt="" />
+  </div>
+  <div class="icon actions" (click)="verContenido(experiencia.IdExperiencia)">
+    <img src="assets/ver.svg" alt="ver" />
+  </div>
+  <div class="icon actions" (click)="abrirModal('editar', experiencia)">
+    <img src="assets/editar.svg" alt="editar" />
+  </div>
+  <div
+    class="icon actions"
+    (click)="deleteExperiencia(experiencia.IdExperiencia)">
+    <img src="assets/eliminar.svg" alt="eliminar" />
+  </div>
+</div>

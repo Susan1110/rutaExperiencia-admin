@@ -1,5 +1,5 @@
 <div class="cuerpo espacio" id="scroll">
-  <h2>Contenido</h2>
+  <h5 class="bold">Contenido</h5>
   <div class="slides">
     <div
       class="slide"
@@ -13,8 +13,12 @@
           }}
         </div>
         <div class="slide-cabecera-acciones">
-          <div (click)="verContenido(i)">Editar</div>
-          <div>Eliminar</div>
+          <div (click)="verContenido(i)">
+            <img class="actions" src="assets/editar.svg" alt="editar" />
+          </div>
+          <div>
+            <img class="actions" src="assets/eliminar.svg" alt="eliminar" />
+          </div>
         </div>
       </div>
       <div class="slide-cuerpo" *ngIf="abrirContenido[i]">
@@ -56,6 +60,17 @@
             <div>Link:</div>
             <input type="file" (change)="onFileSelected($event, i)" formControlName="linkImagen" />
             <div
+              class="imagen"
+              *ngIf="!contenidoForm.get('linkImagen')?.value"></div>
+            <img
+              *ngIf="contenidoForm.get('linkImagen')?.value"
+              [src]="contenidoForm.get('linkImagen')?.value"
+              [alt]="
+                contenidoForm.get('titulo')?.value || 'Contenido' + (i + 1)
+                  | titlecase
+              "
+              class="imagen" />
+            <div
               class="mensaje-error"
               *ngIf="
                 contenidoForm.get('linkImagen')?.hasError('required') &&
@@ -96,6 +111,13 @@
           <div class="entrada" *ngIf="tipoSeleccionado[i] === 3">
             <div>Link:</div>
             <input type="text" formControlName="linkImagen360" />
+            <img
+              [src]="contenidoForm.get('linkImagen360')?.value"
+              [alt]="
+                contenidoForm.get('titulo')?.value || 'Contenido' + (i + 1)
+                  | titlecase
+              "
+              class="imagen" />
             <div
               class="mensaje-error"
               *ngIf="
@@ -158,7 +180,7 @@
       class="button-1 button-2 bold"
       (click)="agregarSlide()"
       *ngIf="!sliderDeshabilitado">
-      Agregar Contenido
+      <img class="add" src="assets/agregar.svg" alt="" />
     </div>
     <!-- OPCION PARA AGREGAR SLIDER FIN-->
   </div>
@@ -184,6 +206,5 @@
     (click)="guardarContenido()">
     Editar
   </div>
-  <div class="form-nav bold disabled">Siguiente</div>
 </div>
 <!-- EDITAR CONTENIDO FIN -->

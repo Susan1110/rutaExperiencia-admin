@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 import { ExperienciaService } from '../../services/experiencia.service';
 
@@ -8,6 +8,7 @@ import { ExperienciaService } from '../../services/experiencia.service';
   styleUrls: ['./experiencia-form.component.css'],
 })
 export class ExperienciaFormComponent {
+  @Input() ciclo = 0;
   get funcion() {
     return this.modalService.funcionFormularioExperiancia;
   }

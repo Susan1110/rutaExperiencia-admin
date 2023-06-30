@@ -69,7 +69,8 @@
 }
 
 .active {
-  background-color: white;
+  background: linear-gradient(90deg, #010163 0%, #520252 100%);
+  color: white;
   font-weight: 700;
 }
 
@@ -92,10 +93,13 @@
   flex: 1;
 }
 
-.video {
+.video,.imagen {
   width: 100%;
   background: #cccccc;
   height: 200px;
+}
+.imagen{
+  object-fit: cover;
 }
 
 .footer {
@@ -103,4 +107,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.actions{
+  filter: brightness(0%);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  transition: filter .5s ease;
+}
+.actions:hover{
+  filter: brightness(50%);
+}
+
+textarea{
+  resize: none;
+  height: 150px;
+}
+.add{
+  width: 20px;
+  height: 20px;
 }

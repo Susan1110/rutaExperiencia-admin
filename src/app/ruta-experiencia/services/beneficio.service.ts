@@ -30,7 +30,7 @@ export class BeneficioService {
   }
 
   // me obtiene todos los beneficios del IdCarrera
-  buscarBeneficio() {
+  buscarBeneficios() {
     const IdCarrera = this.authService.usuario.idCarrera;
     const URL = `${API_URL}/beneficio/carrera/${IdCarrera}`;
     return this.http.get<Beneficio[]>(URL).pipe(

@@ -5,11 +5,9 @@ import { API_URL } from 'src/app/api.constants';
 
 interface Usuario {
   ok: boolean;
+  usNombres?: string;
+  usApellidos?: string;
   idCarrera?: number;
-  carrera?: string;
-  ciclos?: number;
-  sede?: string;
-  msg?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -44,5 +42,11 @@ export class AuthService {
       map(resp => resp.ok),
       catchError(() => of(false))
     );
+  }
+  logout() {
+    localStorage.removeItem('usuario');
+    this._usuario = {
+      ok: false,
+    };
   }
 }

@@ -23,6 +23,11 @@ export interface RetornoExperiencia {
   id?: number;
 }
 
+export interface DeleteExperienciaResponse {
+  ok: boolean;
+  msg: string;
+}
+
 export interface Contenido {
   IdContenido: number;
   CoTitulo: string;

@@ -1,0 +1,19 @@
+.texto {
+  color: white;
+  font-size: 12px;
+  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  transition: width 1s ease;
+}
+.icon{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: filter .25s ease;
+}
+
+.icon:hover{
+  filter: brightness(15%);
+}
