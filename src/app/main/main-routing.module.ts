@@ -18,7 +18,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/admin/rutaExperiencia',
+        redirectTo: '/admin/',
         pathMatch: 'full',
       },
     ],

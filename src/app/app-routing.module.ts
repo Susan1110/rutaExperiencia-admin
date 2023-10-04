@@ -27,7 +27,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     // Configura la ruta base
-    useHash: false, // Usa el hash en la URL (opcional, si es necesario)
+    useHash: true, // Usa el hash en la URL (opcional, si es necesario)
   })],
   exports: [RouterModule],
 })
